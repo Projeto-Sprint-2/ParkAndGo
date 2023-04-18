@@ -15,11 +15,10 @@
 
     <!-- Style -->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/calculadora.css">
 
     <!-- Scripts -->
-    <script src="js/main.js" defer></script>
-    <script src="js/signup.js"></script>
-
+    <script src="js/calculadora.js"></script>
 </head>
 <body>
     <header>
@@ -27,7 +26,7 @@
             <span class="logo">Park & Go</span>
             <ul class="links">
                 <li>
-                    <a href="#" class="emphasis">Início</a>
+                    <a href="index.html">Início</a>
                 </li>
                 <li>
                     <a href="#">Sobre</a>
@@ -36,7 +35,7 @@
                     <a href="#">Serviços</a>
                 </li>
                 <li>
-                    <a href="calculadora-financeira.html">Simulação</a>
+                    <a href="calculadora-financeira.html" class="emphasis">Simulação</a>
                 </li>
                 <li>
                     <a href="#contact-us">Fale Conosco</a>
@@ -52,66 +51,34 @@
             </ul>
         </nav>
     </header>
-    
+
     <main>
-        <section id="welcome">
-            <div class="container">
-                <div class="disclaimer">
-                    <p>Monitoramento de Vagas de Estacionamento.</p>
-                    <span>Analise e monitore as vagas do seu estacionamento de forma fácil.</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="about">
-            <div class="container"></div>
-        </section>
-        
-        <section id="simulation">
-            <div class="container">
-                <div class="information">
-                    <div style="width: 600px;">
-                        <p>
-                            Clientes levam cerca de 20 minutos para achar vaga disponível.
-                        </p>
-                        <p>
-                            E se avisarmos para ele quais as vagas disponíveis, assim melhorando o fluxo de veículos no estacionamento.
-                        </p>
-                    </div>
-                    <a href="" class="redirect">Simule aqui</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact-us">
-            <div class="container">
-                <div id="form-contact">
-                    <h2>Fale Conosco</h2>
-                    <div class="row gap">
-                        <div class="field">
-                            <label for="contact-name">Nome</label>
-                            <input type="text" id="contact-name" placeholder="John Doe">
-                        </div>
-                        
-                        <div class="field">
-                            <label for="contact-email">Email</label>
-                            <input type="email" id="contact-email" placeholder="johndoe@email.com">
-                        </div>
-                    </div>
-                    
+        <div class="container">
+            <div class="calc">
+                <h1>Calculadora Financeira</h1>
+                <span>Analise e monitore as vagas do seu estacionamento de forma fácil.</span>
+                <div id="form-calc">
                     <div class="field">
-                        <label for="contact-message">Assunto</label>
-                        <textarea type="text" id="contact-message" placeholder="Deixe um comentário"></textarea>
+                        <label for="fluxo-carros">Fluxo de carros por dia</label>
+                        <input type="text" id="fluxo_carros">
                     </div>
-                    
+                    <div class="field">
+                        <label for="gasto-cliente">Gasto médio por cliente</label>
+                        <input type="text" id="gasto_medio">
+                    </div>
+        
                     <div>
-                        <button class="submit" id="submit-contact">
-                            Enviar
-                        </button>
+                        <button onclick="calcular()" class="submit">Calcular</button>
                     </div>
                 </div>
             </div>
-        </section>
+
+            <div class="resultado">
+                <span class="title">Resultado</span>
+                <div class="resultado-table">
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -166,4 +133,5 @@
         </div>
     </footer>
 </body>
+
 </html>

@@ -1,0 +1,93 @@
+body{
+    overflow-x: hidden;
+}
+
+#form-signup {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-width: 24rem;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    margin: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header h1 {
+    justify-self: center;
+}
+
+a.comeback {
+    display: flex;
+    gap: 4px;
+    color: #040405;
+    padding: 4px;
+    width: max-content;
+    border-radius: 4px;
+}
+
+a.comeback:focus {
+    outline: 2px solid var(--purple-500);
+    outline-offset: 2px;
+}
+
+.welcome {
+    width: 100%;
+}
+
+.illustration {
+    max-width: 520px
+}
+
+.illustration img {
+    width: 100%;
+}
+
+.welcome .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+}
+
+.signup-submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-ref {
+    text-align: center;
+}
+
+.login-ref a {
+    color: var(--purple-500);
+}
+
+.retorno{
+    width: 11rem;
+    height: 3.4rem;
+    border-radius: 5px;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    transition: transform 200ms;
+    color: white;
+    background-color: white;
+    transform: translateX(120%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#sub_span_retorno{
+    font-size: 0.7rem;
+}

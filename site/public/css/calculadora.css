@@ -1,0 +1,37 @@
+@import url('theme.css');
+
+.calc {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#form-calc {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-width: 20rem;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    margin: 2rem;
+}
+
+div.resultado {
+    height: 280px;
+    border-bottom: 1px solid #cccccc;
+    border-top: 1px solid #cccccc;
+}
+
+.resultado span.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 2rem 0;
+}
+
+h1 {
+    font-size: 2.75rem;
+    font-weight: 600;
+    padding: 1rem 0;
+}

@@ -1,0 +1,33 @@
+:root {
+    /* Font config */
+    --font-main: 'Sofia Sans', sans-serif;
+
+    /* Colors */
+    --blue-100: #DFF5FE;    
+    --blue-200: #BFE9FD;
+    --blue-300: #9ED8FB;
+    --blue-400: #85C6F7;
+    --blue-500: #5EABF3;
+    --blue-600: #4485D0;
+    --blue-700: #2F64AE;
+    --blue-800: #1D468C;
+    --blue-900: #123074;
+    --green-100: #E1FDE0;
+    --green-200: #C1FBC4;
+    --green-300: #A0F4AD;
+    --green-400: #85EA9E;
+    --green-500: #5EDC8A;
+    --green-600: #44BD7A;
+    --green-700: #2F9E6C;
+    --green-800: #1D7F5C;
+    --green-900: #126953;
+    --purple-100: #E0DBFC;
+    --purple-200: #C1B8FA;
+    --purple-300: #9E92F0;
+    --purple-400: #8073E2;
+    --purple-500: #5648CF;
+    --purple-600: #4034B2;
+    --purple-700: #2D2495;
+    --purple-800: #1D1678;
+    --purple-900: #120D63;
+}

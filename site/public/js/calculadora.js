@@ -1,17 +1,8 @@
 function calcular() {
-    const simulador = document.querySelector('.simulador')
-    const resultado = document.querySelector('#resultado')
+    const resultado = document.querySelector('.resultado-table')
 
-    simulador.setAttribute('id', 'ativo')
-
-    if (!resultado.classList.contains('fade')) {
-        setTimeout(() => {
-            resultado.classList.toggle('fade')
-        }, 1000);
-    }
-
-    let fluxoCarros = Number(iFluxoCarros.value)
-    let gastoMedio = Number(iGastoMedio.value)
+    let fluxoCarros = Number(fluxo_carros.value)
+    let gastoMedio = Number(gasto_medio.value)
 
     let carrosPerdidos = fluxoCarros / 6
     let carrosPerdidosM = carrosPerdidos.toFixed(0) * 30
@@ -36,7 +27,6 @@ function calcular() {
                 <table>
                     <tr>
                         <td>
-
                         </td>
                         <td>
                             Diário
@@ -78,13 +68,11 @@ function calcular() {
                     </tr>
                 </table>
             </div>
-
             <div class="ganhos">
             Perdas: 
             <table>
                 <tr>
                     <td>
-
                     </td>
                     <td>
                         Diário
@@ -126,111 +114,5 @@ function calcular() {
                 </tr>
             </table>
         </div>
-
     `
-}
-
-
-
-function cadastrar() {
-    let nome = i_nome.value
-    let email = i_email.value
-    let senha = i_senha.value
-    let confirmSenha = i_confirsenha.value
-    let div_retorno = document.querySelector('.retorno')
-
-    if (nome == "" || email == "" || senha == "" || confirmSenha == "") {
-        div_retorno.style.transform = 'translateX(0)';
-        div_retorno.style.color = 'white';
-        div_retorno.style.backgroundColor = 'red';
-        span_retorno.innerHTML = 'Erro ao cadastrar'
-        sup_span_retorno.innerHTML = 'Preencha todos os campos'
-
-        setTimeout(() => {
-            div_retorno.style.transform = 'translateX(120%)';
-        }, "4000")
-
-        console.log('erro')
-    } else {
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                nomeServer: nome,
-                emailServer: email,
-                senhaServer: senha
-            })
-        }).then((resposta) => {
-            if (resposta.ok) {
-                console.log("resposta: ", resposta);
-                div_retorno.style.transform = 'translateX(0)';
-                div_retorno.style.color = 'white';
-                div_retorno.style.backgroundColor = 'green';
-                span_retorno.innerHTML = 'Sucesso ao cadastrar'
-                sup_span_retorno.innerHTML = 'Redirecionando'
-                setTimeout(() => {
-                    window.location = "login.html";
-                }, "2000")
-            } else {
-                console.log('Erro ao cadastrar')
-            }
-        }).catch((resposta) => {
-            console.log(`#ERRO: ${resposta}`);
-        })
-    }
-}
-
-function login(){
-    let email = iEmailLogin.value
-    let senha = iSenhaLogin.value
-    let div_retorno = document.querySelector('.retorno')
-
-    if (email == '' || senha == ''){
-        div_retorno.style.transform = 'translateX(0)';
-        div_retorno.style.color = 'white';
-        div_retorno.style.backgroundColor = 'red';
-        span_retorno.innerHTML = 'Erro ao cadastrar'
-        sup_span_retorno.innerHTML = 'Preencha todos os campos'
-
-        setTimeout(() => {
-            div_retorno.style.transform = 'translateX(120%)';
-        }, "4000")
-
-        console.log('erro')
-    }else{
-        fetch('/usuarios/autenticar', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                emailServer: email,
-                senhaServer: senha
-            })
-        }).then((resposta)=>{
-            if(resposta.ok) {
-                console.log(resposta)
-                
-                resposta.json().then(json =>{
-                    console.log(json)
-
-                    sessionStorage.emailUsuario = json.email
-                    sessionStorage.senhaUsuario = json.senha
-                    sessionStorage.idUsuario = json.id
-                    sessionStorage.nomeUsuario = json.nome
-                    
-
-                    setTimeout(function () {
-                        window.location = "./dashboard/dash.html";
-
-                       
-                    }, 1000);
-
-                    
-                })
-            }
-        })
-    }
 }
