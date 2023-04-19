@@ -1,12 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quantico&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
-    
+    <nav>
+        <p id="park">Park & Go</p>
+        <ul class="listNav">
+            <li>
+                <a href="#">DashBoard</a>
+            </li>
+            <li>
+                <a href="#">Mapa estacionamento</a>
+            </li>
+            <li>
+                <a href="#">Configurações</a>
+            </li>
+            <li>
+                <a href="#">Contato</a>
+            </li>
+            <li>
+                <a href="#">Sair</a>
+
+            </li>
+            <p id="version">Version 1.0.0</p>
+        </ul>
+
+    </nav>
+    <div>
+
+        <h1 style="color: aliceblue; margin-left: 5%;">Bem vindo <span id="userSpan"></span></h1>
+        <!--
+        <div>
+            <ul id="listHome">
+                <li> <a href=""> nome +</a> <img src="foto perfil.png" style="width: 30px; height: 30px;" alt="">   <img style="width: 30px; height: 30px;" src="noti.png" alt=""></li>
+
+
+                <li>Pesquisa fiot<input type="text"></li>
+
+            </ul>
+        </div>
+        */-->
+        <div id="container">
+            <div id="box">
+                <ul class="listDados">
+
+                    <li> <span> 25 <SPAn style="color: greenyellow;"> ↑</SPAn> </span> <br> Aumento de vaga</li>
+
+                    <li> <span>C</span> <br> Setor mais ocupado</li>
+
+                    <li> <span>12:20</span> <br> Horário mais cheio</li>
+
+
+                </ul>
+
+            </div>
+        </div>
+
+        <div id="graficos">
+
+            <div id="grafico">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div id="grafico">
+                <canvas id="myChart2"></canvas>
+            </div>
+
+        </div>
+
+    </div>
+
 </body>
+
+
 </html>
+
+
+<script>
+    userSpan.innerHTML = sessionStorage.nomeUsuario
+
+    const ctx = document.getElementById('myChart');
+    const ctx2 = document.getElementById('myChart2');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['12:00', '12:20', '12:40', '13:00', '13:20', '13:40'],
+            datasets: [{
+                label: 'Estacionamento',
+                backgroundColor: 'RGB(247, 74, 74)',
+                borderColor: 'RGB(247, 74, 74)',
+                data: [257, 300, 230, 150, 100, 90, 120],
+                
+            }
+            ]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Quantidade de vagas ocupadas no Estacionamento',
+                    font: {
+                        size: 17
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['A', 'B', 'C', 'D', 'E', 'F'],
+            datasets: [{
+                label: 'Setores',
+                backgroundColor: 'rgb(000, 99, 255)',
+                data: [21, 24, 27, 23, 20, 19],
+                
+            }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Ocupação de vagas por setores',
+                    font: {
+                        size: 17
+                        
+                    },
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
