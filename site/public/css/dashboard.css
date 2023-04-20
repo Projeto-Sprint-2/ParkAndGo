@@ -17,9 +17,9 @@ html, body
 body{
     font-family: 'Sofia Sans ', sans-serif;
     display: flex;
-    background-color: rgb(35,35,35);
-    overflow: hidden;
-    overflow-y: hidden;
+    background-color: #c5c5c5;
+    /*overflow: hidden;
+    overflow-y: hidden;*/
 
 }
 /*navbar laereal sla wtf*/
@@ -38,8 +38,8 @@ img{
 nav
 {
 
-    border-right: 1px #0077be solid;
-    /*background-color: #0077be;*/
+    /*border-right: 1px #0077be solid;*/    
+    background-color: #1D468C;
     width: 225px;
     height: 100%;
     transition: all 0.5s;
@@ -108,7 +108,11 @@ nav
 }
 */
 
-
+.bemVindo{
+    color:rgb(35,35,35);
+    margin-left: 5%; 
+    margin-top: 2%;
+}
  /*DADOS ALEATORIOS*/
 #container{
     display: flex;
@@ -118,6 +122,8 @@ nav
     margin-left: 5%;
 }
 #box{
+    background-color: rgb(35,35,35);
+
     margin-top: 20px;
     width: 100%;
     height: 150px;
@@ -147,13 +153,21 @@ nav
 
 
 /*GRAFICOS*/
+.graficoSetor{
+    background-color: rgb(35,35,35); 
+    width: 95%; 
+    margin-left: 5%;
+    border-radius: 30px;
+
+}
 #graficos{
     display: flex;
     
 }
 #grafico{
     color: white;
-    
+    background-color: rgb(35,35,35);
+
     box-shadow: 0px 10px 40px #000000;
     height:45vh; 
     width:41vw;
