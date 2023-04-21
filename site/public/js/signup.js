@@ -54,8 +54,8 @@ function cadastrar() {
 }
 
 function login(){
-    let email = signup_email.value
-    let senha = signup_senha.value
+    let email = login_email.value
+    let senha = login_senha.value
     let div_retorno = document.querySelector('.retorno')
 
     console.log('logando')

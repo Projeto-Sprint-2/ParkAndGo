@@ -1,3 +1,3 @@
 # ParkAndGo
 
-Repositorio para colocar nosso site estatico 
+Repositório para gerenciar nosso site estático.
