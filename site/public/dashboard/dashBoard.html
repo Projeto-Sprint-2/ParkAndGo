@@ -54,27 +54,27 @@
             <div id="box">
                 <ul class="listDados">
 
-                    <li> <span> 25 <SPAn style="color: greenyellow;"> ↑</SPAn> </span> <br> Aumento de vaga</li>
+                   
+                    <li> <span>C</span> <br> Setor mais <br> ocupado</li>
 
-                    <li> <span>C</span> <br> Setor mais ocupado</li>
-
-                    <li> <span>12:20</span> <br> Horário mais cheio</li>
+                    <li> <span>12:20</span> <br> Horário mais <br> cheio</li>
 
 
                 </ul>
 
             </div>
-        </div>
-        
-        <div class="graficoSetor">
-            <div style="height:45vh; width:100%;">
-                <canvas id="myChart"></canvas>
+            <div class="containerSetor">
+
+                    <canvas id="myChart3"></canvas>
+                
             </div>
         </div>
+        
+        
         <div id="graficos">
             
             <div id="grafico">
-                <canvas id="myChart"></canvas>
+                <canvas id="myChart1"></canvas>
             </div>
             <div id="grafico">
                 <canvas id="myChart2"></canvas>
@@ -93,10 +93,11 @@
 <script>
     userSpan.innerHTML = sessionStorage.nomeUsuario
 
-    const ctx = document.getElementById('myChart');
+    const ctx1 = document.getElementById('myChart1');
     const ctx2 = document.getElementById('myChart2');
+    const ctx3 = document.getElementById('myChart3');
 
-    new Chart(ctx, {
+    new Chart(ctx1, {
         type: 'line',
         data: {
             labels: ['12:00', '12:20', '12:40', '13:00', '13:20', '13:40'],
@@ -134,7 +135,14 @@
             labels: ['A', 'B', 'C', 'D', 'E', 'F'],
             datasets: [{
                 label: 'Setores',
-                backgroundColor: 'rgb(000, 99, 255)',
+                backgroundColor: [
+                    'green',
+                    'blue',
+                    'yellow',
+                    'purple',
+                    'orange',
+                    'red',
+                ],
                 data: [21, 24, 27, 23, 20, 19],
                 
             }]
@@ -144,6 +152,43 @@
                 title: {
                     display: true,
                     text: 'Ocupação de vagas por setores',
+                    font: {
+                        size: 17
+                        
+                    },
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    
+    new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: ['10:00:00', '10:20:00', '10:40:00', '11:00:00', '11:20:00', '11:40:00'],
+            datasets: [{
+                label: 'Setores',
+                backgroundColor: [
+                    'green',
+                    'yellow',
+                    'yellow',
+                    'green',
+                    'red',
+                    'red',
+                ],
+                data: [26, 15, 18, 26, 6, 7],    
+            }],
+            
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Utilização de vagas do setor A',
                     font: {
                         size: 17
                         
