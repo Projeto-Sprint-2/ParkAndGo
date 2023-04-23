@@ -92,6 +92,11 @@ nav.container {
     transition: color ease-in 0.100s;
 }
 
+.links li a:focus,
+.actions li a:focus {
+    border-bottom: 2px solid var(--purple-500);
+}
+
 .actions li a.btn {
     background-color: var(--green-500);
     color: #ffffff;
@@ -255,6 +260,11 @@ a.redirect {
 a.redirect:hover {
     opacity: 0.9;
     transition: opacity ease 0.100s;
+}
+
+a.redirect:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
 }
 
 section#contact-us {

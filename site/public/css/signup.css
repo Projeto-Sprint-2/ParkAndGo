@@ -13,6 +13,8 @@ body{
     margin: 2rem;
     background-color: #ffffff;
     border-radius: 8px;
+    border: 1px solid #f0f0f0;
+    box-shadow: 4px 6px #e7e7e7;
 }
 
 .header {
@@ -34,7 +36,7 @@ a.comeback {
     border-radius: 4px;
 }
 
-a.comeback:focus {
+a:focus {
     outline: 2px solid var(--purple-500);
     outline-offset: 2px;
 }
