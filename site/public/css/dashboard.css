@@ -22,7 +22,7 @@ body{
     overflow-y: hidden;
 
 }
-/*navbar laereal sla wtf*/
+/*navbar na lateral esquerda*/
 .listNav{
     list-style: none;
     top: 7%;
@@ -38,7 +38,7 @@ img{
 nav
 {
 
-    /*border-right: 1px #0077be solid;*/    
+    /*border-right: 1px #0077be solid; /* borda para nav*/    
     background-color: #1D468C;
     width: 225px;
     height: 100%;
@@ -67,7 +67,6 @@ nav
     border-bottom: #0077be 1px solid;
     border-top: #0077be 1px solid;
     color: #0077be;
-    /*border-left: #d8d8d8 10px solid ;*/
     box-shadow: 5px 0px 25px 1px aliceblue;
     transition: all 0.5s;
 
@@ -81,7 +80,7 @@ nav
     color: aliceblue;
 }
 
-/* HOME?? */
+/* POSSÍVEL HOME */
 /* 
 #listHome{
     display: flex;
@@ -112,7 +111,7 @@ nav
     color:rgb(35,35,35);
     margin-left: 5%; 
 }
- /*DADOS ALEATORIOS*/
+ /*DADOS ESTACIONAMENTO*/
 #container{
     display: flex;
     justify-content: right;
@@ -150,7 +149,7 @@ nav
 
 
 
-/*GRAFICOS*/
+/*GRAFICOS REFERENTE AO ESTACIONAMENTOL*/
 .containerSetor{
     background-color: rgb(35,35,35); 
     width: 95%; 
