@@ -4,20 +4,18 @@
     padding: 0px;
     margin: 0px;
 
-    font-family: 'Sofia Sans ', sans-serif;
-
 }
 
 html, body 
 { 
     height: 100%;
+    font-family: var(--font-main);
 
 }
 
 body{
-    font-family: 'Sofia Sans ', sans-serif;
     display: flex;
-    background-color: #c5c5c5;
+    background-color: #fbfbfb;
     overflow: hidden;
     overflow-y: hidden;
 
@@ -38,8 +36,8 @@ img{
 nav
 {
 
-    /*border-right: 1px #0077be solid; /* borda para nav*/    
-    background-color: #1D468C;
+   border-right: 1px #0077be solid;
+
     width: 225px;
     height: 100%;
     transition: all 0.5s;
@@ -47,26 +45,36 @@ nav
      
 
 }
+
+
 #park{  
     position: relative;
     text-align: center;
-    color: white;
+    color: black;
     font-weight: 800;
+    display: block;
 }
+
+span.blue {
+    color: #0177bf;
+}
+
+span.green {
+    color: #5cb678;
+}
+
+
 .listNav li a{
     
     text-decoration: none;
-    color: black;
+    color: #5a5a5a;
     text-align: center;
     display: block;
     padding: 28px 5px;
-    color: aliceblue;
 }
 .listNav li a:hover{
-    background-color:#bfefff;
-    border-bottom: #0077be 1px solid;
-    border-top: #0077be 1px solid;
-    color: #0077be;
+    background-color:#0077be;
+    color: #fbfbfb;
     box-shadow: 5px 0px 25px 1px aliceblue;
     transition: all 0.5s;
 
@@ -77,7 +85,7 @@ nav
     
     font-size: 13px;
     margin-top: 25%;
-    color: aliceblue;
+    color: black;
 }
 
 /* POSSÍVEL HOME */
@@ -120,13 +128,12 @@ nav
     margin-left: 5%;
 }
 #box{
-    background-color: rgb(35,35,35);
     /*margin-top: 20px; */
     height:45vh; 
     width:41vw;
     border-radius: 25px;
-    color: azure;
-    box-shadow: 0px 5px 20px #000000;
+    color: black;
+    border: 1px black solid;
 }
 .listDados{
     height: 100%;
@@ -151,13 +158,12 @@ nav
 
 /*GRAFICOS REFERENTE AO ESTACIONAMENTOL*/
 .containerSetor{
-    background-color: rgb(35,35,35); 
     width: 95%; 
     margin-left: 5%;
     border-radius: 25px;
     height:45vh; 
     width:41vw;
-    box-shadow: 0px 5px 20px #000000;
+    border: 1px black solid;
 
 }
 
@@ -168,8 +174,7 @@ nav
 }
 #grafico{
     color: white;
-    background-color: rgb(35,35,35);
-    box-shadow: 0px 5px 20px #000000;
+    border: 1px black solid;
     height:45vh;
     width:35vw;
     margin-top: 10%;

@@ -9,12 +9,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quantico&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="../css/theme.css">
 </head>
 
 <body>
     <nav>
-        <p id="park">Park & Go</p>
+        <div id="park">
+            <img src="../assets/images/logo-removebg-preview.png" alt="" srcset="" class="logo">
+            <div>
+                <span class="blue">Park &</span> <span class="green">Go<span>
+            </div>
+        </div>
         <ul class="listNav">
             <li>
                 <a href="#">DashBoard</a>
@@ -38,15 +43,15 @@
     </nav>
     <div>
 
-        <h1 class="bemVindo"style="">Bem vindo <span id="userSpan"></span></h1>
-        <!-- HOME DA DASHBOARD -->
+        <h1 class="bemVindo" >Bem vindo <span id="userSpan"></span></h1>
+        <!-- POSSIVEL HOME DA DASHBOARD -->
         <!-- 
         <div>
             <ul id="listHome">
                 <li> <a href=""> nome +</a> <img src="foto perfil.png" style="width: 30px; height: 30px;" alt="">   <img style="width: 30px; height: 30px;" src="noti.png" alt=""></li>
 
 
-                <li>Pesquisa fiot<input type="text"></li>
+                <li>Pesquisa relacionada ao estacionametno<input type="text"></li>
 
             </ul>
         </div>
@@ -55,10 +60,16 @@
             <div id="box">
                 <ul class="listDados">
 
-                   
-                    <li> <span>C</span> <br> Setor mais <br> ocupado</li>
 
-                    <li> <span>12:20</span> <br> Horário mais <br> cheio</li>
+                    <li> <span>C</span> <br> Setor mais ocupado <br> 
+                        <img src="../assets/images/icones dash/icone setor.jpg"alt="">
+                    </li>
+
+                    <li> 
+                        <span>12:20</span> <br> Horário mais  cheio <br>
+                        <img src="../assets/images/icones dash/horario.png"alt="">
+
+                    </li>
 
 
                 </ul>
@@ -66,16 +77,16 @@
             </div>
             <div class="containerSetor">
 
-                    <canvas id="myChart3"></canvas>
-                
+                <canvas id="myChart3"></canvas>
+
             </div>
         </div>
-        
-        
+
+
         <div id="graficos">
-            
+
             <div id="grafico">
-            
+
                 <canvas id="myChart1"></canvas>
             </div>
             <div id="grafico">
@@ -108,7 +119,7 @@
                 backgroundColor: 'RGB(247, 74, 74)',
                 borderColor: 'RGB(247, 74, 74)',
                 data: [257, 300, 230, 150, 100, 90, 120],
-                
+
             }
             ]
         },
@@ -136,17 +147,17 @@
         data: {
             labels: ['A', 'B', 'C', 'D', 'E', 'F'],
             datasets: [{
-                label: 'Setores',
+
                 backgroundColor: [
-                    'green',
-                    'blue',
-                    'yellow',
-                    'purple',
-                    'orange',
-                    'red',
+                    '#5EABF3',
+                    '#4485D0',
+                    '#2F64AE',
+                    '#1D468C',
+                    '#2F64AE',
+                    '#123074',
                 ],
                 data: [21, 24, 27, 23, 20, 19],
-                
+
             }]
         },
         options: {
@@ -156,7 +167,7 @@
                     text: 'Ocupação de vagas por setores',
                     font: {
                         size: 17
-                        
+
                     },
                 }
             },
@@ -167,7 +178,7 @@
             }
         }
     });
-    
+
     new Chart(ctx3, {
         type: 'bar',
         data: {
@@ -182,9 +193,9 @@
                     'red',
                     'red',
                 ],
-                data: [26, 15, 18, 26, 6, 7],    
+                data: [26, 15, 18, 26, 6, 7],
             }],
-            
+
         },
         options: {
             plugins: {
@@ -193,7 +204,7 @@
                     text: 'Quantidade de vagas ocupadas do setor A',
                     font: {
                         size: 17
-                        
+
                     },
                 }
             },
