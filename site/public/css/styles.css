@@ -92,6 +92,10 @@ nav.container {
     transition: color ease-in 0.100s;
 }
 
+.links li a i {
+    font-size: 1rem;
+}
+
 .links li a:focus,
 .actions li a:focus {
     border-bottom: 2px solid var(--purple-500);
@@ -107,10 +111,6 @@ nav.container {
 .actions li a.btn:hover {
     opacity: 0.7;
     transition: opacity ease 0.100s;
-}
-
-main {
-    min-height: 100vh;
 }
 
 section#welcome {

@@ -1,5 +1,5 @@
 function calcular() {
-    const resultado = document.querySelector('.resultado-table')
+    const resultado = document.querySelector('#resultado')
 
     let fluxoCarros = Number(fluxo_carros.value)
     let gastoMedio = Number(gasto_medio.value)
@@ -22,26 +22,34 @@ function calcular() {
     let perdaEvitadaA = perdaEvitadaM * 12
 
     resultado.innerHTML = `
-    <div class="carros">
-                Carros: 
-                <table>
+        <div class="carros">
+            <table>
+            <caption> 
+                <span>Carros</span>
+                <p>
+                    Quantidade de veículos que deixaram de consumir no estabelecimento.
+                </p>
+            </caption>
+                <thead>
                     <tr>
-                        <td>
-                        </td>
-                        <td>
+                        <th>
+                        </th>
+                        <th>
                             Diário
-                        </td>
-                        <td>
+                        </th>
+                        <th>
                             Mensal
-                        </td>
-                        <td>
+                        </th>
+                        <th>
                             Anual
-                        </td>
+                        </th>
                     </tr>
+                </thead>
+                <tbody>
                     <tr>
-                        <td>
-                            Sem solução
-                        </td>
+                        <th>
+                            Sem Solução <i class="ri-close-line"></i>
+                        </th>
                         <td>
                             <span id="numCarrosPerdidos">${carrosPerdidos.toFixed(0)}</span>
                         </td>
@@ -53,9 +61,9 @@ function calcular() {
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            Com solução
-                        </td>
+                        <th>
+                            Com Solução <i class="ri-check-line"></i>
+                        </th>
                         <td>
                             <span id="objCarrosPerdidos">${objetivoCarrosPerdidos.toFixed(0)}</span>
                         </td>
@@ -66,53 +74,64 @@ function calcular() {
                             <span id="objCarrosPerdidos">${objetivoCarrosPerdidosA.toFixed(0)}</span>
                         </td>
                     </tr>
-                </table>
-            </div>
-            <div class="ganhos">
-            Perdas: 
-            <table>
-                <tr>
-                    <td>
-                    </td>
-                    <td>
-                        Diário
-                    </td>
-                    <td>
-                        Mensal
-                    </td>
-                    <td>
-                        Anual
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Sem solução
-                    </td>
-                    <td>
-                        <span id="numCarrosPerdidos">${ganhoPerdido.toFixed(2)}</span>
-                    </td>
-                    <td>
-                        <span id="numCarrosPerdidos">${ganhoPerdidoM.toFixed(2)}</span>
-                    </td>
-                    <td>
-                        <span id="numCarrosPerdidos">${ganhoPerdidoA.toFixed(2)}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Perda Evitada
-                    </td>
-                    <td>
-                        <span id="objCarrosPerdidos">${perdaEvitada.toFixed(2)}</span>
-                    </td>
-                    <td>
-                        <span id="objCarrosPerdidos">${perdaEvitadaM.toFixed(2)}</span>
-                    </td>
-                    <td>
-                        <span id="objCarrosPerdidos">${perdaEvitadaA.toFixed(2)}</span>
-                    </td>
-                </tr>
+                </tbody>
             </table>
         </div>
-    `
+
+        <div class="ganhos">
+            <table>
+                <caption> 
+                    <span>Perdas</span>
+                    <p>
+                        Perda em relação ao gasto médio por cliente.
+                    </p>
+                </caption>
+                <thead>
+                    <tr>
+                        <th>
+                        </th>
+                        <th>
+                            Diário
+                        </th>
+                        <th>
+                            Mensal
+                        </th>
+                        <th>
+                            Anual
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>
+                            Sem Solução <i class="ri-close-line"></i>
+                        </th>
+                        <td>
+                            <span id="numCarrosPerdidos">${ganhoPerdido.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
+                        </td>
+                        <td>
+                            <span id="numCarrosPerdidos">${ganhoPerdidoM.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
+                        </td>
+                        <td>
+                            <span id="numCarrosPerdidos">${ganhoPerdidoA.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Perda Evitada <i class="ri-add-line"></i>
+                        </th>
+                        <td>
+                            <span id="objCarrosPerdidos">${perdaEvitada.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
+                        </td>
+                        <td>
+                            <span id="objCarrosPerdidos">${perdaEvitadaM.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
+                        </td>
+                        <td>
+                            <span id="objCarrosPerdidos">${perdaEvitadaA.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    `;
 }

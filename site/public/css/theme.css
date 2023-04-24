@@ -32,4 +32,9 @@
     --purple-700: #2D2495;
     --purple-800: #1D1678;
     --purple-900: #120D63;
+    
+    --info: #5EABF3;
+    --success: #22c55e;
+    --warning: #fbbf24;
+    --danger: #ef4444;
 }
