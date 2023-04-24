@@ -44,7 +44,7 @@ h2 {
 
 header {
     width: 100%;
-    padding: 2rem;
+    padding: .75rem 2rem;
     position: sticky;
     left: 0;
     top: 0;
@@ -67,9 +67,28 @@ nav.container {
 }
 
 .logo {
-    font-size: 1.75rem;
+    width: 80px;
+    margin-right: 4px;
+}
+
+.logo-img {
+    width: 300px;
+}
+
+.logo-complement {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
     font-weight: 700;
-    color: #040405;
+    gap: 4px;
+}
+
+span.blue {
+    color: #0177bf;
+}
+
+span.green {
+    color: #5cb678;
 }
 
 .actions,
