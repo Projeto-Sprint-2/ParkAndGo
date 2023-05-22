@@ -25,13 +25,10 @@
                 <a href="#">DashBoard</a>
             </li>
             <li>
-                <a href="#">Mapa estacionamento</a>
+                <a href="#">Setores</a>
             </li>
             <li>
-                <a href="#">Configurações</a>
-            </li>
-            <li>
-                <a href="#">Contato</a>
+                <a href="#">Mapas</a>
             </li>
             <li>
                 <a href="#">Sair</a>
@@ -41,60 +38,69 @@
         </ul>
 
     </nav>
-    <div>
+    <div style="width: 83%; height: 100%; border-top-left-radius:23%; background-color: whitesmoke; z-index: 1;">
 
-        <h1 class="bemVindo" >Bem vindo <span id="userSpan"></span></h1>
-        <!-- POSSIVEL HOME DA DASHBOARD -->
-        <!-- 
-        <div>
-            <ul id="listHome">
-                <li> <a href=""> nome +</a> <img src="foto perfil.png" style="width: 30px; height: 30px;" alt="">   <img style="width: 30px; height: 30px;" src="noti.png" alt=""></li>
-
-
-                <li>Pesquisa relacionada ao estacionametno<input type="text"></li>
-
-            </ul>
-        </div>
-        -->
-        <div id="container">
-            <div id="box">
-                <ul class="listDados">
-
-
-                    <li> <span>C</span> <br> Setor mais ocupado <br> 
-                        <img src="../assets/images/icones dash/icone setor.jpg"alt="">
-                    </li>
-
-                    <li> 
-                        <span>12:20</span> <br> Horário mais  cheio <br>
-                        <img src="../assets/images/icones dash/horario.png"alt="">
-
-                    </li>
-
-
-                </ul>
-
-            </div>
-            <div class="containerSetor">
-
-                <canvas id="myChart3"></canvas>
-
-            </div>
-        </div>
-
-
-        <div id="graficos">
-
-            <div id="grafico">
-
-                <canvas id="myChart1"></canvas>
-            </div>
-            <div id="grafico">
-                <canvas id="myChart2"></canvas>
-            </div>
+        <div style="width: 100%;height: 10vh; background-color: #5a5a5a;">
 
         </div>
 
+        <h1 class="bemVindo">  Bem vindo <span id="userSpan"></span></h1>
+
+        <div class="anali">
+            <div style="background-color: red;">
+                <span>
+                    CRÍTICO
+                </span>
+                <br>
+                0% - 25%
+            </div>
+            <div style="background-color: yellow;">
+                <span>
+                    Emergencial
+                </span>
+                <br>
+                25% - 40%
+            </div>
+            <div style="background-color: green;">
+                <span>
+                    IDEAL
+                </span>
+                <br>
+                40% - 60%
+            </div>
+            <div style="background-color: yellow;">
+                <span>
+                    Emergencial
+                </span>
+                <br>
+                60% - 75%
+            </div>
+            <div style="background-color: red;">
+                <span>
+                    CRÍTICO
+                </span>
+                <br>
+                75% - 100%
+            </div>
+        </div>
+
+        <div id="kpi">
+            <div>
+                C
+                <br>
+                Setor Mais cheio
+            </div>
+            <div>
+                B
+                <br>
+                Setor Mais vazio
+            </div>
+            <div>
+                50/100
+                <br>
+                Capacidade maxima <br> estacionamento
+            </div>
+        </div>
     </div>
 
 </body>
