@@ -1,99 +1,152 @@
--- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
--- Você precisa executar os comandos no banco de dados para criar as tabelas,
--- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
+CREATE DATABASE ParkAndGo;
+USE ParkAndGo;
 
-/*
-comandos para mysql - banco local - ambiente de desenvolvimento
-*/
+CREATE TABLE Endereco (
+idEndereco INT PRIMARY KEY AUTO_INCREMENT,
+Logradouro VARCHAR(100),
+Bairro VARCHAR(100),
+Cidade VARCHAR(50),
+Estado VARCHAR(50),
+CEP CHAR(8)
+) AUTO_INCREMENT = 100;
 
-CREATE DATABASE aquatech;
+CREATE TABLE Empresa (
+idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+CNPJ CHAR(14),
+razaoSocial VARCHAR(100),
+nomeFantasia VARCHAR(70),
+ dtCadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
+ fkEndereco INT, 
+	CONSTRAINT Fklocal foreign key (fkEndereco) REFERENCES Endereco(idEndereco)
+) AUTO_INCREMENT = 50;
 
-USE aquatech;
+CREATE TABLE Responsavel (
+idResponsavel INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(45),
+sobrenome VARCHAR(45),
+CPF CHAR(11),
+email VARCHAR(45),
+telefone CHAR(9),
+dtCadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
+fkEmpresa INT, 
+	CONSTRAINT fkEmpresa foreign key (fkEmpresa) REFERENCES Empresa(idEmpresa)
+); 
 
-CREATE TABLE usuario (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50)
+CREATE TABLE Mercado (
+idMercado INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(70),
+CNPJ CHAR(14),
+unidade VARCHAR(50),
+fkEmpresa INT,
+fkEndereco INT,
+	CONSTRAINT fkEmpresa2 foreign key (fkEmpresa) REFERENCES Empresa(idEmpresa),
+    CONSTRAINT fkEndereco2 foreign key (fkEndereco) REFERENCES Endereco(idEndereco)
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT,
-	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+CREATE TABLE tipoUsuario(
+	idTipoUsuario INT PRIMARY KEY auto_increment,
+    tipoUsuario VARCHAR(45)
 );
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(300)
+CREATE TABLE Usuario (
+	idUsuario INT auto_increment,
+    email VARCHAR(45),
+    senha VARCHAR(45),
+    nome VARCHAR(45),
+    fkMercado INT,
+    fkTipoUsuario INT,
+    CONSTRAINT tipoUsuarioUsuario FOREIGN KEY(fkTipoUsuario)
+		REFERENCES tipoUsuario(idTipoUsuario),
+    CONSTRAINT usuarioMercado FOREIGN KEY(fkMercado)
+		REFERENCES Mercado(idMercado),
+	CONSTRAINT pkUsuario PRIMARY KEY (idUsuario, fkTipoUsuario)
 );
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
-
-create table medida (
-	id INT PRIMARY KEY AUTO_INCREMENT,
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT,
-	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
+CREATE TABLE Setor(
+	idSetor INT auto_increment,
+    nome VARCHAR(45) NOT NULL,
+    andar VARCHAR(45),
+	fkMercado int,
+	constraint fkSetorMercado foreign key(fkMercado) references Mercado(idMercado),
+	constraint pkSetor primary key (idSetor, fkMercado)
+);
+    
+CREATE TABLE Status(
+	idStatus INT PRIMARY KEY auto_increment,
+    nomeStatus VARCHAR(45)
+);
+    
+CREATE TABLE Sensor(
+	idSensor INT  PRIMARY KEY auto_increment,
+	ModeloSensor VARCHAR(45),
+    fkSetor INT,
+    fkStatus INT,
+    CONSTRAINT sensorSetor FOREIGN KEY (fkSetor)
+		REFERENCES Setor(idSetor),
+	CONSTRAINT sensorStatus FOREIGN KEY (fkStatus)
+		REFERENCES `Status`(idStatus)
 );
 
-
-/*
-comando para sql server - banco remoto - ambiente de produção
-*/
-
-CREATE TABLE usuario (
-	id INT PRIMARY KEY IDENTITY(1,1),
-	nome VARCHAR(50),
-	email VARCHAR(50),
-	senha VARCHAR(50),
+CREATE TABLE Metrica(
+	idMetrica INT PRIMARY KEY auto_increment,
+    valor FLOAT,
+    tipoMetrica VARCHAR(45),
+    dtValor DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fkSensor INT,
+    CONSTRAINT metricaSetor FOREIGN KEY (fkSensor)
+		REFERENCES Sensor(idSensor)
 );
 
-CREATE TABLE aviso (
-	id INT PRIMARY KEY IDENTITY(1,1),
-	titulo VARCHAR(100),
-	descricao VARCHAR(150),
-	fk_usuario INT FOREIGN KEY REFERENCES usuario(id)
-);
+insert into Mercado (nome, cnpj, unidade) values
+	('mercado simples', '12345678901234', 'rua simples');
 
-create table aquario (
-/* em nossa regra de negócio, um aquario tem apenas um sensor */
-	id INT PRIMARY KEY IDENTITY(1,1),
-	descricao VARCHAR(300)
-);
+insert into Setor (nome, andar, fkMercado) values
+	('A', '1', 1),
+	('B', '1', 1),
+	('C', '1', 1),
+	('D', '1', 1);
 
-/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
+insert into Sensor (fkSetor) values
+	(1),
+	(2),
+	(3),
+	(4);
 
-CREATE TABLE medida (
-	id INT PRIMARY KEY IDENTITY(1,1),
-	dht11_umidade DECIMAL,
-	dht11_temperatura DECIMAL,
-	luminosidade DECIMAL,
-	lm35_temperatura DECIMAL,
-	chave TINYINT,
-	momento DATETIME,
-	fk_aquario INT FOREIGN KEY REFERENCES aquario(id)
-);
+insert into Metrica values
+	(null, '1', 'bloqueio', now(), 1),
+	(null, '1', 'bloqueio', now(), 1),
+	(null, '1', 'bloqueio', now(), 1),
+	(null, '1', 'bloqueio', now(), 1),
+	(null, '1', 'bloqueio', now(), 2),
+	(null, '1', 'bloqueio', now(), 2),
+	(null, '0', 'bloqueio', now(), 2),
+	(null, '1', 'bloqueio', now(), 2),
+	(null, '1', 'bloqueio', now(), 2),
+	(null, '1', 'bloqueio', now(), 2),
+	(null, '0', 'bloqueio', now(), 2),
+	(null, '1', 'bloqueio', now(), 2),
+	(null, '1', 'bloqueio', now(), 2),
+	(null, '1', 'bloqueio', now(), 2),
+	(null, '1', 'bloqueio', now(), 2),
+	(null, '1', 'bloqueio', now(), 3),
+	(null, '0', 'bloqueio', now(), 3),
+	(null, '1', 'bloqueio', now(), 3),
+	(null, '1', 'bloqueio', now(), 3),
+	(null, '1', 'bloqueio', now(), 3),
+	(null, '1', 'bloqueio', now(), 3),
+	(null, '0', 'bloqueio', now(), 4),
+	(null, '1', 'bloqueio', now(), 4),
+	(null, '1', 'bloqueio', now(), 4),
+	(null, '0', 'bloqueio', now(), 4),
+	(null, '1', 'bloqueio', now(), 4),
+	(null, '1', 'bloqueio', now(), 4),
+	(null, '1', 'bloqueio', now(), 4),
+	(null, '1', 'bloqueio', now(), 4),
+	(null, '0', 'bloqueio', now(), 4),
+	(null, '1', 'bloqueio', now(), 4);
 
-/*
-comandos para criar usuário em banco de dados azure, sqlserver,
-com permissão de insert + update + delete + select
-*/
-
-CREATE USER [usuarioParaAPIWebDataViz_datawriter_datareader]
-WITH PASSWORD = '#Gf_senhaParaAPIWebDataViz',
-DEFAULT_SCHEMA = dbo;
-
-EXEC sys.sp_addrolemember @rolename = N'db_datawriter',
-@membername = N'usuarioParaAPIWebDataViz_datawriter_datareader';
-
-EXEC sys.sp_addrolemember @rolename = N'db_datareader',
-@membername = N'usuarioParaAPIWebDataViz_datawriter_datareader';
+select  st.nome, count(m.idMetrica) from Metrica m
+	join Sensor s ON m.fkSensor = s.idSensor
+		join Setor st ON s.fkSetor = st.idSetor
+			where m.valor = '1'
+				group by st.nome;
