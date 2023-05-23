@@ -9,14 +9,13 @@
 html, body 
 { 
     height: 100%;
-    background-color: #5a5a5a;
-
     font-family: var(--font-main);
+
 }
 
 body{
     display: flex;
-    width: 100%;
+    background-color: #fbfbfb;
     overflow: hidden;
     overflow-y: hidden;
 
@@ -37,8 +36,8 @@ img{
 nav
 {
 
-    background-color: #5a5a5a;
-    /* border-top-right-radius: 100px; */
+   border-right: 1px #0077be solid;
+
     width: 225px;
     height: 100%;
     transition: all 0.5s;
@@ -68,12 +67,13 @@ span.green {
 .listNav li a{
     
     text-decoration: none;
-    color: #ffffff;
+    color: #5a5a5a;
     text-align: center;
     display: block;
     padding: 28px 5px;
 }
 .listNav li a:hover{
+    background-color:#0077be;
     color: #fbfbfb;
     box-shadow: 5px 0px 25px 1px aliceblue;
     transition: all 0.5s;
@@ -88,9 +88,8 @@ span.green {
     color: black;
 }
 
-
 /* POSSÍVEL HOME */
-
+/* 
 #listHome{
     display: flex;
     list-style: none;
@@ -98,7 +97,7 @@ span.green {
     justify-content: space-between;
     height: 50px;
     width: 100%;
-    background-color: #5a5a5a;
+    background-color: #4980FB;
 }
 #listHome li a{
     text-decoration: none;
@@ -110,14 +109,15 @@ span.green {
     
     border-radius: 40px;
 }
+#listHome li{
+    background-color: #4980FB;
 
+}
+*/
 
 .bemVindo{
     color:rgb(35,35,35);
-    margin-top: 2%;
-    margin-bottom: 2%;
     margin-left: 5%; 
-    display: flex;
 }
  /*DADOS ESTACIONAMENTO*/
 #container{
@@ -157,53 +157,16 @@ span.green {
 
 
 /*GRAFICOS REFERENTE AO ESTACIONAMENTOL*/
-.anali{
-    display: flex;
+.containerSetor{
+    width: 95%; 
     margin-left: 5%;
-    width: 90%;   
-    justify-content: space-evenly;
-    border: 1px solid black;
-}
-.anali div{
-    width: 100%;
-    height: 80px;
-    border: 1px solid black;
-    text-align: center;
-}
-.anali div span{
-    background-color: #5a5a5a;
-    display: flex;
-    height: 40%;
-    align-items: center ;
-    text-align: center;
-    justify-content: center;
-    width: 100%;
+    border-radius: 25px;
+    height:45vh; 
+    width:41vw;
+    border: 1px black solid;
 
 }
 
-
-#kpi{
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%; 
-
-}
-#kpi div{
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    font-size: 25px;
-    display: flex;
-    border-radius: 5%;
-    margin-top: 80px;
-
-    border: 1px solid black;
-    box-shadow: 10px 5px 5px black;
-
-    height: 35vh;
-    background-color: #ffffff;
-    width: 27%;
-}
 
 #graficos{
     display: flex;

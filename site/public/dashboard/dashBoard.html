@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quantico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/theme.css">
+    <script src="../js/dashboard.js" defer></script>
 </head>
 
 <body>
@@ -22,13 +23,16 @@
         </div>
         <ul class="listNav">
             <li>
-                <a href="dashBoard.html">DashBoard</a>
+                <a href="#">DashBoard</a>
             </li>
             <li>
-                <a href="setores.html">Setores</a>
+                <a href="#">Mapa estacionamento</a>
             </li>
             <li>
-                <a href="#">Mapas</a>
+                <a href="#">Configurações</a>
+            </li>
+            <li>
+                <a href="#">Contato</a>
             </li>
             <li>
                 <a href="#">Sair</a>
@@ -38,187 +42,63 @@
         </ul>
 
     </nav>
-    <div style="width: 83%; height: 100%; border-top-left-radius:23%; background-color: whitesmoke; z-index: 1;">
+    <div>
 
-        <div style="width: 100%;height: 10vh; background-color: #5a5a5a;">
+        <h1 class="bemVindo" >Bem vindo <span id="userSpan"></span></h1>
+        <!-- POSSIVEL HOME DA DASHBOARD -->
+        <!-- 
+        <div>
+            <ul id="listHome">
+                <li> <a href=""> nome +</a> <img src="foto perfil.png" style="width: 30px; height: 30px;" alt="">   <img style="width: 30px; height: 30px;" src="noti.png" alt=""></li>
 
+
+                <li>Pesquisa relacionada ao estacionametno<input type="text"></li>
+
+            </ul>
         </div>
+        -->
+        <div id="container">
+            <div id="box">
+                <ul class="listDados">
 
-        <h1 class="bemVindo">  Bem vindo <span id="userSpan"></span></h1>
 
-        <div class="anali">
-            <div style="background-color: red;">
-                <span>
-                    CRÍTICO
-                </span>
-                <br>
-                0% - 25%
+                    <li> <span>C</span> <br> Setor mais ocupado <br> 
+                        <img src="../assets/images/icones dash/icone setor.jpg"alt="">
+                    </li>
+
+                    <li> 
+                        <span>12:20</span> <br> Horário mais  cheio <br>
+                        <img src="../assets/images/icones dash/horario.png"alt="">
+
+                    </li>
+
+
+                </ul>
+
             </div>
-            <div style="background-color: yellow;">
-                <span>
-                    Emergencial
-                </span>
-                <br>
-                25% - 40%
-            </div>
-            <div style="background-color: green;">
-                <span>
-                    IDEAL
-                </span>
-                <br>
-                40% - 60%
-            </div>
-            <div style="background-color: yellow;">
-                <span>
-                    Emergencial
-                </span>
-                <br>
-                60% - 75%
-            </div>
-            <div style="background-color: red;">
-                <span>
-                    CRÍTICO
-                </span>
-                <br>
-                75% - 100%
+            <div class="containerSetor">
+
+                <canvas id="myChart3"></canvas>
+
             </div>
         </div>
 
-        <div id="kpi">
-            <div>
-                C
-                <br>
-                Setor Mais cheio
+
+        <div id="graficos">
+
+            <div id="grafico">
+
+                <canvas id="myChart1"></canvas>
             </div>
-            <div>
-                B
-                <br>
-                Setor Mais vazio
+            <div id="grafico">
+                <canvas id="myChart2"></canvas>
             </div>
-            <div>
-                50/100
-                <br>
-                Capacidade maxima <br> estacionamento
-            </div>
+
         </div>
+
     </div>
 
 </body>
 
 
 </html>
-
-
-<script>
-    userSpan.innerHTML = sessionStorage.nomeUsuario || 'Admin';
-
-    const ctx1 = document.getElementById('myChart1');
-    const ctx2 = document.getElementById('myChart2');
-    const ctx3 = document.getElementById('myChart3');
-
-    new Chart(ctx1, {
-        type: 'line',
-        data: {
-            labels: ['12:00', '12:20', '12:40', '13:00', '13:20', '13:40'],
-            datasets: [{
-                label: 'Estacionamento',
-                backgroundColor: 'RGB(247, 74, 74)',
-                borderColor: 'RGB(247, 74, 74)',
-                data: [257, 300, 230, 150, 100, 90, 120],
-
-            }
-            ]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Quantidade de vagas ocupadas no Estacionamento',
-                    font: {
-                        size: 17
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-
-    new Chart(ctx2, {
-        type: 'bar',
-        data: {
-            labels: ['A', 'B', 'C', 'D', 'E', 'F'],
-            datasets: [{
-
-                backgroundColor: [
-                    '#5EABF3',
-                    '#4485D0',
-                    '#2F64AE',
-                    '#1D468C',
-                    '#2F64AE',
-                    '#123074',
-                ],
-                data: [21, 24, 27, 23, 20, 19],
-
-            }]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Ocupação de vagas por setores',
-                    font: {
-                        size: 17
-
-                    },
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-    new Chart(ctx3, {
-        type: 'bar',
-        data: {
-            labels: ['10:00:00', '10:20:00', '10:40:00', '11:00:00', '11:20:00', '11:40:00'],
-            datasets: [{
-                label: 'Setores',
-                backgroundColor: [
-                    'green',
-                    'yellow',
-                    'yellow',
-                    'green',
-                    'red',
-                    'red',
-                ],
-                data: [26, 15, 18, 26, 6, 7],
-            }],
-
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Quantidade de vagas ocupadas do setor A',
-                    font: {
-                        size: 17
-
-                    },
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
