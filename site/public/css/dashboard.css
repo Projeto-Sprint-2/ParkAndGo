@@ -1,185 +1,124 @@
 @import url('theme.css');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
 
-*{
+:root {
+    --roxo-claro: #AE9FF0;
+    --cinza-claro: #5a5a5a;
+}
+
+* {
     padding: 0px;
     margin: 0px;
-
 }
 
-html, body 
-{ 
-    height: 100%;
+html {
     font-family: var(--font-main);
-
 }
 
-body{
-    display: flex;
-    background-color: #fbfbfb;
+body {
+    height: 100vh;
+    background-color: #ebebf8 !important;
     overflow: hidden;
-    overflow-y: hidden;
-
 }
-/*navbar na lateral esquerda*/
-.listNav{
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+.listNav {
     list-style: none;
-    top: 7%;
     position: relative;
-    width: 100%; 
+    width: 100%;
     z-index: 1;
 }
 
-img{
-    width: 40px;
+.listNav li {
+    display: flex;
+    height: 4.5rem;
+    align-items: center;
+    margin-left: 2.3rem;
+    gap: .2rem;
+    font-size: .9rem;
+    transition: all 100ms;
 }
 
-nav
-{
+.listNav li:hover {
+    margin-left: 2.6rem;
+    transition: all 100ms;
+}
 
-   border-right: 1px #0077be solid;
+.listNav li i {
+    font-size: 1.5rem;
+    color: var(--cinza-claro);
+}
 
+.active-page * {
+    font-weight: 700 !important;
+    color: var(--roxo-claro) !important;
+}
+
+nav {
+    position: relative;
+    border-right: 1px var(--cinza-claro) solid;
     width: 225px;
     height: 100%;
     transition: all 0.5s;
-    padding-top: 26px; 
-     
-
+    display: flex;
+    align-items: center;
 }
 
-
-#park{  
-    position: relative;
-    text-align: center;
-    color: black;
-    font-weight: 800;
-    display: block;
-}
-
-span.blue {
-    color: #0177bf;
-}
-
-span.green {
-    color: #5cb678;
-}
-
-
-.listNav li a{
-    
+.listNav li a {
     text-decoration: none;
-    color: #5a5a5a;
+    color: var(--cinza-claro);
     text-align: center;
     display: block;
     padding: 28px 5px;
 }
-.listNav li a:hover{
-    background-color:#0077be;
-    color: #fbfbfb;
-    box-shadow: 5px 0px 25px 1px aliceblue;
-    transition: all 0.5s;
 
-}
-
-#version{
+#version {
+    position: absolute;
+    bottom: 1rem;
+    left: 28%;
     text-align: center;
-    
     font-size: 13px;
-    margin-top: 25%;
     color: black;
 }
 
-/* POSSÍVEL HOME */
-/* 
-#listHome{
-    display: flex;
-    list-style: none;
-    text-decoration: none;
-    justify-content: space-between;
-    height: 50px;
-    width: 100%;
-    background-color: #4980FB;
+#logout-icon {
+    transition: all 100ms;
 }
-#listHome li a{
-    text-decoration: none;
-    height: 100%;
-    
-    color: wheat;
-}
-#listHome li input{
-    
-    border-radius: 40px;
-}
-#listHome li{
-    background-color: #4980FB;
 
+#logout-icon:hover * {
+    color: red !important;
+    transition: all 100ms;
 }
-*/
+
+.title{
+    font-family: 'Rubik', sans-serif;
+}
 
 .bemVindo{
-    color:rgb(35,35,35);
-    margin-left: 5%; 
+    margin: 2rem 0 0 2rem;
+    font-size: 1.6rem;
 }
- /*DADOS ESTACIONAMENTO*/
-#container{
+
+.kpi{
     display: flex;
-    justify-content: right;
-    width: 90%;
-    height: 30%;
-    margin-left: 5%;
-}
-#box{
-    /*margin-top: 20px; */
-    height:45vh; 
-    width:41vw;
-    border-radius: 25px;
-    color: black;
-    border: 1px black solid;
-}
-.listDados{
-    height: 100%;
-    align-items: center;
-    font-size: 15px;
-    display: flex;
-    position: relative;
-    list-style: none;
-    justify-content: space-around;    
-    
-}
-
-.listDados li {
-    text-align: center; 
-    font-size: 18px;
-}
-.listDados li span{
-    font-size: 30px;
-}
-
-
-
-/*GRAFICOS REFERENTE AO ESTACIONAMENTOL*/
-.containerSetor{
-    width: 95%; 
-    margin-left: 5%;
-    border-radius: 25px;
-    height:45vh; 
-    width:41vw;
-    border: 1px black solid;
-
-}
-
-
-#graficos{
-    display: flex;
-    
-}
-#grafico{
+    flex-direction: column;
     color: white;
-    border: 1px black solid;
-    height:45vh;
-    width:35vw;
-    margin-top: 10%;
-    margin-left: 5%;
-    border-radius: 25px;
+    background-color: #872ed1;
+    width: 13rem;
+    height: 3.3rem;
+    border-radius: 4px;
+    justify-content: center;
+}
 
-    /* border-radius: 10%;*/
+.kpi .kpiTitle{
+    padding-left: 1rem;
+    font-weight: 700;
+}
+
+.kpi .kpiInfo{
+    padding-left: 1rem;
 }
