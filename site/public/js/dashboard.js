@@ -1,7 +1,7 @@
 var setores = []
 var valoresSetores = []
 
-const ctx1 = document.getElementById('myChart1');
+const chartVagaspSetor = document.getElementById('chartVagaspSetor');
 const ctx2 = document.getElementById('myChart2');
 const ctx3 = document.getElementById('myChart3');
 
@@ -32,38 +32,43 @@ document.addEventListener('DOMContentLoaded', carregarGraficos = () => {
 })
 
 function loadDash() {
-    new Chart(ctx1, {
-        type: 'line',
-        data: {
-            labels: ['12:00', '12:20', '12:40', '13:00', '13:20', '13:40'],
-            datasets: [{
-                label: 'Estacionamento',
-                backgroundColor: 'RGB(247, 74, 74)',
-                borderColor: 'RGB(247, 74, 74)',
-                data: [257, 300, 230, 150, 100, 90, 120],
+    var maiorOcupacaoNoVetor = Math.max.apply(null, valoresSetores)
+    setorMaisOcupado.innerText = `${setores[valoresSetores.indexOf(maiorOcupacaoNoVetor)]}
+    ${maiorOcupacaoNoVetor} vagas ocupadas
+    `
 
-            }
-            ]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Quantidade de vagas ocupadas no Estacionamento',
-                    font: {
-                        size: 17
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
+    // new Chart(ctx1, {
+    //     type: 'line',
+    //     data: {
+    //         labels: ['12:00', '12:20', '12:40', '13:00', '13:20', '13:40'],
+    //         datasets: [{
+    //             label: 'Estacionamento',
+    //             backgroundColor: 'RGB(247, 74, 74)',
+    //             borderColor: 'RGB(247, 74, 74)',
+    //             data: [257, 300, 230, 150, 100, 90, 120],
 
-    new Chart(ctx2, {
+    //         }
+    //         ]
+    //     },
+    //     options: {
+    //         plugins: {
+    //             title: {
+    //                 display: true,
+    //                 text: 'Quantidade de vagas ocupadas no Estacionamento',
+    //                 font: {
+    //                     size: 17
+    //                 }
+    //             }
+    //         },
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: true
+    //             }
+    //         }
+    //     }
+    // });
+
+    new Chart(chartVagaspSetor, {
         type: 'bar',
         data: {
             labels: [setores[0], setores[1], setores[2], setores[3], setores[4], setores[5]],

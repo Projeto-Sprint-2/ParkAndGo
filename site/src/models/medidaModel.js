@@ -56,11 +56,14 @@ function buscarMedidasPorSetor(){
     if(process.env.AMBIENTE_PROCESSO == 'producao'){
 
     }else if(process.env.AMBIENTE_PROCESSO == 'desenvolvimento'){
-        instrucaoSql = `select  st.nome, count(m.idMetrica) as 'ocupacao' from Metrica m
-        join Sensor s ON m.fkSensor = s.idSensor
-            join Setor st ON s.fkSetor = st.idSetor
-                where m.valor = '1'
-                    group by st.nome;
+        instrucaoSql = `
+        select st.nome, max(m.dtValor) as 'dtUltimaOcupacao', count(m.idMetrica) as 'ocupacao'
+            from Metrica m
+                join Sensor s on m.fkSensor = s.idSensor
+                    join Setor st on s.fkSetor = st.idSetor
+                        where m.valor = '1'
+                            group by st.nome
+                                order by dtUltimaOcupacao desc;
         `
     }
     return database.executar(instrucaoSql)
