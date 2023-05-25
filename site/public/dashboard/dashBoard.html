@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/dashboard.css">
-    <title>Document</title>
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,91 +15,49 @@
 </head>
 
 <body>
+    <div class="container">
     <nav>
-        <div id="park">
-            <img src="../assets/images/logo-removebg-preview.png" alt="" srcset="" class="logo">
-            <div>
-                <span class="blue">Park &</span> <span class="green">Go<span>
-            </div>
-        </div>
         <ul class="listNav">
-            <li>
+            <li class="active-page">
+                <i class="ri-pie-chart-2-fill"></i>
                 <a href="#">DashBoard</a>
             </li>
             <li>
-                <a href="#">Mapa estacionamento</a>
+                <i class="ri-line-chart-line"></i>
+                <a href="setores.html">Setores</a>
             </li>
             <li>
+                <i class="ri-settings-4-line"></i>
                 <a href="#">Configurações</a>
             </li>
             <li>
+                <i class="ri-contacts-line"></i>
                 <a href="#">Contato</a>
             </li>
-            <li>
+            <li id="logout-icon">
+                <i class="ri-logout-box-line"></i>
                 <a href="#">Sair</a>
-
             </li>
-            <p id="version">Version 1.0.0</p>
         </ul>
-
+        <p id="version">Version 1.0.0</p>
     </nav>
-    <div>
-
-        <h1 class="bemVindo" >Bem vindo <span id="userSpan"></span></h1>
-        <!-- POSSIVEL HOME DA DASHBOARD -->
-        <!-- 
-        <div>
-            <ul id="listHome">
-                <li> <a href=""> nome +</a> <img src="foto perfil.png" style="width: 30px; height: 30px;" alt="">   <img style="width: 30px; height: 30px;" src="noti.png" alt=""></li>
-
-
-                <li>Pesquisa relacionada ao estacionametno<input type="text"></li>
-
-            </ul>
-        </div>
-        -->
-        <div id="container">
-            <div id="box">
-                <ul class="listDados">
-
-
-                    <li> <span>C</span> <br> Setor mais ocupado <br> 
-                        <img src="../assets/images/icones dash/icone setor.jpg"alt="">
-                    </li>
-
-                    <li> 
-                        <span>12:20</span> <br> Horário mais  cheio <br>
-                        <img src="../assets/images/icones dash/horario.png"alt="">
-
-                    </li>
-
-
-                </ul>
-
-            </div>
-            <div class="containerSetor">
-
-                <canvas id="myChart3"></canvas>
-
-            </div>
+    <main>
+        <div class="bemVindo title">
+            <span>Bem vindo, <span id="userSpan"></span></span>
         </div>
 
-
-        <div id="graficos">
-
-            <div id="grafico">
-
-                <canvas id="myChart1"></canvas>
-            </div>
-            <div id="grafico">
-                <canvas id="myChart2"></canvas>
-            </div>
-
+        <div class="kpi">
+        <span class="kpiTitle">
+            Setor mais ocupado
+        </span>
+        <span class="kpiInfo">
+            Setor C
+        </span>
         </div>
-
+        <!-- <div class="kpi"></div>
+        <div class="kpi"></div> -->
+    </main>
     </div>
-
 </body>
-
 
 </html>
