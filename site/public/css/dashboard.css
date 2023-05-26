@@ -277,6 +277,7 @@ div#sidebar {
     min-height: 384px;
     max-width: 760px;
     padding: 1rem;
+    position: relative;
 }
 
 .chart canvas {
@@ -304,4 +305,12 @@ div#sidebar {
 
 .cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ultimaAtt{
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: RGB(102, 102, 102);
+    font-size: .7rem;
 }

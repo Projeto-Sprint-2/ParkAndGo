@@ -34,14 +34,17 @@ function buscarMedidas() {
     }).then((resposta) => {
         if (resposta.ok) {
             resposta.json().then(json => {
-                json.forEach(element => {
-                    setores.push(element.nome)
-                    ocupacaoSetores.push(element.ocupacao)
-                });
-            }).then(() => {
-                setTimeout(() => {
-                    loadVagaspSetor()
-                }, 1000);
+                if(primeiroPlot){
+                    json.forEach(element => {
+                        setores.push(element.nome)
+                        ocupacaoSetores.push(element.ocupacao)
+                    });
+                }else{
+                    json.forEach((element, index) =>{
+                        ocupacaoSetores.splice(index, 1, element.ocupacao)
+                        ultimaAttdata.innerText = element.dtUltimaOcupacao
+                    })
+                }
             })
         } else {
             console.log('erro no fetch')
@@ -60,20 +63,22 @@ function buscarMedidas() {
                     ocupacaoGeral.push(element.ocupacao)
                     historicoAtualizacao.push(element.data)
                 })
-            }).then(() => {
-                setTimeout(() => {
-                    loadOcupacaoGeral()
-                }, 1000);
             })
         }
     })
+
+    setTimeout(() => {
+        loadCharts()
+    }, 1000);
 }
 
-function loadVagaspSetor() {
+let graficoOcupacaoGeral, graficoVagaspSetor
+
+function loadCharts(){
     if (!primeiroPlot) {
-        console.log('deu certo')
-    } else {
-        let graficoVagaspSetor = new Chart(chartVagaspSetor, {
+        attGraficos()
+    }else{
+        graficoVagaspSetor = new Chart(chartVagaspSetor, {
             type: 'bar',
             data: {
                 labels: [setores[0], setores[1], setores[2], setores[3]],
@@ -102,18 +107,8 @@ function loadVagaspSetor() {
                 }
             }
         });
-    }
 
-    setTimeout(() => {
-        buscarMedidas() 
-    }, 1000);
-}
-
-function loadOcupacaoGeral() {
-    if (!primeiroPlot) {
-        console.log('deu certo 2')
-    } else {
-        let graficoOcupacaoGeral = new Chart(chartOcupacaoGeral, {
+        graficoOcupacaoGeral = new Chart(chartOcupacaoGeral, {
             type: 'line',
             data: {
                 labels: [historicoAtualizacao[0]],
@@ -143,10 +138,22 @@ function loadOcupacaoGeral() {
                 }
             }
         })
-        primeiroPlot = false
     }
+
+    primeiroPlot = false
+
+    setTimeout(() => {
+        buscarMedidas()
+    }, 1000);
 }
 
+let dataVagaspSetor
 function attGraficos() {
+    dataVagaspSetor = graficoVagaspSetor.data.datasets[0].data
+    
+    dataVagaspSetor.forEach((data, index) => {
+        dataVagaspSetor[index] = ocupacaoSetores[index]
+    })
 
+    graficoVagaspSetor.update()
 }

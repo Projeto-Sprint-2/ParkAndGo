@@ -52,7 +52,7 @@ function buscarMedidasPorSetor() {
         return
     } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
         instrucaoSql = `
-        select st.nome, max(m.dtValor) as 'dtUltimaOcupacao', count(m.idMetrica) as 'ocupacao'
+        select st.nome, max(DATE_FORMAT(m.dtValor, '%H:%i:%s')) as 'dtUltimaOcupacao', count(m.idMetrica) as 'ocupacao'
             from Metrica m
                 join Sensor s on m.fkSensor = s.idSensor
                     join Setor st on s.fkSetor = st.idSetor
