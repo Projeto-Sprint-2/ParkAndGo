@@ -66,6 +66,7 @@ CREATE TABLE Setor(
 	idSetor INT auto_increment,
     nome VARCHAR(45) NOT NULL,
     andar VARCHAR(45),
+    capacidadeMaxima VARCHAR(45),
 	fkMercado int,
 	constraint fkSetorMercado foreign key(fkMercado) references Mercado(idMercado),
 	constraint pkSetor primary key (idSetor, fkMercado)

@@ -1,9 +1,7 @@
 var database = require("../database/config");
 
 function buscarUltimasMedidas(idSensor, limite_linhas) {
-
     instrucaoSql = ''
-
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `select top ${limite_linhas}
         dht11_temperatura as temperatura, 
@@ -21,15 +19,12 @@ function buscarUltimasMedidas(idSensor, limite_linhas) {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
     }
-
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 function buscarMedidasEmTempoReal(idSensor) {
-
     instrucaoSql = ''
-
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `select top 1
         dht11_temperatura as temperatura, 
@@ -52,10 +47,10 @@ function buscarMedidasEmTempoReal(idSensor) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasPorSetor(){
-    if(process.env.AMBIENTE_PROCESSO == 'producao'){
-
-    }else if(process.env.AMBIENTE_PROCESSO == 'desenvolvimento'){
+function buscarMedidasPorSetor() {
+    if (process.env.AMBIENTE_PROCESSO == 'producao') {
+        return
+    } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
         instrucaoSql = `
         select st.nome, max(m.dtValor) as 'dtUltimaOcupacao', count(m.idMetrica) as 'ocupacao'
             from Metrica m
@@ -69,8 +64,24 @@ function buscarMedidasPorSetor(){
     return database.executar(instrucaoSql)
 }
 
+function buscarOcupacaoGeral() {
+    if (process.env.AMBIENTE_PROCESSO == 'producao') {
+        return
+    } else {
+        instrucao = `
+        select count(idMetrica) as ocupacao, DATE_FORMAT(dtValor, '%H:%i:%s') as 'data' from Metrica 
+            where valor = '1' 
+                and dtValor = (select max(dtValor) from Metrica) 
+                    group by dtValor;
+        `
+
+        return database.executar(instrucao)
+    }
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
-    buscarMedidasPorSetor
+    buscarMedidasPorSetor,
+    buscarOcupacaoGeral
 }

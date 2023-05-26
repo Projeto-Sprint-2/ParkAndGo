@@ -11,8 +11,12 @@ router.get("/tempo-real/:idSensor", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 })
 
-router.get('/setores/ocupacao', (req, res)=>{
-    medidaController.buscarMedidasPorSetor(req,res)
+router.get('/setores/ocupacao', (req, res) => {
+    medidaController.buscarMedidasPorSetor(req, res)
+})
+
+router.get('/ocupacaoGeral', (req, res) => {
+    medidaController.buscarOcupacaoGeral(req, res)
 })
 
 module.exports = router;
