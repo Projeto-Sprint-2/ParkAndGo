@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Style -->
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="../js/dashboard.js" defer></script> -->
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#">
+                <img src="../assets/images/logo.png" id="logo">
+            </a>
+            <div class="user-area">
+                <button id="btn-notifications">
+                    <i class="ri-notification-2-fill"></i>
+                    <span>Notificações</span>
+                </button>
+                <div class="wrapper-dropdown">
+                    <button id="btn-dropdown-user">
+                        <img class="user-image" src="https://avatars.githubusercontent.com/u/93455951?v=4">
+                    </button>
+                    <div id="dropdown-user">
+                        <div class="dropdown-container">
+                            <p id="user-name">
+                                Kelvin Santos
+                            </p>
+                            <p id="user-email">
+                                kelvin.jesus@sptech.school.com
+                            </p>
+                        </div>
+                        <ul class="user-functions">
+                            <li>
+                                <a href="#" class="menu-item signout">Sair</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="sidebar">
+        <div class="wrapper-sidebar-items">
+            <ul class="sidebar-list">
+                <li>
+                    <a href="#" class="sidebar-item active disable">
+                        <i class="ri-pie-chart-fill"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-item">
+                        <span>Setores</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-item">
+                        <span>Alertas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-item">
+                        <span>+</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="charts-container">
+        <div class="charts-content">
+            <!-- lista com cards rapidos e estatisticas simples -->
+            <div class="chart-grid cols-2">
+                <div class="chart">
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div class="chart">
+                    <div id="chartVagaspSetor"></div>
+                </div>
+                <div class="chart">
+                    <span>+</span>
+                </div>
+                <div class="chart">
+                    <span>+</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+<script>
+    const btnDropdownUser = document.getElementById('btn-dropdown-user');
+    const dropdownUser = document.getElementById('dropdown-user');
+
+    btnDropdownUser.addEventListener('focus', () => {
+        dropdownUser.classList.toggle('show');
+    });
+
+    btnDropdownUser.addEventListener('blur', () => {
+        dropdownUser.classList.toggle('show');
+    });
+</script>
+</html>
