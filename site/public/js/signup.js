@@ -28,7 +28,7 @@ function cadastrarEmpresa() {
     }).then((resposta) => {
         console.log(resposta)
         if (resposta.ok) {
-            resposta.json().then(json=>{
+            resposta.json().then(json => {
                 console.log(json.insertId)
                 sessionStorage.idEmpresa = json.insertId
             })
@@ -48,8 +48,6 @@ function cadastrar() {
     let senha = signup_senha.value
     let confirmSenha = signup_confimsenha.value
     let div_retorno = document.querySelector('.retorno')
-
-    console.log('Cadastrar')
 
     if (nome == "" || email == "" || senha == "" || confirmSenha == "") {
         div_retorno.style.transform = 'translateX(0)';
@@ -128,25 +126,46 @@ function login() {
         }).then((resposta) => {
             if (resposta.ok) {
                 console.log(resposta)
-
                 resposta.json().then(json => {
                     console.log(json)
-
                     sessionStorage.emailUsuario = json.email
                     sessionStorage.senhaUsuario = json.senha
                     sessionStorage.idUsuario = json.id
                     sessionStorage.nomeUsuario = json.nome
-
-
                     setTimeout(function () {
                         window.location = "./dashboard/dashboard.html";
-
-
                     }, 1000);
-
-
                 })
             }
         })
     }
+}
+
+function cadastrarResponsavel() {
+    let nome = inome.value
+    let sobrenome = isobrenome.value
+    let cpf = icpf.value
+    let email = iemail.value
+    let telefone = itelefone.value
+
+    fetch('/responsaveis/cadastrar', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nomeServer: nome,
+            sobrenomeServer: sobrenome,
+            cpfServer: cpf,
+            emailServer: email,
+            telefoneServer: telefone,
+            fkEmpresaServer: sessionStorage.idEmpresa
+        })
+        }).then(resposta => {
+            if(resposta.ok){
+                
+            }
+        }).catch((resposta) => {
+            console.log(`#ERRO: ${resposta}`);
+    })
 }

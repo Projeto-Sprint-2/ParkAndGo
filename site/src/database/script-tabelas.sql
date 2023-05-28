@@ -27,7 +27,7 @@ CREATE TABLE Responsavel (
 	sobrenome VARCHAR(45),
 	CPF CHAR(11),
 	email VARCHAR(45),
-	telefone CHAR(9),
+	telefone CHAR(11),
 	dtCadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
 	fkEmpresa INT, 
 		CONSTRAINT fkEmpresa foreign key (fkEmpresa) REFERENCES Empresa(idEmpresa)
@@ -121,4 +121,4 @@ insert into Metrica values
 	(null, '1', 'bloqueio', now(), 4);
 
 insert into tipoUsuario values
-	(null, 'Administrador')
+	(null, 'Administrador');
