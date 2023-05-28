@@ -1,6 +1,41 @@
+function cadastrarEmpresa() {
+    let razaoSocial = irazao_social.value
+    let nomeFantasia = inome_fantasia.value
+    let cnpj = icnpj.value
+    let cep = icep.value
+    let logradouro = ilogradouro.value
+    let numero = inumero.value
+    let bairro = ibairro.value
+    let cidade = icidade.value
+    let estado = iestado.value
+
+    fetch('/empresas/cadastrar', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            razaoSocialServer: razaoSocial,
+            nomeFantasiaServer: nomeFantasia,
+            cnpjServer: cnpj,
+            cepServer: cep,
+            logradouroServer: logradouro,
+            numeroServer: numero,
+            bairroServer: bairro,
+            cidadeServer: cidade,
+            estadoServer: estado
+        })
+    }).then((resposta) => {
+        if (resposta.ok) {
+            console.log(resposta)
+
+        }
+    }).catch((resposta) => {
+        console.log(`#ERRO: ${resposta}`);
+    })
+}
+
 function cadastrar() {
-
-
     let nome = signup_usuario.value
     let email = signup_email.value
     let senha = signup_senha.value
@@ -53,14 +88,14 @@ function cadastrar() {
     }
 }
 
-function login(){
+function login() {
     let email = login_email.value
     let senha = login_senha.value
     let div_retorno = document.querySelector('.retorno')
 
     console.log('logando')
 
-    if (email == '' || senha == ''){
+    if (email == '' || senha == '') {
         div_retorno.style.transform = 'translateX(0)';
         div_retorno.style.color = 'white';
         div_retorno.style.backgroundColor = '#CC3333';
@@ -73,7 +108,7 @@ function login(){
         }, "4000")
 
         console.log('erro')
-    }else{
+    } else {
         fetch('/usuarios/autenticar', {
             method: 'POST',
             headers: {
@@ -83,26 +118,26 @@ function login(){
                 emailServer: email,
                 senhaServer: senha
             })
-        }).then((resposta)=>{
-            if(resposta.ok) {
+        }).then((resposta) => {
+            if (resposta.ok) {
                 console.log(resposta)
-                
-                resposta.json().then(json =>{
+
+                resposta.json().then(json => {
                     console.log(json)
 
                     sessionStorage.emailUsuario = json.email
                     sessionStorage.senhaUsuario = json.senha
                     sessionStorage.idUsuario = json.id
                     sessionStorage.nomeUsuario = json.nome
-                    
+
 
                     setTimeout(function () {
                         window.location = "./dashboard/dashboard.html";
 
-                       
+
                     }, 1000);
 
-                    
+
                 })
             }
         })

@@ -2,45 +2,46 @@ CREATE DATABASE ParkAndGo;
 USE ParkAndGo;
 
 CREATE TABLE Endereco (
-idEndereco INT PRIMARY KEY AUTO_INCREMENT,
-Logradouro VARCHAR(100),
-Bairro VARCHAR(100),
-Cidade VARCHAR(50),
-Estado VARCHAR(50),
-CEP CHAR(8)
+	idEndereco INT PRIMARY KEY AUTO_INCREMENT,
+	logradouro VARCHAR(100),
+	bairro VARCHAR(100),
+	cidade VARCHAR(50),
+	estado VARCHAR(50),
+	numero VARCHAR(10),
+	CEP CHAR(8)
 ) AUTO_INCREMENT = 100;
 
 CREATE TABLE Empresa (
-idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
-CNPJ CHAR(14),
-razaoSocial VARCHAR(100),
-nomeFantasia VARCHAR(70),
- dtCadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
- fkEndereco INT, 
-	CONSTRAINT Fklocal foreign key (fkEndereco) REFERENCES Endereco(idEndereco)
+	idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+	CNPJ CHAR(14),
+	razaoSocial VARCHAR(100),
+	nomeFantasia VARCHAR(70),
+	dtCadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
+	fkEndereco INT, 
+		CONSTRAINT Fklocal foreign key (fkEndereco) REFERENCES Endereco(idEndereco)
 ) AUTO_INCREMENT = 50;
 
 CREATE TABLE Responsavel (
-idResponsavel INT PRIMARY KEY AUTO_INCREMENT,
-nome VARCHAR(45),
-sobrenome VARCHAR(45),
-CPF CHAR(11),
-email VARCHAR(45),
-telefone CHAR(9),
-dtCadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
-fkEmpresa INT, 
-	CONSTRAINT fkEmpresa foreign key (fkEmpresa) REFERENCES Empresa(idEmpresa)
+	idResponsavel INT PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(45),
+	sobrenome VARCHAR(45),
+	CPF CHAR(11),
+	email VARCHAR(45),
+	telefone CHAR(9),
+	dtCadastro DATETIME DEFAULT CURRENT_TIMESTAMP,
+	fkEmpresa INT, 
+		CONSTRAINT fkEmpresa foreign key (fkEmpresa) REFERENCES Empresa(idEmpresa)
 ); 
 
 CREATE TABLE Mercado (
-idMercado INT PRIMARY KEY AUTO_INCREMENT,
-nome VARCHAR(70),
-CNPJ CHAR(14),
-unidade VARCHAR(50),
-fkEmpresa INT,
-fkEndereco INT,
-	CONSTRAINT fkEmpresa2 foreign key (fkEmpresa) REFERENCES Empresa(idEmpresa),
-    CONSTRAINT fkEndereco2 foreign key (fkEndereco) REFERENCES Endereco(idEndereco)
+	idMercado INT PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(70),
+	CNPJ CHAR(14),
+	unidade VARCHAR(50),
+	fkEmpresa INT,
+	fkEndereco INT,
+		CONSTRAINT fkEmpresa2 foreign key (fkEmpresa) REFERENCES Empresa(idEmpresa),
+		CONSTRAINT fkEndereco2 foreign key (fkEndereco) REFERENCES Endereco(idEndereco)
 );
 
 CREATE TABLE tipoUsuario(
@@ -79,7 +80,7 @@ CREATE TABLE Status(
     
 CREATE TABLE Sensor(
 	idSensor INT  PRIMARY KEY auto_increment,
-	ModeloSensor VARCHAR(45),
+	modeloSensor VARCHAR(45),
     fkSetor INT,
     fkStatus INT,
     CONSTRAINT sensorSetor FOREIGN KEY (fkSetor)
@@ -118,3 +119,6 @@ insert into Metrica values
 	(null, '1', 'bloqueio', now(), 2),
 	(null, '1', 'bloqueio', now(), 3),
 	(null, '1', 'bloqueio', now(), 4);
+
+insert into tipoUsuario values
+	(null, 'Administrador')
