@@ -115,39 +115,6 @@ insert into Sensor (fkSetor) values
 
 insert into Metrica values
 	(null, '1', 'bloqueio', now(), 1),
-	(null, '1', 'bloqueio', now(), 1),
-	(null, '1', 'bloqueio', now(), 1),
-	(null, '1', 'bloqueio', now(), 1),
-	(null, '1', 'bloqueio', now(), 2),
-	(null, '1', 'bloqueio', now(), 2),
-	(null, '0', 'bloqueio', now(), 2),
-	(null, '1', 'bloqueio', now(), 2),
-	(null, '1', 'bloqueio', now(), 2),
-	(null, '1', 'bloqueio', now(), 2),
-	(null, '0', 'bloqueio', now(), 2),
-	(null, '1', 'bloqueio', now(), 2),
-	(null, '1', 'bloqueio', now(), 2),
-	(null, '1', 'bloqueio', now(), 2),
 	(null, '1', 'bloqueio', now(), 2),
 	(null, '1', 'bloqueio', now(), 3),
-	(null, '0', 'bloqueio', now(), 3),
-	(null, '1', 'bloqueio', now(), 3),
-	(null, '1', 'bloqueio', now(), 3),
-	(null, '1', 'bloqueio', now(), 3),
-	(null, '1', 'bloqueio', now(), 3),
-	(null, '0', 'bloqueio', now(), 4),
-	(null, '1', 'bloqueio', now(), 4),
-	(null, '1', 'bloqueio', now(), 4),
-	(null, '0', 'bloqueio', now(), 4),
-	(null, '1', 'bloqueio', now(), 4),
-	(null, '1', 'bloqueio', now(), 4),
-	(null, '1', 'bloqueio', now(), 4),
-	(null, '1', 'bloqueio', now(), 4),
-	(null, '0', 'bloqueio', now(), 4),
 	(null, '1', 'bloqueio', now(), 4);
-
-select  st.nome, count(m.idMetrica) from Metrica m
-	join Sensor s ON m.fkSensor = s.idSensor
-		join Setor st ON s.fkSetor = st.idSetor
-			where m.valor = '1'
-				group by st.nome;
