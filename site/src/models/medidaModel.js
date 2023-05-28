@@ -32,7 +32,7 @@ function buscarMedidasEmTempoReal(idSensor) {
                         CONVERT(varchar, momento, 108) as momento_grafico, 
                         fk_aquario 
                         from medida where fk_aquario = ${idAquario} 
-                    order by id desc`;
+                    order by id desc;`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select valor, dtValor from Metrica

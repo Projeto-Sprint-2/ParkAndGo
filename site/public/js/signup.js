@@ -26,9 +26,16 @@ function cadastrarEmpresa() {
             estadoServer: estado
         })
     }).then((resposta) => {
+        console.log(resposta)
         if (resposta.ok) {
-            console.log(resposta)
+            resposta.json().then(json=>{
+                console.log(json.insertId)
+                sessionStorage.idEmpresa = json.insertId
+            })
 
+            setTimeout(() => {
+                window.location = "cadastro-responsavel.html";
+            }, 2000)
         }
     }).catch((resposta) => {
         console.log(`#ERRO: ${resposta}`);
