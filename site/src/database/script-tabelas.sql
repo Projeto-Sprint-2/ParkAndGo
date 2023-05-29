@@ -63,11 +63,18 @@ CREATE TABLE Usuario (
 	CONSTRAINT pkUsuario PRIMARY KEY (idUsuario, fkTipoUsuario)
 );
 
+CREATE TABLE Alerta(
+	idAlerta INT PRIMARY KEY AUTO_INCREMENT,
+	txtAlerta VARCHAR(200),
+	fkUsuario INT,
+	CONSTRAINT FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario)
+);
+
 CREATE TABLE Setor(
 	idSetor INT auto_increment,
     nome VARCHAR(45) NOT NULL,
     andar VARCHAR(45),
-    capacidadeMaxima VARCHAR(45),
+    capacidadeMaxima INT,
 	fkMercado int,
 	constraint fkSetorMercado foreign key(fkMercado) references Mercado(idMercado),
 	constraint pkSetor primary key (idSetor, fkMercado)
@@ -102,11 +109,11 @@ CREATE TABLE Metrica(
 insert into Mercado (nome, cnpj, unidade) values
 	('mercado simples', '12345678901234', 'rua simples');
 
-insert into Setor (nome, andar, fkMercado) values
-	('A', '1', 1),
-	('B', '1', 1),
-	('C', '1', 1),
-	('D', '1', 1);
+insert into Setor (nome, andar, capacidadeMaxima, fkMercado) values
+	('A', '1', '50', 1),
+	('B', '1', '70', 1),
+	('C', '1', '80', 1),
+	('D', '1', '110', 1);
 
 insert into Sensor (fkSetor) values
 	(1),
