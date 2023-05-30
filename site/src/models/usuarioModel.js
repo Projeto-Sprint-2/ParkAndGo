@@ -16,9 +16,9 @@ function entrar(email, senha) {
     return database.executar(instrucao);
 }
 
-function cadastrar(nome, email, senha, fkMercado, fkTipoUsuario) {
+function cadastrar(nome, email, senha, fkEmpresa, fkMercado, fkTipoUsuario) {
     var instrucao = `
-        INSERT INTO usuario (nome, email, senha, fkMercado, fkTipoUsuario) VALUES ('${nome}', '${email}', '${senha}', ${fkMercado}, ${fkTipoUsuario});
+        INSERT INTO Usuario (nome, email, senha, fkEmpresa, fkMercado, fkTipoUsuario) VALUES ('${nome}', '${email}', '${senha}',  ${fkEmpresa}, ${fkMercado}, ${fkTipoUsuario});
     `;
     return database.executar(instrucao);
 }

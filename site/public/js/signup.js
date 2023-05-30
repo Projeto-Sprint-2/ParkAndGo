@@ -29,7 +29,6 @@ function cadastrarEmpresa() {
         console.log(resposta)
         if (resposta.ok) {
             resposta.json().then(json => {
-                console.log(json.insertId)
                 sessionStorage.idEmpresa = json.insertId
             })
 
@@ -48,6 +47,8 @@ function cadastrar() {
     let senha = signup_senha.value
     let confirmSenha = signup_confimsenha.value
     let div_retorno = document.querySelector('.retorno')
+    let fkMercado = null
+    let fkTipoUsuario = 1
 
     if (nome == "" || email == "" || senha == "" || confirmSenha == "") {
         div_retorno.style.transform = 'translateX(0)';
@@ -60,8 +61,6 @@ function cadastrar() {
         setTimeout(() => {
             div_retorno.style.transform = 'translateX(120%)';
         }, "4000")
-
-        console.log('erro')
     } else {
         fetch("/usuarios/cadastrar", {
             method: "POST",
@@ -71,7 +70,10 @@ function cadastrar() {
             body: JSON.stringify({
                 nomeServer: nome,
                 emailServer: email,
-                senhaServer: senha
+                senhaServer: senha,
+                fkMercadoServer: fkMercado,
+                fkTipoUsuarioServer: fkTipoUsuario,
+                fkEmpresaServer: sessionStorage.idEmpresa
             })
         }).then((resposta) => {
             if (resposta.ok) {
@@ -97,8 +99,6 @@ function login() {
     let email = login_email.value
     let senha = login_senha.value
     let div_retorno = document.querySelector('.retorno')
-
-    console.log('logando')
 
     if (email == '' || senha == '') {
         div_retorno.style.transform = 'translateX(0)';
@@ -130,10 +130,10 @@ function login() {
                     console.log(json)
                     sessionStorage.emailUsuario = json.email
                     sessionStorage.senhaUsuario = json.senha
-                    sessionStorage.idUsuario = json.id
+                    sessionStorage.idUsuario = json.idUsuario
                     sessionStorage.nomeUsuario = json.nome
                     setTimeout(function () {
-                        window.location = "./dashboard/dashboard.html";
+                        window.location = 'cadastro-mercado.html'
                     }, 1000);
                 })
             }
@@ -163,7 +163,9 @@ function cadastrarResponsavel() {
         })
         }).then(resposta => {
             if(resposta.ok){
-                
+                setTimeout(function () {
+                    window.location = "signup.html";
+                }, 1000);
             }
         }).catch((resposta) => {
             console.log(`#ERRO: ${resposta}`);
