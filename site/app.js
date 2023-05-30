@@ -15,6 +15,7 @@ var medidasRouter = require("./src/routes/medidas");
 var empresasRouter = require("./src/routes/empresas");
 var responsaveisRouter = require('./src/routes/responsaveis')
 var setoresRouter = require('./src/routes/setores')
+var mercadosRouter = require('./src/routes/mercados')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,6 +30,7 @@ app.use("/medidas", medidasRouter);
 app.use('/empresas', empresasRouter)
 app.use('/responsaveis', responsaveisRouter)
 app.use('/setores', setoresRouter)
+app.use('/mercados', mercadosRouter)
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n

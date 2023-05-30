@@ -12,16 +12,16 @@ function cadastrar(req, res) {
     var estado = req.body.estadoServer
 
     empresaModel.cadastrar(razaoSocial, nomeFantasia, cnpj, cep, logradouro, numero, bairro, cidade, estado)
-    .then(
-        function (resultado){
-            res.json(resultado)
-        }
-    ).catch(
-        function (erro){
-            console.log(erro)
-            res.status(500).json(erro.sqlMessage)
-        }
-    )
+        .then(
+            function (resultado) {
+                res.json(resultado)
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro)
+                res.status(500).json(erro.sqlMessage)
+            }
+        )
 }
 
 module.exports = {
