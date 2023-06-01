@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel da Empresa</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Style -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- <link rel="stylesheet" href="css/signup.css"> -->
+    <link rel="stylesheet" href="css/painel-empresa.css">
+
+    <!-- Scripts -->
+    <script src="js/market.js" defer></script>
+</head>
+
+<body>
+    <nav>
+        <div class="container">
+            <a href="#">
+                <img src="assets/images/logo.png" id="logo">
+            </a>
+            <div class="user-area">
+                <button id="btn-notifications">
+                    <i class="ri-notification-2-fill"></i>
+                    <span>Notificações</span>
+                </button>
+                <div class="wrapper-dropdown">
+                    <button id="btn-dropdown-user">
+                        <img class="user-image" src="https://avatars.githubusercontent.com/u/93455951?v=4">
+                    </button>
+                    <div id="dropdown-user">
+                        <div class="dropdown-container">
+                            <p id="user-name">
+                                Kelvin Santos
+                            </p>
+                            <p id="user-email">
+                                kelvin.jesus@sptech.school.com
+                            </p>
+                        </div>
+                        <ul class="user-functions">
+                            <li>
+                                <a href="#" class="menu-item signout">Sair</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="sidebar">
+        <div class="wrapper-sidebar-items">
+            <ul class="sidebar-list">
+                <div>
+                    <a href="#" class="sidebar-item" id="btn-add-market">
+                        <i class="ri-add-fill"></i>
+                        <span>Adicionar Mercado</span>
+                    </a>
+                </div>
+                <li>
+                    <a href="#" class="sidebar-item active disable">
+                        <i class="ri-store-fill"></i>
+                        <span>Mercados</span>
+                    </a>
+                </li>
+                <!-- <li>
+                    <a href="#" class="sidebar-item">
+                        <span>+</span>
+                    </a>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+      
+    <dialog id="modal-add-mercado" close>
+        <form id="form-market">
+            <div class="wrapper-row">
+                <div class="field">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="inome_fantasia">
+                </div>
+                <div class="field">
+                    <label for="cnpj">CNPJ</label>
+                    <input type="text" id="icnpj">
+                </div>
+            </div>
+            <div class="field">
+                <label for="unidade">Unidade</label>
+                <input type="text" id="iunidade">
+            </div>
+            <div class="wrapper-row">
+                <div class="field" style="width: 30%;">
+                    <label for="cep">CEP</label>
+                    <input type="text" id="icep">
+                </div>
+                <div class="field">
+                    <label for="logradouro">Endereço</label>
+                    <input type="text" id="ilogradouro">
+                </div>
+                <div class="field" style="width: 20%;">
+                    <label for="numero">Número</label>
+                    <input type="text" id="numero">
+                </div>
+            </div>
+            <div class="field">
+                <label for="bairro">Bairro</label>
+                <input type="text" id="ibairro">
+            </div>
+            <div class="wrapper-row">
+                <div class="field">
+                    <label for="cidade">Cidade</label>
+                    <input type="text" id="icidade">
+                </div>
+                <div class="field">
+                    <label for="estado">Estado</label>
+                    <input type="text" id="iestado">
+                </div>
+            </div>
+            <div class="wrapper-submit">
+                <!-- adicionar função ao onclick -->
+                <button class="submit" onclick="">Registrar</button>
+            </div>
+        </form>
+    </dialog>
+
+    <div class="charts-container">
+        <div class="charts-content">
+            <!-- lista com cards rapidos e estatisticas simples -->
+            <div class="chart-grid cols-1">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Nome</td>
+                            <td>CNPJ</td>
+                            <td>Unidade</td>
+                            <td>CEP</td>
+                            <td>Criado em</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Veran</td>
+                            <td>00.870.372/0001-79</td>
+                            <td>Paulista</td>
+                            <td>08473-010</td>
+                            <td>2023-05-20 12:05:09</td>
+                        </tr>
+                        <tr>
+                            <td>Veran</td>
+                            <td>00.870.372/0001-79</td>
+                            <td>Paulista</td>
+                            <td>08473-010</td>
+                            <td>2023-05-20 12:05:09</td>
+                        </tr>
+                        <tr>
+                            <td>Veran</td>
+                            <td>00.870.372/0001-79</td>
+                            <td>Paulista</td>
+                            <td>08473-010</td>
+                            <td>2023-05-20 12:05:09</td>
+                        </tr>
+                        <tr>
+                            <td>Veran</td>
+                            <td>00.870.372/0001-79</td>
+                            <td>Paulista</td>
+                            <td>08473-010</td>
+                            <td>2023-05-20 12:05:09</td>
+                        </tr>
+                        <tr>
+                            <td>Veran</td>
+                            <td>00.870.372/0001-79</td>
+                            <td>Paulista</td>
+                            <td>08473-010</td>
+                            <td>2023-05-20 12:05:09</td>
+                        </tr>
+                        <tr>
+                            <td>Veran</td>
+                            <td>00.870.372/0001-79</td>
+                            <td>Paulista</td>
+                            <td>08473-010</td>
+                            <td>2023-05-20 12:05:09</td>
+                        </tr>
+                        <tr>
+                            <td>Veran</td>
+                            <td>00.870.372/0001-79</td>
+                            <td>Paulista</td>
+                            <td>08473-010</td>
+                            <td>2023-05-20 12:05:09</td>
+                        </tr>
+                        <tr>
+                            <td>Veran</td>
+                            <td>00.870.372/0001-79</td>
+                            <td>Paulista</td>
+                            <td>08473-010</td>
+                            <td>2023-05-20 12:05:09</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

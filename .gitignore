@@ -3,5 +3,5 @@ package-lock.json
 
 site/node_modules
 site/package-lock.json
-
+site/database/config.js
 .github

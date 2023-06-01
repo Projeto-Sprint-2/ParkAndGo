@@ -230,6 +230,10 @@ div#sidebar {
     gap: 4px;
 }
 
+.sidebar-header {
+
+}
+
 .sidebar-item {
     display: flex;
     align-items: center;
@@ -254,6 +258,39 @@ div#sidebar {
 .sidebar-item:hover:not(.active) {
     background-color: #f3f4f6;
     color: #171717;
+}
+.container-dialog {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+}
+
+#btn-add-market {
+    background-color: #5EABF3;
+    color: #ffffff;
+}
+
+#modal-add-mercado {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 8px;
+    margin: 0 auto;
+}
+
+#form-market {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    margin: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
 }
 
 .charts-container {
@@ -319,4 +356,30 @@ div#sidebar {
     left: 1rem;
     color: RGB(102, 102, 102);
     font-size: .7rem;
+}
+
+table {
+    background-color: #ffffff;
+    padding: 1rem;
+    border: #f1f1f1 1px solid;
+    border-radius: 8px;
+    border-collapse: collapse;
+    /* box-shadow: 2px 1px 2px #dadce0; */
+}
+
+thead {
+    border-bottom: 2px solid #9ca3af;
+    color: #374151 ;
+}
+
+td {
+    padding: 1rem 2rem;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #e5e7eb;
+}
+
+tr {
+    overflow: hidden;
 }
