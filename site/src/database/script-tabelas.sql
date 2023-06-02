@@ -39,6 +39,7 @@ CREATE TABLE Mercado (
 	nome VARCHAR(70),
 	CNPJ CHAR(14),
 	unidade VARCHAR(50),
+	dataCadastro DATETIME default CURRENT_TIMESTAMP,
 	fkEmpresa INT,
 	fkEndereco INT,
 	CONSTRAINT fkEmpresa2 foreign key (fkEmpresa) REFERENCES Empresa(idEmpresa),

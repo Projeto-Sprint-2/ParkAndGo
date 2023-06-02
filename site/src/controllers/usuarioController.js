@@ -33,7 +33,6 @@ function entrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
-
         usuarioModel.entrar(email, senha)
             .then(
                 function (resultado) {

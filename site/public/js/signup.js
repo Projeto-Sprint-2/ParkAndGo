@@ -1,3 +1,11 @@
+document.getElementById('btEntrar').addEventListener('click', ()=>{
+    if(sessionStorage.emailUsuario && sessionStorage.senhaUsuario){
+        login(sessionStorage.emailUsuario, sessionStorage.senhaUsuario)
+    }else{
+        window.location = 'login.html'
+    }
+})
+
 function cadastrarEmpresa() {
     let razaoSocial = irazao_social.value
     let nomeFantasia = inome_fantasia.value
@@ -95,9 +103,9 @@ function cadastrar() {
     }
 }
 
-function login() {
-    let email = login_email.value
-    let senha = login_senha.value
+function login(emailParam, senhaParam) {
+    let email = emailParam || login_email.value
+    let senha = senhaParam || login_senha.value
     let div_retorno = document.querySelector('.retorno')
 
     if (email == '' || senha == '') {
@@ -125,15 +133,21 @@ function login() {
             })
         }).then((resposta) => {
             if (resposta.ok) {
-                console.log(resposta)
                 resposta.json().then(json => {
-                    console.log(json)
+                    var location
+                    if (json.fkTipoUsuario == 1) {
+                        location = 'painel-empresa.html'
+                    } else {
+                        location = '/dashboard'
+                    }
+
                     sessionStorage.emailUsuario = json.email
                     sessionStorage.senhaUsuario = json.senha
                     sessionStorage.idUsuario = json.idUsuario
                     sessionStorage.nomeUsuario = json.nome
+                    sessionStorage.fkEmpresa = json.fkEmpresa
                     setTimeout(function () {
-                        window.location = 'cadastro-mercado.html'
+                        window.location = location
                     }, 1000);
                 })
             }
@@ -161,13 +175,13 @@ function cadastrarResponsavel() {
             telefoneServer: telefone,
             fkEmpresaServer: sessionStorage.idEmpresa
         })
-        }).then(resposta => {
-            if(resposta.ok){
-                setTimeout(function () {
-                    window.location = "signup.html";
-                }, 1000);
-            }
-        }).catch((resposta) => {
-            console.log(`#ERRO: ${resposta}`);
+    }).then(resposta => {
+        if (resposta.ok) {
+            setTimeout(function () {
+                window.location = "signup.html";
+            }, 1000);
+        }
+    }).catch((resposta) => {
+        console.log(`#ERRO: ${resposta}`);
     })
 }
