@@ -3,18 +3,34 @@ body{
 }
 
 #form-signup,
-#form-login {
+#form-responsavel,
+#form-login,
+#form-empresa {
     width: 100%;
     display: flex;
     flex-direction: column;
-    max-width: 24rem;
     gap: 1.5rem;
-    padding: 1.5rem;
+    padding: 2rem;
     margin: 2rem;
     background-color: #ffffff;
     border-radius: 8px;
     border: 1px solid #f0f0f0;
-    box-shadow: 4px 6px #e7e7e7;
+}
+
+#form-login {
+    max-width: 24rem;
+}
+
+#form-signup {
+    max-width: 24rem;
+}
+
+#form-empresa {
+    max-width: 40rem;
+}
+
+#form-responsavel {
+    max-width: 28rem;
 }
 
 .header {
@@ -31,13 +47,13 @@ a.comeback {
     display: flex;
     gap: 8px;
     color: #040405;
-    padding: 4px;
+    padding: 8px;
     width: max-content;
     border-radius: 4px;
 }
 
 a:focus {
-    outline: 2px solid var(--purple-500);
+    outline: 2px solid var(--blue-500);
     outline-offset: 2px;
 }
 
@@ -83,7 +99,7 @@ a:focus {
     color: var(--purple-500);
 }
 
-.retorno{
+.retorno {
     width: 11rem;
     height: 3.4rem;
     border-radius: 5px;
@@ -91,9 +107,9 @@ a:focus {
     top: 1rem;
     right: 1rem;
     transition: transform 200ms;
-    color: white;
-    background-color: white;
-    transform: translateX(120%);
+    color: #ffffff;
+    /* background-color: #ffffff; */
+    /* transform: translateX(120%); */
     display: flex;
     justify-content: center;
     align-items: center;
