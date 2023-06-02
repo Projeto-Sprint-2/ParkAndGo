@@ -1,12 +1,28 @@
 const btnAddMarket = document.getElementById('btn-add-market');
 const modalAddMarket = document.getElementById('modal-add-mercado');
+const btnCloseModal = document.getElementById('close-modal');
+const btnDropdownUser = document.getElementById('btn-dropdown-user');
+const dropdownUser = document.getElementById('dropdown-user');
 
+btnDropdownUser.addEventListener('focus', () => {
+    dropdownUser.classList.toggle('show');
+});
+
+btnDropdownUser.addEventListener('blur', () => {
+    dropdownUser.classList.toggle('show');
+});
 btnAddMarket.addEventListener('click', openDialog);
+btnCloseModal.addEventListener('click', closeDialog);
 
 document.addEventListener('DOMContentLoaded', carregarLista())
 
 function openDialog() {
     modalAddMarket.showModal()
+}
+
+
+function closeDialog() {
+    modalAddMarket.close()
 }
 
 async function cadastrarMercado() {
@@ -60,6 +76,12 @@ function carregarLista() {
                             <td>${mercado.unidade}</td>
                             <td>${mercado.CEP}</td>
                             <td>${mercado.data}</td>
+                            <td>
+                            <a href="#" class="add-user"><i class="ri-user-add-line"></i></a>
+                        </td>
+                        <td>
+                            <a href="#" class="delete-market"><i class="ri-delete-bin-fill"></i></a>
+                        </td>
                         </tr>
                     `
                 });
@@ -69,6 +91,11 @@ function carregarLista() {
 }
 
 document.getElementById('btLogout').addEventListener('click', ()=>{
+    sessionStorage.clear()
+    window.location = '../index.html'
+})
+
+document.getElementById('drop-logout').addEventListener('click', ()=>{
     sessionStorage.clear()
     window.location = '../index.html'
 })

@@ -34,25 +34,27 @@
                 <div class="header">
                     <h1>Cadastrar responsável</h1>
                 </div>
-                <div class="field">
-                    <label for="nome">Nome</label>
-                    <input type="email" id="inome">
+                <div class="wrapper-row">
+                    <div class="field">
+                        <label for="inome">Nome</label>
+                        <input type="email" id="inome" placeholder="Jane">
+                    </div>
+                    <div class="field">
+                        <label for="isobrenome">Sobrenome</label>
+                        <input type="text" id="isobrenome" placeholder="Doe">
+                    </div>
                 </div>
                 <div class="field">
-                    <label for="sobrenome">Sobrenome</label>
-                    <input type="text" id="isobrenome">
+                    <label for="icpf">CPF</label>
+                    <input type="text" id="icpf" maxlength="14" placeholder="000.000.000-00">
                 </div>
                 <div class="field">
-                    <label for="cpf">CPF</label>
-                    <input type="text" id="icpf">
+                    <label for="iemail">Email</label>
+                    <input type="email" id="iemail" placeholder="name@company.com">
                 </div>
                 <div class="field">
-                    <label for="email">Email</label>
-                    <input type="email" id="iemail">
-                </div>
-                <div class="field">
-                    <label for="telefone">Telefone</label>
-                    <input type="text" id="itelefone">
+                    <label for="itelefone">Telefone</label>
+                    <input type="text" id="itelefone" placeholder="(00) 00000-0000">
                 </div>
                 <div class="wrapper-submit">
                     <!-- adicione uma função ao onclick -->
@@ -67,4 +69,26 @@
         </div>
     </div>
 </body>
+<script>
+    const inputCpf = document.getElementById('icpf');
+    inputCpf.addEventListener('keypress', mascaraCpf);
+
+    function mascaraCpf() {
+        let cpf = inputCpf.value;
+        if (cpf.length === 3 || cpf.length === 7) {
+            inputCpf.value += '.';
+        }
+
+        // 000.000.000-00 => length = 14
+        if (cpf.length === 11) {
+            inputCpf.value += '-';
+        }
+
+        if (cpf.length >= 14) {
+            let maxCaracteres = cpf.slice(0, 13)
+
+            inputCpf.value = maxCaracteres;
+        }
+    }
+</script>
 </html>

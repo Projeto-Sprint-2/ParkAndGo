@@ -230,10 +230,6 @@ div#sidebar {
     gap: 4px;
 }
 
-.sidebar-header {
-
-}
-
 .sidebar-item {
     display: flex;
     align-items: center;
@@ -259,6 +255,7 @@ div#sidebar {
     background-color: #f3f4f6;
     color: #171717;
 }
+
 .container-dialog {
     width: 100vw;
     height: 100vh;
@@ -275,20 +272,66 @@ div#sidebar {
     color: #ffffff;
 }
 
-#modal-add-mercado {
-    width: 100%;
-    max-width: 800px;
-    border-radius: 8px;
-    margin: 0 auto;
+.title-and-close {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
 }
 
-#form-market {
+.title-and-close .close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    width: 32px;
+    border-radius: 4px;
+    font-size: 20px;
+    color: #171717;
+    background-color: #ef4444;
+    cursor: pointer;
+    transition: background-color ease-in 0.1s;
+}
+
+.title-and-close i {
+    color: #ffff;
+}
+
+.title-and-close .close:hover {
+    background-color: #f87171;
+    transition: background-color ease-in 0.1s;
+}
+
+
+.modal-title {
+    display: inline-block;
+    font-size: 32px;
+    font-weight: 500;
+    text-align: center;
+    padding: 1rem;
+    /* width: 100%; */
+}
+
+#modal-add-mercado {
     width: 100%;
+    max-height: 600px;
+    max-width: 720px;
+    border-radius: 8px;
+    margin: 0 auto;
+    margin-top: 80px;
+    position: relative;
+}
+
+#modal-add-mercado #form-market {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     padding: 1.5rem;
-    margin: 2rem;
+    margin: 1rem;
     background-color: #ffffff;
     border-radius: 8px;
 }
@@ -382,4 +425,38 @@ tbody tr:nth-child(even) {
 
 tr {
     overflow: hidden;
+}
+
+td a.delete-market {
+    display: flex;
+    width: 32px;
+    height: 32px;
+    background-color: #ef4444;
+    color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color ease-in 0.1s;
+}
+
+a.delete-market:hover {
+    background-color: #f87171;
+    transition: background-color ease-in 0.1s;
+}
+
+td a.add-user {
+    display: flex;
+    width: 32px;
+    height: 32px;
+    background-color: #5EABF3;
+    color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color ease-in 0.1s;
+}
+
+a.add-user:hover {
+    background-color: #85C6F7;
+    transition: background-color ease-in 0.1s;
 }

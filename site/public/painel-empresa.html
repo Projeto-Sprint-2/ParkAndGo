@@ -14,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
     <!-- Style -->
     <link rel="stylesheet" href="css/styles.css">
-    <!-- <link rel="stylesheet" href="css/signup.css"> -->
+    <link rel="stylesheet" href="css/signup.css">
     <link rel="stylesheet" href="css/painel-empresa.css">
 
     <!-- Scripts -->
@@ -47,7 +47,7 @@
                         </div>
                         <ul class="user-functions">
                             <li>
-                                <a href="#" class="menu-item signout">Sair</a>
+                                <a href="#" class="menu-item signout" id="drop-logout">Sair</a>
                             </li>
                         </ul>
                     </div>
@@ -80,8 +80,13 @@
             </ul>
         </div>
     </div>
-      
     <dialog id="modal-add-mercado" close>
+        <div class="title-and-close">
+            <span class="modal-title">Adicionar novo mercado</span>
+            <button class="close" id="close-modal">
+                <i class="ri-close-fill"></i>
+            </button>
+        </div>
         <form id="form-market">
             <div class="wrapper-row">
                 <div class="field">
@@ -144,14 +149,28 @@
                             <td>Unidade</td>
                             <td>CEP</td>
                             <td>Criado em</td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </thead>
                     <tbody class="market-list-tbody">
+                        <tr>
+                            <td>${mercado.nome}</td>
+                            <td>${mercado.CNPJ}</td>
+                            <td>${mercado.unidade}</td>
+                            <td>${mercado.CEP}</td>
+                            <td>${mercado.data}</td>
+                            <td>
+                                <a href="#" class="add-user"><i class="ri-user-add-line"></i></a>
+                            </td>
+                            <td>
+                                <a href="#" class="delete-market"><i class="ri-delete-bin-fill"></i></a>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </body>
-
 </html>
