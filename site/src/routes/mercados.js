@@ -7,4 +7,8 @@ router.post("/cadastrar", function (req, res) {
     mercadoController.cadastrar(req, res);
 })
 
+router.get("/listar", function (req, res) {
+    mercadoController.listar(req, res);
+})
+
 module.exports = router;

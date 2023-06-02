@@ -8,10 +8,11 @@ function listar() {
     `);
 }
 
-function cadastrar(nome, cnpj, unidade, fkEmpresa, logradouro, bairro, cidade, estado, numero, cep){
-    endereco.cadastrar(logradouro, bairro, cidade, estado, numero, cep)
-    database.executar(`SET @fkEndereco = LAST_INSERT_ID();`)
-    return database.executar(`INSERT INTO Mercado values (null, '${nome}', '${cnpj}', '${unidade}', ${fkEmpresa}, @fkEndereco)`)
+async function cadastrar(nome, cnpj, unidade, fkEmpresa, logradouro, bairro, cidade, estado, numero, cep) {
+    var insertEndereco = await endereco.cadastrar(logradouro, bairro, cidade, estado, numero, cep)
+
+    return database.executar(`INSERT INTO Mercado values (null, '${nome}', '${cnpj}', '${unidade}', ${fkEmpresa}, ${insertEndereco.insertId});`)
+
 }
 
 module.exports = {

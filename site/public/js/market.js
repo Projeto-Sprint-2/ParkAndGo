@@ -38,3 +38,7 @@ function cadastrarMercado(){
         })
     })
 }
+
+function carregarLista(){
+    fetch('/mercados/listar')
+}
