@@ -77,10 +77,10 @@ function carregarLista() {
                             <td>${mercado.CEP}</td>
                             <td>${mercado.data}</td>
                             <td>
-                            <a href="#" class="add-user"><i class="ri-user-add-line"></i></a>
+                            <a href="#" id="bnt-add-user" onclick=""class="add-user"><i class="ri-user-add-line"></i></a>
                         </td>
                         <td>
-                            <a href="#" class="delete-market"><i class="ri-delete-bin-fill"></i></a>
+                            <a href="#" onclick="deletarMercado(${mercado.idMercado})" class="delete-market"><i class="ri-delete-bin-fill"></i></a>
                         </td>
                         </tr>
                     `
@@ -99,3 +99,25 @@ document.getElementById('drop-logout').addEventListener('click', ()=>{
     sessionStorage.clear()
     window.location = '../index.html'
 })
+
+function deletarMercado(idMercado) {
+    console.log("Criar função de apagar post escolhido - ID" + idMercado);
+    fetch(`/mercados/deletar/${idMercado}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(function (resposta) {
+
+      if (resposta.ok) {
+        window.alert("Mercado deletado com sucesso pelo usuário: " + sessionStorage.getItem("emailUsuario") + "!");
+        window.location = "/painel-empresa.html"
+      } else if (resposta.status == 404) {
+        window.alert("Deu 404!");
+      } else {
+        throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+      }
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
+  }

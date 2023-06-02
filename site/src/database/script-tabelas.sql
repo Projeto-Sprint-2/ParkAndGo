@@ -43,7 +43,7 @@ CREATE TABLE Mercado (
 	fkEmpresa INT,
 	fkEndereco INT,
 	CONSTRAINT fkEmpresa2 foreign key (fkEmpresa) REFERENCES Empresa(idEmpresa),
-	CONSTRAINT fkEndereco2 foreign key (fkEndereco) REFERENCES Endereco(idEndereco)
+	CONSTRAINT fkEndereco2 foreign key (fkEndereco) REFERENCES Endereco(idEndereco) ON DELETE CASCADE
 );
 
 CREATE TABLE tipoUsuario(
@@ -78,7 +78,7 @@ CREATE TABLE Setor(
 	andar VARCHAR(45),
 	capacidadeMaxima INT,
 	fkMercado int,
-	constraint fkSetorMercado foreign key(fkMercado) references Mercado(idMercado),
+	constraint fkSetorMercado foreign key(fkMercado) references Mercado(idMercado) ON DELETE CASCADE,
 	constraint pkSetor primary key (idSetor, fkMercado)
 );
 
@@ -142,3 +142,4 @@ insert into
 	tipoUsuario
 values
 	(null, 'Administrador');
+    
