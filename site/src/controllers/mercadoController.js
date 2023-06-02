@@ -22,7 +22,9 @@ function cadastrar(req, res) {
 }
 
 function listar(req, res) {
-    mercadoModel.listar()
+    let idEmpresa = req.params.idEmpresa
+    
+    mercadoModel.listar(idEmpresa)
     .then(resultado=>{
         if(resultado.length > 0){
             res.status(200).json(resultado)

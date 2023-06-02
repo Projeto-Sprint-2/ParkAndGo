@@ -9,7 +9,7 @@ function openDialog() {
     modalAddMarket.showModal()
 }
 
-function cadastrarMercado() {
+async function cadastrarMercado() {
     var nome = inome_fantasia.value
     var cnpj = icnpj.value
     var unidade = iunidade.value
@@ -44,7 +44,7 @@ function cadastrarMercado() {
 }
 
 function carregarLista() {
-    fetch('/mercados/listar', {
+    fetch(`/mercados/listar/${sessionStorage.fkEmpresa}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"
@@ -67,3 +67,8 @@ function carregarLista() {
         }
     })
 }
+
+document.getElementById('btLogout').addEventListener('click', ()=>{
+    sessionStorage.clear()
+    window.location = '../index.html'
+})

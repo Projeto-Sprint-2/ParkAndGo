@@ -1,3 +1,11 @@
+document.getElementById('btEntrar').addEventListener('click', ()=>{
+    if(sessionStorage.emailUsuario && sessionStorage.senhaUsuario){
+        login(sessionStorage.emailUsuario, sessionStorage.senhaUsuario)
+    }else{
+        window.location = 'login.html'
+    }
+})
+
 function cadastrarEmpresa() {
     let razaoSocial = irazao_social.value
     let nomeFantasia = inome_fantasia.value
@@ -95,9 +103,9 @@ function cadastrar() {
     }
 }
 
-function login() {
-    let email = login_email.value
-    let senha = login_senha.value
+function login(emailParam, senhaParam) {
+    let email = emailParam || login_email.value
+    let senha = senhaParam || login_senha.value
     let div_retorno = document.querySelector('.retorno')
 
     if (email == '' || senha == '') {

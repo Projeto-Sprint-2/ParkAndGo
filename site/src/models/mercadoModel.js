@@ -1,10 +1,12 @@
 var database = require("../database/config")
 var endereco = require("./enderecoModel")
 
-function listar() {
+function listar(idEmpresa) {
     return database.executar(`
     SELECT *, DATE_FORMAT(dataCadastro, '%d/%m/%Y - %H:%i:%s') as data FROM Mercado m JOIN Endereco e
-        ON m.fkEndereco = e.idEndereco;
+        ON m.fkEndereco = e.idEndereco
+            where fkEmpresa = ${idEmpresa};
+
     `);
 }
 
