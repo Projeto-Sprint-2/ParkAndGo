@@ -6,3 +6,33 @@ btnAddMarket.addEventListener('click', openDialog);
 function openDialog() {
     modalAddMarket.showModal()
 }
+
+function cadastrarMercado(){
+    var nome = inome_fantasia.value
+    var cnpj = icnpj.value
+    var unidade = iunidade.value
+    var cep = icep.value
+    var logradouro = ilogradouro.value
+    var numero = inumero.value
+    var bairro = ibairro.value
+    var cidade = icidade.value
+    var estado = iestado.value
+
+    fetch(`/mercados/cadastrar`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nomeServer: nome,
+            cnpjServer: cnpj,
+            unidadeServer: unidade,
+            cepServer: cep,
+            logradouroServer: logradouro,
+            numeroServer: numero,
+            bairroServer: bairro,
+            cidadeServer: cidade,
+            estadoServer: estado
+        })
+    })
+}
