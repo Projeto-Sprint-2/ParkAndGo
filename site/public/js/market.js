@@ -3,11 +3,13 @@ const modalAddMarket = document.getElementById('modal-add-mercado');
 
 btnAddMarket.addEventListener('click', openDialog);
 
+document.addEventListener('DOMContentLoaded', carregarLista())
+
 function openDialog() {
     modalAddMarket.showModal()
 }
 
-function cadastrarMercado(){
+function cadastrarMercado() {
     var nome = inome_fantasia.value
     var cnpj = icnpj.value
     var unidade = iunidade.value
@@ -37,8 +39,31 @@ function cadastrarMercado(){
             fkEmpresaServer: fkEmpresa
         })
     })
+
+    carregarLista()
 }
 
-function carregarLista(){
-    fetch('/mercados/listar')
+function carregarLista() {
+    fetch('/mercados/listar', {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(resposta => {
+        if (resposta.ok) {
+            resposta.json().then(mercados => {
+                mercados.forEach(mercado => {
+                    document.querySelector('.market-list-tbody').innerHTML += `
+                        <tr>
+                            <td>${mercado.nome}</td>
+                            <td>${mercado.CNPJ}</td>
+                            <td>${mercado.unidade}</td>
+                            <td>${mercado.CEP}</td>
+                            <td>${mercado.data}</td>
+                        </tr>
+                    `
+                });
+            })
+        }
+    })
 }
