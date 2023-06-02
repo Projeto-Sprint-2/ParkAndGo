@@ -4,7 +4,7 @@ function cadastrar(req,res){
     var nome = req.body.nomeServer
     var cnpj = req.body.cnpjServer
     var unidade = req.body.unidadeServer
-    var fkEmpresa = req.body.fkEmpresa
+    var fkEmpresa = req.body.fkEmpresaServer
     var cep = req.body.cepServer
     var logradouro = req.body.logradouroServer
     var numero = req.body.numeroServer

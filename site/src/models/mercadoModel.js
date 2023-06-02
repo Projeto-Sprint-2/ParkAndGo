@@ -11,7 +11,7 @@ function listar() {
 function cadastrar(nome, cnpj, unidade, fkEmpresa, logradouro, bairro, cidade, estado, numero, cep){
     endereco.cadastrar(logradouro, bairro, cidade, estado, numero, cep)
     database.executar(`SET @fkEndereco = LAST_INSERT_ID();`)
-    return database.executar(`INSERT INTO Mercado values (null, '${nome}', '${cnpj}', '${unidade}', ${fkEmpresa})`)
+    return database.executar(`INSERT INTO Mercado values (null, '${nome}', '${cnpj}', '${unidade}', ${fkEmpresa}, @fkEndereco)`)
 }
 
 module.exports = {

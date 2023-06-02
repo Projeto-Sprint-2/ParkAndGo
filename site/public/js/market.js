@@ -17,8 +17,9 @@ function cadastrarMercado(){
     var bairro = ibairro.value
     var cidade = icidade.value
     var estado = iestado.value
+    var fkEmpresa = sessionStorage.fkEmpresa
 
-    fetch(`/mercados/cadastrar`, {
+    fetch('/mercados/cadastrar', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
@@ -32,7 +33,8 @@ function cadastrarMercado(){
             numeroServer: numero,
             bairroServer: bairro,
             cidadeServer: cidade,
-            estadoServer: estado
+            estadoServer: estado,
+            fkEmpresaServer: fkEmpresa
         })
     })
 }

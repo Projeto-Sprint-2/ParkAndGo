@@ -125,15 +125,21 @@ function login() {
             })
         }).then((resposta) => {
             if (resposta.ok) {
-                console.log(resposta)
                 resposta.json().then(json => {
-                    console.log(json)
+                    var location
+                    if (json.fkTipoUsuario == 1) {
+                        location = 'painel-empresa.html'
+                    } else {
+                        location = '/dashboard'
+                    }
+
                     sessionStorage.emailUsuario = json.email
                     sessionStorage.senhaUsuario = json.senha
                     sessionStorage.idUsuario = json.idUsuario
                     sessionStorage.nomeUsuario = json.nome
+                    sessionStorage.fkEmpresa = json.fkEmpresa
                     setTimeout(function () {
-                        window.location = 'cadastro-mercado.html'
+                        window.location = location
                     }, 1000);
                 })
             }
@@ -161,13 +167,13 @@ function cadastrarResponsavel() {
             telefoneServer: telefone,
             fkEmpresaServer: sessionStorage.idEmpresa
         })
-        }).then(resposta => {
-            if(resposta.ok){
-                setTimeout(function () {
-                    window.location = "signup.html";
-                }, 1000);
-            }
-        }).catch((resposta) => {
-            console.log(`#ERRO: ${resposta}`);
+    }).then(resposta => {
+        if (resposta.ok) {
+            setTimeout(function () {
+                window.location = "signup.html";
+            }, 1000);
+        }
+    }).catch((resposta) => {
+        console.log(`#ERRO: ${resposta}`);
     })
 }
