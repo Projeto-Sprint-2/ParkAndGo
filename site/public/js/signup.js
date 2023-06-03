@@ -1,7 +1,7 @@
-document.getElementById('btEntrar').addEventListener('click', ()=>{
-    if(sessionStorage.emailUsuario && sessionStorage.senhaUsuario){
+document.getElementById('btEntrar').addEventListener('click', () => {
+    if (sessionStorage.emailUsuario && sessionStorage.senhaUsuario) {
         login(sessionStorage.emailUsuario, sessionStorage.senhaUsuario)
-    }else{
+    } else {
         window.location = 'login.html'
     }
 })
@@ -37,7 +37,7 @@ function cadastrarEmpresa() {
         console.log(resposta)
         if (resposta.ok) {
             resposta.json().then(json => {
-                sessionStorage.idEmpresa = json.insertId
+                sessionStorage.fkEmpresa = json.insertId
             })
 
             setTimeout(() => {
@@ -55,7 +55,12 @@ function cadastrar() {
     let senha = signup_senha.value
     let confirmSenha = signup_confimsenha.value
     let div_retorno = document.querySelector('.retorno')
-    let fkMercado = sigup_fkMercado.value || null
+    let fkMercado
+    if (sigup_fkMercado && sigup_fkMercado.value) {
+        fkMercado = sigup_fkMercado.value
+    } else {
+        fkMercado = null
+    }
     let fkTipoUsuario = Number(document.querySelector('#cadastroUsuario').getAttribute('tipoUsuario'))
 
     if (nome == "" || email == "" || senha == "" || confirmSenha == "") {
