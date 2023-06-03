@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function buscarMedidas() {
-    fetch('/medidas/setores/ocupacao', {
+    fetch(`/medidas/setores/ocupacao/${sessionStorage.fkMercado}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"
@@ -67,7 +67,7 @@ function buscarMedidas() {
         }
     })
 
-    fetch('/medidas/ocupacaoGeral', {
+    fetch(`/medidas/ocupacaoGeral/${sessionStorage.fkMercado}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"
@@ -209,3 +209,10 @@ function attGraficos() {
 
     graficoOcupacaoGeral.update()
 }
+
+let botaoSair = document.querySelector('.sair')
+botaoSair.addEventListener('click', ()=>{
+    console.log('saindo')
+    sessionStorage.clear()
+    window.location = '../index.html'
+})

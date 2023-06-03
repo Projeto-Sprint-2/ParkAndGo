@@ -42,7 +42,8 @@ function buscarMedidasEmTempoReal(req, res) {
 }
 
 function buscarMedidasPorSetor(req, res) {
-    medidaModel.buscarMedidasPorSetor().then(function (resultado) {
+    var idMercado = req.params.idMercado
+    medidaModel.buscarMedidasPorSetor(idMercado).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -56,7 +57,8 @@ function buscarMedidasPorSetor(req, res) {
 }
 
 function buscarOcupacaoGeral(req, res) {
-    medidaModel.buscarOcupacaoGeral().then(function (resultado) {
+    idMercado = req.params.idMercado
+    medidaModel.buscarOcupacaoGeral(idMercado).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado)
         } else {

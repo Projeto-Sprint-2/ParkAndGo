@@ -79,12 +79,10 @@ function carregarLista() {
             "Content-Type": "application/json"
         }
     }).then(resposta => {
-        console.log(resposta)
         if (resposta.status == 204) {
             document.querySelector('.market-list-tbody').innerHTML = '<td colspan="7" style="text-align: center; padding: 2rem 0;">Nenhum mercado cadastrado</td>';
         } else if (resposta.ok) {
             resposta.json().then(mercados => {
-                console.log(mercados)
                 document.querySelector('.market-list-tbody').innerHTML = ``;
 
                 mercados.forEach(mercado => {
@@ -93,7 +91,7 @@ function carregarLista() {
                             <td>${mercado.nome}</td>
                             <td>${mercado.CNPJ}</td>
                             <td>${mercado.unidade}</td>
-                            <td>${mercado.CEP}</td>
+                            <td>${mercado.cep}</td>
                             <td>${mercado.data}</td>
                             <td>
                                 <a href="#" id="bnt-add-user" onclick="modalCriarUsuario(${mercado.idMercado})" class="add-user" title="Criar usuário para o mercado"><i class="ri-user-add-line"></i></a>
@@ -142,8 +140,9 @@ function deletarMercado(idMercado) {
     });
 }
 
-function modalCriarUsuario(idMercado) {
+function modalCriarUsuario(fkMercado) {
     document.getElementById('modal-create-user').showModal();
+    sigup_fkMercado.value = fkMercado
 }
 
 function criarUsuario(idMercado) {

@@ -55,7 +55,7 @@ function cadastrar() {
     let senha = signup_senha.value
     let confirmSenha = signup_confimsenha.value
     let div_retorno = document.querySelector('.retorno')
-    let fkMercado = null
+    let fkMercado = sigup_fkMercado.value || null
     let fkTipoUsuario = Number(document.querySelector('#cadastroUsuario').getAttribute('tipoUsuario'))
 
     if (nome == "" || email == "" || senha == "" || confirmSenha == "") {
@@ -81,7 +81,7 @@ function cadastrar() {
                 senhaServer: senha,
                 fkMercadoServer: fkMercado,
                 fkTipoUsuarioServer: fkTipoUsuario,
-                fkEmpresaServer: sessionStorage.idEmpresa
+                fkEmpresaServer: sessionStorage.fkEmpresa
             })
         }).then((resposta) => {
             if (resposta.ok) {
@@ -146,6 +146,7 @@ function login(emailParam, senhaParam) {
                     sessionStorage.idUsuario = json.idUsuario
                     sessionStorage.nomeUsuario = json.nome
                     sessionStorage.fkEmpresa = json.fkEmpresa
+                    sessionStorage.fkMercado = json.fkMercado
                     setTimeout(function () {
                         window.location = location
                     }, 1000);

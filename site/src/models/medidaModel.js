@@ -47,7 +47,7 @@ function buscarMedidasEmTempoReal(idSensor) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasPorSetor() {
+function buscarMedidasPorSetor(idMercado) {
     if (process.env.AMBIENTE_PROCESSO == 'producao') {
         return
     } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
@@ -58,6 +58,7 @@ function buscarMedidasPorSetor() {
                 join Setor st on s.fkSetor = st.idSetor
                     where m.valor = '1'
                         and m.dtValor = (select max(dtValor) from Metrica)
+                        and st.fkMercado = ${idMercado}
                             group by st.nome, DATE_FORMAT(m.dtValor, '%H:%i')
                                 order by dtUltimaOcupacao desc
                                     limit 4;
@@ -66,15 +67,18 @@ function buscarMedidasPorSetor() {
     return database.executar(instrucaoSql)
 }
 
-function buscarOcupacaoGeral() {
+function buscarOcupacaoGeral(idMercado) {
     if (process.env.AMBIENTE_PROCESSO == 'producao') {
         return
     } else {
         instrucao = `
-        select count(idMetrica) as ocupacao, DATE_FORMAT(dtValor, '%H:%i') as 'data' from Metrica 
-            where valor = '1' 
-                and DATE_FORMAT(dtValor, '%H:%i') = (select max(DATE_FORMAT(dtValor, '%H:%i')) from Metrica) 
-                    group by DATE_FORMAT(dtValor, '%H:%i');
+        select count(idMetrica) as ocupacao, DATE_FORMAT(dtValor, '%H:%i') as 'data' from Metrica m
+        join Sensor s on m.fkSensor = s.idSensor
+            join Setor st on s.fkSetor = st.idSetor
+                where valor = '1' 
+                    and DATE_FORMAT(dtValor, '%H:%i') = (select max(DATE_FORMAT(dtValor, '%H:%i')) from Metrica)
+                        and st.fkMercado = ${idMercado}
+                            group by DATE_FORMAT(dtValor, '%H:%i');
         `
         return database.executar(instrucao)
     }

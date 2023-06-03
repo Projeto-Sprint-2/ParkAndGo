@@ -150,20 +150,25 @@
             <!-- Usuário de qual empresa? -->
             <!-- Usuário de qual mercado? -->
             <!-- Usuário de qual tipo? -->
+            <input type="hidden" id="sigup_fkMercado">
             <div class="field">
                 <label for="inome">Nome</label>
-                <input type="text" id="inome" placeholder="John Doe">
+                <input type="text" id="signup_usuario" placeholder="John Doe">
             </div>
             <div class="field">
                 <label for="iemail">Email</label>
-                <input type="email" id="iemail" placeholder="name@company.com">
+                <input type="email" id="signup_email" placeholder="name@company.com">
             </div>
             <div class="field">
                 <label for="isenha">Senha</label>
-                <input type="text" id="isenha" placeholder="••••••••">
+                <input type="text" id="signup_senha" placeholder="••••••••">
+            </div>
+            <div class="field">
+                <label for="isenha">Confirmar senha</label>
+                <input type="text" id="signup_confimsenha" placeholder="••••••••">
             </div>
             <div class="wrapper-submit">
-                <button class="submit">Criar</button>
+                <button onclick="cadastrar()" id='cadastroUsuario' tipoUsuario='2' class="submit">Criar</button>
             </div>
         </form>
     </dialog>
@@ -184,7 +189,6 @@
                         </tr>
                     </thead>
                     <tbody class="market-list-tbody">
-<<<<<<< HEAD
                         <!-- <tr>
                             <td>${mercado.nome}</td>
                             <td>${mercado.CNPJ}</td>
@@ -198,9 +202,6 @@
                                 <a href="#" class="delete-market"><i class="ri-delete-bin-fill"></i></a>
                             </td>
                         </tr> -->
-=======
-                    
->>>>>>> b4b44663fc6f3d1f779e7573cf071848b3296177
                     </tbody>
                 </table>
             </div>
@@ -293,7 +294,6 @@ const inputCep = document.getElementById('icep');
 
     // 22222-222 => length = 9
     function mascaraCep() {
-        console.log(inputCep.value.length)
         if (inputCep.value.length === 5) {
             inputCep.value += '-';
         }
