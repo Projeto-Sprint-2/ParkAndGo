@@ -137,6 +137,35 @@
         </form>
     </dialog>
 
+    <dialog id="modal-create-user" close>
+        <div class="title-and-close">
+            <span class="modal-title">Adicionar usuário</span>
+            <button class="close" id="close-modal-create-user">
+                <i class="ri-close-fill"></i>
+            </button>
+        </div>
+        <form id="form-create-user">
+            <!-- FOREIGN KEYS -->
+            <!-- Usuário de qual empresa? -->
+            <!-- Usuário de qual mercado? -->
+            <!-- Usuário de qual tipo? -->
+            <div class="field">
+                <label for="inome">Nome</label>
+                <input type="text" id="inome" placeholder="John Doe">
+            </div>
+            <div class="field">
+                <label for="iemail">Email</label>
+                <input type="email" id="iemail" placeholder="name@company.com">
+            </div>
+            <div class="field">
+                <label for="isenha">Senha</label>
+                <input type="text" id="isenha" placeholder="••••••••">
+            </div>
+            <div class="wrapper-submit">
+                <button class="submit">Criar</button>
+            </div>
+        </form>
+    </dialog>
     <div class="charts-container">
         <div class="charts-content">
             <!-- lista com cards rapidos e estatisticas simples -->

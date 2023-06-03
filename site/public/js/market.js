@@ -4,6 +4,10 @@ const btnCloseModal = document.getElementById('close-modal');
 const btnDropdownUser = document.getElementById('btn-dropdown-user');
 const dropdownUser = document.getElementById('dropdown-user');
 
+document.getElementById('close-modal-create-user').addEventListener('click', () => {
+    document.getElementById('modal-create-user').close()
+})
+
 btnDropdownUser.addEventListener('focus', () => {
     dropdownUser.classList.toggle('show');
 });
@@ -81,25 +85,25 @@ function carregarLista() {
         } else if (resposta.ok) {
             resposta.json().then(mercados => {
                 console.log(mercados)
-                    document.querySelector('.market-list-tbody').innerHTML = ``;
+                document.querySelector('.market-list-tbody').innerHTML = ``;
 
-                    mercados.forEach(mercado => {
-                        document.querySelector('.market-list-tbody').innerHTML += `
-                            <tr>
-                                <td>${mercado.nome}</td>
-                                <td>${mercado.CNPJ}</td>
-                                <td>${mercado.unidade}</td>
-                                <td>${mercado.CEP}</td>
-                                <td>${mercado.data}</td>
-                                <td>
-                                <a href="#" id="bnt-add-user" onclick=""class="add-user"><i class="ri-user-add-line"></i></a>
+                mercados.forEach(mercado => {
+                    document.querySelector('.market-list-tbody').innerHTML += `
+                        <tr>
+                            <td>${mercado.nome}</td>
+                            <td>${mercado.CNPJ}</td>
+                            <td>${mercado.unidade}</td>
+                            <td>${mercado.CEP}</td>
+                            <td>${mercado.data}</td>
+                            <td>
+                                <a href="#" id="bnt-add-user" onclick="modalCriarUsuario(${mercado.idMercado})" class="add-user" title="Criar usuário para o mercado"><i class="ri-user-add-line"></i></a>
                             </td>
                             <td>
-                                <a href="#" onclick="deletarMercado(${mercado.idMercado})" class="delete-market"><i class="ri-delete-bin-fill"></i></a>
+                                <a href="#" onclick="deletarMercado(${mercado.idMercado})" class="delete-market" title="Excluir mercado"><i class="ri-delete-bin-fill"></i></a>
                             </td>
-                            </tr>
-                        `
-                    });
+                        </tr>
+                    `
+                });
             })
         }
     })
@@ -136,4 +140,14 @@ function deletarMercado(idMercado) {
     }).catch(function (resposta) {
       console.log(`#ERRO: ${resposta}`);
     });
-  }
+}
+
+function modalCriarUsuario(idMercado) {
+    document.getElementById('modal-create-user').showModal();
+}
+
+function criarUsuario(idMercado) {
+    // TODO
+}
+
+// criarUsuario(${fkEmpresa, mercado.idMercado})
