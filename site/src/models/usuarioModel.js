@@ -11,7 +11,7 @@ function listar() {
 
 function entrar(email, senha) {
     var instrucao = `
-        SELECT * FROM usuario WHERE email = '${email}' AND senha = '${senha}';
+        SELECT * FROM Usuario WHERE email = '${email}' AND senha = '${senha}';
     `;
     return database.executar(instrucao);
 }

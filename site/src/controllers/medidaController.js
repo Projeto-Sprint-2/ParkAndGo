@@ -69,9 +69,14 @@ function buscarOcupacaoGeral(req, res) {
     })
 }
 
+function cadastroDadosMocados(req,res){
+    medidaModel.cadastroDadosMocados()
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     buscarMedidasPorSetor,
-    buscarOcupacaoGeral
+    buscarOcupacaoGeral,
+    cadastroDadosMocados
 }

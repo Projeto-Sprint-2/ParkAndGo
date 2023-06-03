@@ -56,7 +56,7 @@ function cadastrar() {
     let confirmSenha = signup_confimsenha.value
     let div_retorno = document.querySelector('.retorno')
     let fkMercado = null
-    let fkTipoUsuario = 1
+    let fkTipoUsuario = Number(document.querySelector('#cadastroUsuario').getAttribute('tipoUsuario'))
 
     if (nome == "" || email == "" || senha == "" || confirmSenha == "") {
         div_retorno.style.transform = 'translateX(0)';

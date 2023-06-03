@@ -11,7 +11,7 @@ const chartOcupacaoGeral = document.getElementById('chartOcupacaoGeral');
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    fetch('/setores/listar', {
+    fetch(`/setores/listar/${sessionStorage.fkMercado}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"
@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-
     const btnDropdownUser = document.getElementById('btn-dropdown-user');
     const dropdownUser = document.getElementById('dropdown-user');
 
@@ -39,9 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btnDropdownUser.addEventListener('blur', () => {
         dropdownUser.classList.toggle('show');
     });
-
-    // userSpan.innerHTML = sessionStorage.nomeUsuario || 'Admin';
-
     buscarMedidas()
 })
 
@@ -64,6 +60,7 @@ function buscarMedidas() {
                         ultimaAttdata.innerText = element.dtUltimaOcupacao
                     })
                 }
+                kpiSetorMaisOcupado.innerHTML = setores[ocupacaoSetores.indexOf(Math.max.apply(null, ocupacaoSetores))].nome
             })
         } else {
             console.log('erro no fetch')
@@ -107,11 +104,11 @@ function loadCharts() {
 
     ocupacaoSetores.forEach((ocupacao, index) => {
         if (ocupacao > p40 && ocupacao <= p60) {
-            coresOcupacao[index] = 'green'
+            coresOcupacao[index] = '#188c20'
         } else if (ocupacao <= p75 || ocupacao >= p25) {
-            coresOcupacao[index] = 'orange'
+            coresOcupacao[index] = '#f27405'
         } else {
-            coresOcupacao[index] = 'red'
+            coresOcupacao[index] = '#d91e1e'
         }
     })
 
@@ -190,12 +187,14 @@ function loadCharts() {
     }, 1000);
 }
 
-let dataVagaspSetor, dataOcupacaoGeral, labelsOcupacaoGeral
+let dataVagaspSetor, dataOcupacaoGeral, labelsOcupacaoGeral, colorVagaspSetor
 function attGraficos() {
     dataVagaspSetor = graficoVagaspSetor.data.datasets[0].data
+    colorVagaspSetor = graficoVagaspSetor.data.datasets[0].backgroundColor
 
     dataVagaspSetor.forEach((data, index) => {
         dataVagaspSetor[index] = ocupacaoSetores[index]
+        colorVagaspSetor[index] = coresOcupacao[index]
     })
 
     graficoVagaspSetor.update()

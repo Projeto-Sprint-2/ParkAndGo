@@ -19,4 +19,8 @@ router.get('/ocupacaoGeral', (req, res) => {
     medidaController.buscarOcupacaoGeral(req, res)
 })
 
+router.post('/cadastrarDadosMocados', (req, res) => {
+    medidaController.cadastroDadosMocados(req, res)
+})
+
 module.exports = router;

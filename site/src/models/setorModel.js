@@ -7,8 +7,8 @@ function cadastrar(nome, andar, capacidadeMaxima, fkMercado){
     `)
 }
 
-function listar() {
-    return database.executar(`SELECT * FROM Setor;`);
+function listar(idMercado) {
+    return database.executar(`SELECT * FROM Setor where fkMercado = ${idMercado};`);
 }
 
 function listarSetor(idSetor){
@@ -16,7 +16,7 @@ function listarSetor(idSetor){
     SELECT * FROM Setor s 
         JOIN Mercado m
             ON s.fkMercado = m.idMercado
-                WJERE idSetor = ${idSetor};
+                WHERE idSetor = ${idSetor};
     `);
 }
 

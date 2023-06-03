@@ -100,17 +100,30 @@
 
     <div class="charts-container">
         <div class="charts-content">
-            <!-- lista com cards rapidos e estatisticas simples -->
+            <div class="analytics">
+                <div class="idealColor analyticsColor"></div>
+                <span>Ideal (40%-60%)</span>
+
+                <div class="emergencialColor analyticsColor"></div>
+                <span>Emergencial (61%-75% ou 25% a 39%)</span>
+
+                <div class="criticoColor analyticsColor"></div>
+                <span>Crítico (>75% ou <25%)</span>
+            </div>
             <div class="chart-grid cols-2">
+                <div class="chart kpi">
+                    <span>Setor mais ocupado</span> 
+                    <span id="kpiSetorMaisOcupado"></span>
+                    <span>Horário mais ocupado</span>
+                    <span id="kpiHorarioMaisOcupado"></span>
+                </div>
+
                 <div class="chart">
                     <span class="ultimaAtt">Ultima atualização: <span id="ultimaAttdata"></span></span>
                     <canvas id="chartVagaspSetor"></canvas>
                 </div>
                 <div class="chart">
                     <canvas id="chartOcupacaoGeral"></canvas>
-                </div>
-                <div class="chart">
-                    <span>+</span>
                 </div>
                 <div class="chart">
                     <span>+</span>

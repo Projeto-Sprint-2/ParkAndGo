@@ -1,7 +1,9 @@
 var setorModel = require("../models/setorModel");
 
 function listar(req, res) {
-    setorModel.listar()
+    var idMercado = req.params.idMercado
+
+    setorModel.listar(idMercado)
         .then(resultado => {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);

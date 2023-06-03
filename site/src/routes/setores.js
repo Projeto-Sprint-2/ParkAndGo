@@ -3,7 +3,7 @@ var router = express.Router();
 
 var setorController = require("../controllers/setorController");
 
-router.get("/listar", function (req, res) {
+router.get("/listar/:idMercado", function (req, res) {
     setorController.listar(req, res);
 });
 

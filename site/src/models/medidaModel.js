@@ -52,13 +52,15 @@ function buscarMedidasPorSetor() {
         return
     } else if (process.env.AMBIENTE_PROCESSO == 'desenvolvimento') {
         instrucaoSql = `
-        select st.nome, max(DATE_FORMAT(m.dtValor, '%H:%i:%s')) as 'dtUltimaOcupacao', count(m.idMetrica) as 'ocupacao'
-            from Metrica m
-                join Sensor s on m.fkSensor = s.idSensor
-                    join Setor st on s.fkSetor = st.idSetor
-                        where m.valor = '1'
-                            group by st.nome
-                                order by dtUltimaOcupacao desc;
+        select st.nome, max(DATE_FORMAT(m.dtValor, '%H:%i')) as 'dtUltimaOcupacao', count(m.idMetrica) as 'ocupacao'
+        from Metrica m
+            join Sensor s on m.fkSensor = s.idSensor
+                join Setor st on s.fkSetor = st.idSetor
+                    where m.valor = '1'
+                        and m.dtValor = (select max(dtValor) from Metrica)
+                            group by st.nome, DATE_FORMAT(m.dtValor, '%H:%i')
+                                order by dtUltimaOcupacao desc
+                                    limit 4;
         `
     }
     return database.executar(instrucaoSql)
@@ -69,12 +71,11 @@ function buscarOcupacaoGeral() {
         return
     } else {
         instrucao = `
-        select count(idMetrica) as ocupacao, DATE_FORMAT(dtValor, '%H:%i:%s') as 'data' from Metrica 
+        select count(idMetrica) as ocupacao, DATE_FORMAT(dtValor, '%H:%i') as 'data' from Metrica 
             where valor = '1' 
-                and dtValor = (select max(dtValor) from Metrica) 
-                    group by dtValor;
+                and DATE_FORMAT(dtValor, '%H:%i') = (select max(DATE_FORMAT(dtValor, '%H:%i')) from Metrica) 
+                    group by DATE_FORMAT(dtValor, '%H:%i');
         `
-
         return database.executar(instrucao)
     }
 }
@@ -83,5 +84,5 @@ module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     buscarMedidasPorSetor,
-    buscarOcupacaoGeral
+    buscarOcupacaoGeral,
 }
