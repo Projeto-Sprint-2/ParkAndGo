@@ -5,12 +5,14 @@ var historicoAtualizacao = []
 var primeiroPlot = true
 var coresOcupacao = []
 var capacidadeMaxima = []
+var setorOcupacao
+var primeiroChartEspec = true
 
 const chartVagaspSetor = document.getElementById('chartVagaspSetor');
 const chartOcupacaoGeral = document.getElementById('chartOcupacaoGeral');
+let selectSetores = document.getElementById('slSetores')
 
 document.addEventListener('DOMContentLoaded', () => {
-
     fetch(`/setores/listar/${sessionStorage.fkMercado}`, {
         method: 'GET',
         headers: {
@@ -21,12 +23,19 @@ document.addEventListener('DOMContentLoaded', () => {
             resposta.json().then(json => {
                 json.forEach(setor => {
                     setores.push(setor)
-
                     capacidadeMaxima.push({ setor: setor.nome, capacidade: setor.capacidadeMaxima })
+                    selectSetores.innerHTML += `<option value='${setor.idSetor}'>${setor.nome}<option>`
                 })
             })
+            
         }
     })
+
+    selectSetores.addEventListener('change', (e)=>{
+        buscarSetorEspecifico(e.target.value)
+    })
+    
+    buscarMedidas()
 
     const btnDropdownUser = document.getElementById('btn-dropdown-user');
     const dropdownUser = document.getElementById('dropdown-user');
@@ -38,8 +47,28 @@ document.addEventListener('DOMContentLoaded', () => {
     btnDropdownUser.addEventListener('blur', () => {
         dropdownUser.classList.toggle('show');
     });
-    buscarMedidas()
+
+
 })
+
+function buscarSetorEspecifico(idSetorEspec){
+    fetch(`/medidas/ocupacao/${idSetorEspec}/${sessionStorage.fkMercado}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(resposta => {
+        if (resposta.ok) {
+            resposta.json().then(json => {  
+                setorOcupacao = ({ ocupacao: json[0].ocupacao, data: json[0].data, setor: json[0].setor })
+            })
+        }
+    })
+
+    setTimeout(() => {
+        loadSetorEspecifico()
+    }, 1000);
+}
 
 function buscarMedidas() {
     fetch(`/medidas/setores/ocupacao/${sessionStorage.fkMercado}`, {
@@ -94,7 +123,47 @@ function buscarMedidas() {
     }, 1000);
 }
 
-let graficoOcupacaoGeral, graficoVagaspSetor
+let graficoOcupacaoGeral, graficoVagaspSetor, graficoOcupacaoSetor
+
+function loadSetorEspecifico(){
+    if(!primeiroChartEspec){
+        attSetorEspec()
+    }else{
+        graficoOcupacaoSetor = new Chart(chartOcupacaoSetor, {
+            type: 'bar',
+            data: {
+                labels: [setorOcupacao.setor],
+                datasets: [{
+                    label: 'Ocupação',
+                    backgroundColor: ['blue'],
+                    data: [setorOcupacao.ocupacao]
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Ocupação de vagas por setores',
+                        font: {
+                            size: 17
+                        },
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        })
+    }
+
+    primeiroChartEspec = false
+
+    setTimeout(() => {
+        buscarSetorEspecifico
+    }, 2000);
+}
 
 function loadCharts() {
     let p40 = (capacidadeMaxima.capacidade * 40) / 100
@@ -115,6 +184,7 @@ function loadCharts() {
     if (!primeiroPlot) {
         attGraficos()
     } else {
+
         graficoVagaspSetor = new Chart(chartVagaspSetor, {
             type: 'bar',
             data: {
@@ -187,7 +257,7 @@ function loadCharts() {
     }, 1000);
 }
 
-let dataVagaspSetor, dataOcupacaoGeral, labelsOcupacaoGeral, colorVagaspSetor
+let dataVagaspSetor, dataOcupacaoGeral, labelsOcupacaoGeral, dataOcupacaoSetor, labelsOcupacaoSetor, colorVagaspSetor
 function attGraficos() {
     dataVagaspSetor = graficoVagaspSetor.data.datasets[0].data
     colorVagaspSetor = graficoVagaspSetor.data.datasets[0].backgroundColor
@@ -208,10 +278,21 @@ function attGraficos() {
     })
 
     graficoOcupacaoGeral.update()
+
+}
+
+function attSetorEspec(){
+    dataOcupacaoSetor = graficoOcupacaoSetor.data.datasets[0].data
+    labelsOcupacaoSetor = graficoOcupacaoSetor.data.labels
+
+    dataOcupacaoSetor[0] = setorOcupacao.ocupacao
+    labelsOcupacaoSetor[0] = setorOcupacao.setor
+
+    graficoOcupacaoSetor.update()
 }
 
 let botaoSair = document.querySelector('.sair')
-botaoSair.addEventListener('click', ()=>{
+botaoSair.addEventListener('click', () => {
     console.log('saindo')
     sessionStorage.clear()
     window.location = '../index.html'

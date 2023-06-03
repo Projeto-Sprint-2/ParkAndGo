@@ -84,9 +84,23 @@ function buscarOcupacaoGeral(idMercado) {
     }
 }
 
+function buscarOcupacaoSetor(idSetor, idMercado) {
+    return database.executar(`
+        select count(idMetrica) as ocupacao, DATE_FORMAT(dtValor, '%H:%i') as 'data', st.nome as 'setor' from Metrica m
+            join Sensor s on m.fkSensor = s.idSensor
+                join Setor st on s.fkSetor = st.idSetor
+                    where valor = '1'
+                        and DATE_FORMAT(dtValor, '%H:%i') = (select max(DATE_FORMAT(dtValor, '%H:%i')) from Metrica)
+                            and st.fkMercado = ${idMercado}
+                                and st.idSetor = ${idSetor}
+                                 group by DATE_FORMAT(dtValor, '%H:%i');
+    `)
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     buscarMedidasPorSetor,
     buscarOcupacaoGeral,
+    buscarOcupacaoSetor
 }

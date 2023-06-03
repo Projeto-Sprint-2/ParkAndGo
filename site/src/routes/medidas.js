@@ -19,4 +19,8 @@ router.get('/ocupacaoGeral/:idMercado', (req, res) => {
     medidaController.buscarOcupacaoGeral(req, res)
 })
 
+router.get('/ocupacao/:idSetor/:idMercado', (req, res) => {
+    medidaController.buscarOcupacaoSetor(req, res)
+})
+
 module.exports = router;

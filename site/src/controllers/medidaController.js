@@ -71,8 +71,19 @@ function buscarOcupacaoGeral(req, res) {
     })
 }
 
-function cadastroDadosMocados(req,res){
-    medidaModel.cadastroDadosMocados()
+function buscarOcupacaoSetor(req, res) {
+    idMercado = req.params.idMercado
+    idSetor = req.params.idSetor
+    medidaModel.buscarOcupacaoSetor(idSetor, idMercado).then(resultado => {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado)
+        } else {
+            res.status(204).send('Nenhum resultado encontrado')
+        }
+    }).catch(function (erro) {
+        console.log(erro)
+        res.status(500).json(erro.sqlMessage);
+    })
 }
 
 module.exports = {
@@ -80,5 +91,5 @@ module.exports = {
     buscarMedidasEmTempoReal,
     buscarMedidasPorSetor,
     buscarOcupacaoGeral,
-    cadastroDadosMocados
+    buscarOcupacaoSetor
 }
