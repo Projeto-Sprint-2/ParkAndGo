@@ -92,43 +92,43 @@
             <div class="wrapper-row">
                 <div class="field">
                     <label for="nome">Nome</label>
-                    <input type="text" id="inome_fantasia">
+                    <input type="text" id="inome_fantasia" placeholder="Informe o nome do mercado">
                 </div>
                 <div class="field">
                     <label for="cnpj">CNPJ</label>
-                    <input type="text" id="icnpj">
+                    <input type="text" id="icnpj" placeholder="00.000.000/0000-00" max="18">
                 </div>
             </div>
             <div class="field">
                 <label for="unidade">Unidade</label>
-                <input type="text" id="iunidade">
+                <input type="text" id="iunidade" placeholder="Informe a unidade">
             </div>
             <div class="wrapper-row">
                 <div class="field" style="width: 30%;">
                     <label for="cep">CEP</label>
-                    <input type="text" id="icep">
+                    <input type="text" id="icep" maxlength="9" placeholder="00000-000">
                 </div>
                 <div class="field">
                     <label for="logradouro">Endereço</label>
-                    <input type="text" id="ilogradouro">
+                    <input type="text" id="ilogradouro" placeholder="Informe seu endereço">
                 </div>
                 <div class="field" style="width: 20%;">
                     <label for="numero">Número</label>
-                    <input type="text" id="inumero">
+                    <input type="text" id="inumero" placeholder="128">
                 </div>
             </div>
             <div class="field">
                 <label for="bairro">Bairro</label>
-                <input type="text" id="ibairro">
+                <input type="text" id="ibairro" placeholder="Informe o bairro">
             </div>
             <div class="wrapper-row">
                 <div class="field">
                     <label for="cidade">Cidade</label>
-                    <input type="text" id="icidade">
+                    <input type="text" id="icidade" placeholder="São Paulo">
                 </div>
                 <div class="field">
-                    <label for="estado">Estado</label>
-                    <input type="text" id="iestado">
+                    <label for="estado">Estado/UF</label>
+                    <input type="text" id="iestado" placeholder="SP">
                 </div>
             </div>
             <div class="wrapper-submit">
@@ -138,6 +138,35 @@
         </form>
     </dialog>
 
+    <dialog id="modal-create-user" close>
+        <div class="title-and-close">
+            <span class="modal-title">Adicionar usuário</span>
+            <button class="close" id="close-modal-create-user">
+                <i class="ri-close-fill"></i>
+            </button>
+        </div>
+        <form id="form-create-user">
+            <!-- FOREIGN KEYS -->
+            <!-- Usuário de qual empresa? -->
+            <!-- Usuário de qual mercado? -->
+            <!-- Usuário de qual tipo? -->
+            <div class="field">
+                <label for="inome">Nome</label>
+                <input type="text" id="inome" placeholder="John Doe">
+            </div>
+            <div class="field">
+                <label for="iemail">Email</label>
+                <input type="email" id="iemail" placeholder="name@company.com">
+            </div>
+            <div class="field">
+                <label for="isenha">Senha</label>
+                <input type="text" id="isenha" placeholder="••••••••">
+            </div>
+            <div class="wrapper-submit">
+                <button class="submit">Criar</button>
+            </div>
+        </form>
+    </dialog>
     <div class="charts-container">
         <div class="charts-content">
             <!-- lista com cards rapidos e estatisticas simples -->
@@ -155,6 +184,7 @@
                         </tr>
                     </thead>
                     <tbody class="market-list-tbody">
+<<<<<<< HEAD
                         <!-- <tr>
                             <td>${mercado.nome}</td>
                             <td>${mercado.CNPJ}</td>
@@ -168,10 +198,116 @@
                                 <a href="#" class="delete-market"><i class="ri-delete-bin-fill"></i></a>
                             </td>
                         </tr> -->
+=======
+                    
+>>>>>>> b4b44663fc6f3d1f779e7573cf071848b3296177
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </body>
+<script>
+const inputCep = document.getElementById('icep');
+    const inputCnpj = document.getElementById('icnpj');
+    
+    inputCep.addEventListener('blur', buscarEndereco);
+    inputCep.addEventListener('keypress', mascaraCep);
+    inputCnpj.addEventListener('keypress', mascaraCnpj);
+
+
+    function buscarEndereco() {
+        let cep = inputCep.value.replace('-', '');
+        if (cep.length == 8) {
+            fetch(`https://viacep.com.br/ws/${cep}/json/`, {
+                method: 'get',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function(resposta) {
+                resposta.json()
+                .then(function(json) {
+                    console.log(json)
+                    preencherEndereco(json)
+                }).catch(function(e) {
+                    console.log(e); 
+                })
+            });
+        }
+    }
+
+    function preencherEndereco(endereco) {
+        let mensagem;
+
+        if(endereco.erro == true) {
+            mensagem = 'Não encontrado.'
+        
+            ilogradouro.value = mensagem;
+            ibairro.value = mensagem;
+            icidade.value = mensagem;
+            iestado.value = mensagem;
+
+        } else {
+            mensagem = 'Carregando...'
+        
+            ilogradouro.value = mensagem;
+            ibairro.value = mensagem;
+            icidade.value = mensagem;
+            iestado.value = mensagem;
+
+            setTimeout(function() {
+                ilogradouro.value = endereco.logradouro;
+                ibairro.value = endereco.bairro;
+                icidade.value = endereco.localidade;
+                iestado.value = endereco.uf;
+            }, 1000);
+        }
+    }
+
+    // 22.222.222/2222-22 => length = 18
+    function mascaraCnpj() {
+        console.log(inputCnpj.value.length)
+        if (inputCnpj.value.length === 2 || inputCnpj.value.length === 6) {
+            inputCnpj.value += '.';
+        }
+
+        if (inputCnpj.value.length === 10) {
+            inputCnpj.value += '/';
+        }
+
+        if (inputCnpj.value.length === 15) {
+            inputCnpj.value += '-';
+        }
+
+        if (inputCnpj.value.length >= 18) {
+            // Caso ultrapasse o limite 18 caracteres,
+            // Pegue o valor que ja foi digitado a partir da posição 0
+            // Até a posição 17, 
+            // então sobre-escreva o valor do input sempre que ultrapassar o limite
+            let maximoCaracteres = inputCnpj.value.slice(0, 17);
+
+            inputCnpj.value = maximoCaracteres;
+        }
+    }
+
+
+    // 22222-222 => length = 9
+    function mascaraCep() {
+        console.log(inputCep.value.length)
+        if (inputCep.value.length === 5) {
+            inputCep.value += '-';
+        }
+
+        if (inputCep.value.length >= 9) {
+            // Caso ultrapasse o limite 18 caracteres,
+            // Pegue o valor que ja foi digitado a partir da posição 0
+            // Até a posição 17, 
+            // então sobre-escreva o valor do input sempre que ultrapassar o limite
+            let maximoCaracteres = inputCep.value.slice(0, 8);
+
+            inputCep.value = maximoCaracteres;
+        }
+    }
+
+</script>
 </html>

@@ -37,13 +37,13 @@ CREATE TABLE Responsavel (
 CREATE TABLE Mercado (
 	idMercado INT PRIMARY KEY AUTO_INCREMENT,
 	nome VARCHAR(70),
-	CNPJ CHAR(14),
+	CNPJ CHAR(18),
 	unidade VARCHAR(50),
 	dataCadastro DATETIME default CURRENT_TIMESTAMP,
 	fkEmpresa INT,
 	fkEndereco INT,
 	CONSTRAINT fkEmpresa2 foreign key (fkEmpresa) REFERENCES Empresa(idEmpresa),
-	CONSTRAINT fkEndereco2 foreign key (fkEndereco) REFERENCES Endereco(idEndereco)
+	CONSTRAINT fkEndereco2 foreign key (fkEndereco) REFERENCES Endereco(idEndereco) ON DELETE CASCADE
 );
 
 CREATE TABLE tipoUsuario(
@@ -78,7 +78,7 @@ CREATE TABLE Setor(
 	andar VARCHAR(45),
 	capacidadeMaxima INT,
 	fkMercado int,
-	constraint fkSetorMercado foreign key(fkMercado) references Mercado(idMercado),
+	constraint fkSetorMercado foreign key(fkMercado) references Mercado(idMercado) ON DELETE CASCADE,
 	constraint pkSetor primary key (idSetor, fkMercado)
 );
 
@@ -142,3 +142,4 @@ insert into
 	tipoUsuario
 values
 	(null, 'Administrador');
+    

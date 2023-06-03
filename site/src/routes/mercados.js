@@ -11,4 +11,8 @@ router.get("/listar/:idEmpresa", function (req, res) {
     mercadoController.listar(req, res);
 })
 
+router.delete("/deletar/:idMercado", function (req, res) {
+    mercadoController.deletarMercado(req, res);
+});
+
 module.exports = router;

@@ -4,6 +4,10 @@ const btnCloseModal = document.getElementById('close-modal');
 const btnDropdownUser = document.getElementById('btn-dropdown-user');
 const dropdownUser = document.getElementById('dropdown-user');
 
+document.getElementById('close-modal-create-user').addEventListener('click', () => {
+    document.getElementById('modal-create-user').close()
+})
+
 btnDropdownUser.addEventListener('focus', () => {
     dropdownUser.classList.toggle('show');
 });
@@ -54,9 +58,18 @@ async function cadastrarMercado() {
             estadoServer: estado,
             fkEmpresaServer: fkEmpresa
         })
-    })
+    }).then(carregarLista);
 
-    carregarLista()
+    nome = inome_fantasia.value = ''
+    cnpj = icnpj.value = ''
+    unidade = iunidade.value = ''
+    cep = icep.value = ''
+    logradouro = ilogradouro.value = ''
+    numero = inumero.value = ''
+    bairro = ibairro.value = ''
+    cidade = icidade.value = ''
+    estado = iestado.value = ''
+    modalAddMarket.close();
 }
 
 function carregarLista() {
@@ -66,8 +79,14 @@ function carregarLista() {
             "Content-Type": "application/json"
         }
     }).then(resposta => {
-        if (resposta.ok) {
+        console.log(resposta)
+        if (resposta.status == 204) {
+            document.querySelector('.market-list-tbody').innerHTML = '<td colspan="7" style="text-align: center; padding: 2rem 0;">Nenhum mercado cadastrado</td>';
+        } else if (resposta.ok) {
             resposta.json().then(mercados => {
+                console.log(mercados)
+                document.querySelector('.market-list-tbody').innerHTML = ``;
+
                 mercados.forEach(mercado => {
                     document.querySelector('.market-list-tbody').innerHTML += `
                         <tr>
@@ -77,11 +96,11 @@ function carregarLista() {
                             <td>${mercado.CEP}</td>
                             <td>${mercado.data}</td>
                             <td>
-                            <a href="#" class="add-user"><i class="ri-user-add-line"></i></a>
-                        </td>
-                        <td>
-                            <a href="#" class="delete-market"><i class="ri-delete-bin-fill"></i></a>
-                        </td>
+                                <a href="#" id="bnt-add-user" onclick="modalCriarUsuario(${mercado.idMercado})" class="add-user" title="Criar usuário para o mercado"><i class="ri-user-add-line"></i></a>
+                            </td>
+                            <td>
+                                <a href="#" onclick="deletarMercado(${mercado.idMercado})" class="delete-market" title="Excluir mercado"><i class="ri-delete-bin-fill"></i></a>
+                            </td>
                         </tr>
                     `
                 });
@@ -99,3 +118,36 @@ document.getElementById('drop-logout').addEventListener('click', ()=>{
     sessionStorage.clear()
     window.location = '../index.html'
 })
+
+function deletarMercado(idMercado) {
+    console.log("Criar função de apagar post escolhido - ID" + idMercado);
+    fetch(`/mercados/deletar/${idMercado}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then(function (resposta) {
+
+      if (resposta.ok) {
+        window.alert("Mercado deletado com sucesso pelo usuário: " + sessionStorage.getItem("emailUsuario") + "!");
+        carregarLista();
+        // window.location = "/painel-empresa.html"
+      } else if (resposta.status == 404) {
+        window.alert("Deu 404!");
+      } else {
+        throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+      }
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
+}
+
+function modalCriarUsuario(idMercado) {
+    document.getElementById('modal-create-user').showModal();
+}
+
+function criarUsuario(idMercado) {
+    // TODO
+}
+
+// criarUsuario(${fkEmpresa, mercado.idMercado})
