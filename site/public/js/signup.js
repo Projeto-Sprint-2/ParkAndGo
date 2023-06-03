@@ -179,7 +179,7 @@ function cadastrarResponsavel() {
             cpfServer: cpf,
             emailServer: email,
             telefoneServer: telefone,
-            fkEmpresaServer: sessionStorage.idEmpresa
+            fkEmpresaServer: sessionStorage.fkEmpresa
         })
     }).then(resposta => {
         if (resposta.ok) {
