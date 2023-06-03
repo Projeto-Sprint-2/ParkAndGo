@@ -91,7 +91,7 @@ function carregarLista() {
                             <td>${mercado.nome}</td>
                             <td>${mercado.CNPJ}</td>
                             <td>${mercado.unidade}</td>
-                            <td>${mercado.cep}</td>
+                            <td>${mercado.CEP}</td>
                             <td>${mercado.data}</td>
                             <td>
                                 <a href="#" id="bnt-add-user" onclick="modalCriarUsuario(${mercado.idMercado})" class="add-user" title="Criar usuário para o mercado"><i class="ri-user-add-line"></i></a>
@@ -107,12 +107,12 @@ function carregarLista() {
     })
 }
 
-document.getElementById('btLogout').addEventListener('click', ()=>{
+document.getElementById('btLogout').addEventListener('click', () => {
     sessionStorage.clear()
     window.location = '../index.html'
 })
 
-document.getElementById('drop-logout').addEventListener('click', ()=>{
+document.getElementById('drop-logout').addEventListener('click', () => {
     sessionStorage.clear()
     window.location = '../index.html'
 })
@@ -120,23 +120,23 @@ document.getElementById('drop-logout').addEventListener('click', ()=>{
 function deletarMercado(idMercado) {
     console.log("Criar função de apagar post escolhido - ID" + idMercado);
     fetch(`/mercados/deletar/${idMercado}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json"
-      }
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
     }).then(function (resposta) {
 
-      if (resposta.ok) {
-        window.alert("Mercado deletado com sucesso pelo usuário: " + sessionStorage.getItem("emailUsuario") + "!");
-        carregarLista();
-        // window.location = "/painel-empresa.html"
-      } else if (resposta.status == 404) {
-        window.alert("Deu 404!");
-      } else {
-        throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-      }
+        if (resposta.ok) {
+            window.alert("Mercado deletado com sucesso pelo usuário: " + sessionStorage.getItem("emailUsuario") + "!");
+            carregarLista();
+            // window.location = "/painel-empresa.html"
+        } else if (resposta.status == 404) {
+            window.alert("Deu 404!");
+        } else {
+            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+        }
     }).catch(function (resposta) {
-      console.log(`#ERRO: ${resposta}`);
+        console.log(`#ERRO: ${resposta}`);
     });
 }
 
@@ -150,3 +150,36 @@ function criarUsuario(idMercado) {
 }
 
 // criarUsuario(${fkEmpresa, mercado.idMercado})
+
+
+
+function cadastrarSetor() {
+    var nome = nomeSetor.value
+    var andar = andarSetor.value
+    var capacidade = capacidadeSetor.value
+    var fkMercado = sessionStorage.fkMercado
+
+    fetch('/setores/cadastrar', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            nomeServer: nome,
+            andarServer: andar,
+            capacidadeServer: capacidade,
+            fkMercadoServer: fkMercado,
+        })
+    }).then((resposta) => {
+        console.log(resposta)
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                console.log(json);
+            })
+
+
+        }
+    }).catch((resposta) => {
+        console.log(`#ERRO: ${resposta}`);
+    })
+}

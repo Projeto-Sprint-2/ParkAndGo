@@ -11,6 +11,8 @@ router.post("/cadastrar", function (req, res) {
     setorController.cadastrar(req, res);
 })
 
+
+
 router.get("/listar/setor/:idSetor", function (req, res) {
     setorController.listarSetor(req, res);
 })

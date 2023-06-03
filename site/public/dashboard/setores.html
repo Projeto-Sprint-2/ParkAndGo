@@ -11,11 +11,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quantico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/theme.css">
-    <link rel="stylesheet" href="dashboard.css">
+
+
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/signup.css">
+    <link rel="stylesheet" href="../css/painel-empresa.css">
+    <script src="../js/market.js" defer></script>
+    <script src="../js/signup.js" defer></script>
 </head>
 
 <body>
-    <nav>
+    <!-- <nav>
         <ul class="listNav">
             <li>
                 <i class="ri-pie-chart-2-line"></i>
@@ -39,7 +46,24 @@
             </li>
         </ul>
         <p id="version">Version 1.0.0</p>
-    </nav>
+    </nav> -->
+
+    <div class="field">
+        <label for="inome">Nome Setor</label>
+        <input type="text" id="nomeSetor" placeholder="3B">
+    </div>
+    <div class="field">
+        <label for="andar">Andar do setor</label>
+        <input type="text" id="andarSetor" placeholder="1">
+    </div>
+    <div class="field">
+        <label for="capaci">Capacidade máxima</label>
+        <input type="number" id="capacidadeSetor" placeholder="100">
+    </div>
+    <div class="wrapper-submit">
+        <button onclick="cadastrarSetor()" id='cadastroUsuario' class="submit">Criar</button>
+    </div>
+
 </body>
 
 
