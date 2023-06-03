@@ -20,7 +20,7 @@ function listar(req, res) {
 function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var andar = req.body.andarServer;
-    var capacidadeMaxima = req.body.capacidadeMaximaServer;
+    var capacidadeMaxima = req.body.capacidadeServer;
     var fkMercado = req.body.fkMercadoServer;
 
     setorModel.cadastrar(nome, andar, capacidadeMaxima, fkMercado)
@@ -32,6 +32,9 @@ function cadastrar(req, res) {
         }
         );
 }
+
+
+
 
 function listarSetor(req,res){
     var idSetor = req.params.idSetor;

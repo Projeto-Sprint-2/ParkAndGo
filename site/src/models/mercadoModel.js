@@ -18,7 +18,7 @@ async function cadastrar(nome, cnpj, unidade, fkEmpresa, logradouro, bairro, cid
 function deletarMercado(idMercado) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar():", idMercado);
     var instrucao = `
-        DELETE FROM mercado WHERE idMercado = ${idMercado};
+        DELETE FROM Mercado WHERE idMercado = ${idMercado};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

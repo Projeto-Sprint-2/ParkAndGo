@@ -129,6 +129,7 @@ values
 	(2),
 	(3),
 	(4);
+    
 
 insert into
 	Metrica
@@ -141,5 +142,6 @@ values
 insert into
 	tipoUsuario
 values
-	(null, 'Administrador');
+	(null, 'Administrador'),
+    (null, 'Analista');
     
