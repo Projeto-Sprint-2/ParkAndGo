@@ -12,6 +12,10 @@ html {
     font-family: 'Kanit', sans-serif;
 }
 
+body {
+    background-color: #f3f4f6;
+}
+
 nav {
     position: fixed;
     top: 0;
@@ -347,7 +351,7 @@ div#sidebar {
     /* border: 2px dashed #000; */
     border-radius: 8px;
     margin-top: 96px;
-    min-height: 100vh;
+    min-height: 80vh;
 }
 
 .chart {

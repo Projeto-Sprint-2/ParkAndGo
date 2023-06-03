@@ -37,7 +37,7 @@ CREATE TABLE Responsavel (
 CREATE TABLE Mercado (
 	idMercado INT PRIMARY KEY AUTO_INCREMENT,
 	nome VARCHAR(70),
-	CNPJ CHAR(14),
+	CNPJ CHAR(18),
 	unidade VARCHAR(50),
 	dataCadastro DATETIME default CURRENT_TIMESTAMP,
 	fkEmpresa INT,

@@ -54,9 +54,18 @@ async function cadastrarMercado() {
             estadoServer: estado,
             fkEmpresaServer: fkEmpresa
         })
-    })
+    }).then(carregarLista);
 
-    carregarLista()
+    nome = inome_fantasia.value = ''
+    cnpj = icnpj.value = ''
+    unidade = iunidade.value = ''
+    cep = icep.value = ''
+    logradouro = ilogradouro.value = ''
+    numero = inumero.value = ''
+    bairro = ibairro.value = ''
+    cidade = icidade.value = ''
+    estado = iestado.value = ''
+    modalAddMarket.close();
 }
 
 function carregarLista() {
@@ -66,25 +75,31 @@ function carregarLista() {
             "Content-Type": "application/json"
         }
     }).then(resposta => {
-        if (resposta.ok) {
+        console.log(resposta)
+        if (resposta.status == 204) {
+            document.querySelector('.market-list-tbody').innerHTML = '<td colspan="7" style="text-align: center; padding: 2rem 0;">Nenhum mercado cadastrado</td>';
+        } else if (resposta.ok) {
             resposta.json().then(mercados => {
-                mercados.forEach(mercado => {
-                    document.querySelector('.market-list-tbody').innerHTML += `
-                        <tr>
-                            <td>${mercado.nome}</td>
-                            <td>${mercado.CNPJ}</td>
-                            <td>${mercado.unidade}</td>
-                            <td>${mercado.CEP}</td>
-                            <td>${mercado.data}</td>
+                console.log(mercados)
+                    document.querySelector('.market-list-tbody').innerHTML = ``;
+
+                    mercados.forEach(mercado => {
+                        document.querySelector('.market-list-tbody').innerHTML += `
+                            <tr>
+                                <td>${mercado.nome}</td>
+                                <td>${mercado.CNPJ}</td>
+                                <td>${mercado.unidade}</td>
+                                <td>${mercado.CEP}</td>
+                                <td>${mercado.data}</td>
+                                <td>
+                                <a href="#" id="bnt-add-user" onclick=""class="add-user"><i class="ri-user-add-line"></i></a>
+                            </td>
                             <td>
-                            <a href="#" id="bnt-add-user" onclick=""class="add-user"><i class="ri-user-add-line"></i></a>
-                        </td>
-                        <td>
-                            <a href="#" onclick="deletarMercado(${mercado.idMercado})" class="delete-market"><i class="ri-delete-bin-fill"></i></a>
-                        </td>
-                        </tr>
-                    `
-                });
+                                <a href="#" onclick="deletarMercado(${mercado.idMercado})" class="delete-market"><i class="ri-delete-bin-fill"></i></a>
+                            </td>
+                            </tr>
+                        `
+                    });
             })
         }
     })
@@ -111,7 +126,8 @@ function deletarMercado(idMercado) {
 
       if (resposta.ok) {
         window.alert("Mercado deletado com sucesso pelo usuário: " + sessionStorage.getItem("emailUsuario") + "!");
-        window.location = "/painel-empresa.html"
+        carregarLista();
+        // window.location = "/painel-empresa.html"
       } else if (resposta.status == 404) {
         window.alert("Deu 404!");
       } else {
