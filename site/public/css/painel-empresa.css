@@ -332,7 +332,7 @@ div#sidebar {
     /* width: 100%; */
 }
 
-#modal-add-mercado {
+#modal-add-mercado,  #modal-create-setores {
     width: 100%;
     max-height: 600px;
     max-width: 720px;
@@ -352,6 +352,16 @@ div#sidebar {
     border-radius: 8px;
 }
 
+
+#modal-create-setores #form-create-setores{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    margin: 1rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
 .charts-container {
     padding: 1rem;
     margin-left: 256px;

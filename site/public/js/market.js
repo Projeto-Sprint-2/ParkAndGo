@@ -3,9 +3,14 @@ const modalAddMarket = document.getElementById('modal-add-mercado');
 const btnCloseModal = document.getElementById('close-modal');
 const btnDropdownUser = document.getElementById('btn-dropdown-user');
 const dropdownUser = document.getElementById('dropdown-user');
+const modalSetores = document.getElementById('modal-create-setores')
 
 document.getElementById('close-modal-create-user').addEventListener('click', () => {
     document.getElementById('modal-create-user').close()
+})
+
+document.getElementById('close-modal-create-setores').addEventListener('click', () =>{
+    document.getElementById('modal-create-setores').close()
 })
 
 btnDropdownUser.addEventListener('focus', () => {
@@ -70,6 +75,7 @@ async function cadastrarMercado() {
     cidade = icidade.value = ''
     estado = iestado.value = ''
     modalAddMarket.close();
+    modalSetores.showModal();
 }
 
 function carregarLista() {

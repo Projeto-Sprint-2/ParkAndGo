@@ -138,6 +138,37 @@
         </form>
     </dialog>
 
+    <dialog id="modal-create-setores" close>
+        <div class="title-and-close">
+            <span class="modal-title">Adicionar Setores</span>
+            <button class="close" id="close-modal-create-setores">
+                <i class="ri-close-fill"></i>
+            </button>
+        </div>
+        <form id="form-create-setores">
+            <input type="hidden" id="sigup_fkMercado">
+            <div class="field">
+                <label for="inome">Nome setor</label>
+                <input type="text" id="signup_usuario" placeholder="3B">
+            </div>
+            <div class="field">
+                <label for="andar">Andar do setor</label><br>
+            <input type="text" id="andarSetor" placeholder="1">
+            </div>
+            <div class="field">
+                <label for="andar">Andar do setor</label><br>
+                <input type="text" id="andarSetor" placeholder="1">
+            </div>
+            <div class="field">
+                <label for="capaci">Capacidade máxima</label><br>
+                <input type="number" id="capacidadeSetor" placeholder="100">
+            </div>
+            <div class="wrapper-submit">
+                <button onclick="cadastrarSetor()" id='cadastroUsuario' class="submit">Adicionar</button>
+            </div>
+        </form>
+    </dialog>
+
     <dialog id="modal-create-user" close>
         <div class="title-and-close">
             <span class="modal-title">Adicionar usuário</span>
