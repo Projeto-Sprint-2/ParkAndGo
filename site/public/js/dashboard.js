@@ -27,14 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     selectSetores.innerHTML += `<option value='${setor.idSetor}'>${setor.nome}<option>`
                 })
             })
-            
+
         }
     })
 
-    selectSetores.addEventListener('change', (e)=>{
+    selectSetores.addEventListener('change', (e) => {
         buscarSetorEspecifico(e.target.value)
     })
-    
+
     buscarMedidas()
 
     const btnDropdownUser = document.getElementById('btn-dropdown-user');
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 
-function buscarSetorEspecifico(idSetorEspec){
+function buscarSetorEspecifico(idSetorEspec) {
     fetch(`/medidas/ocupacao/${idSetorEspec}/${sessionStorage.fkMercado}`, {
         method: 'GET',
         headers: {
@@ -59,7 +59,7 @@ function buscarSetorEspecifico(idSetorEspec){
         }
     }).then(resposta => {
         if (resposta.ok) {
-            resposta.json().then(json => {  
+            resposta.json().then(json => {
                 setorOcupacao = ({ ocupacao: json[0].ocupacao, data: json[0].data, setor: json[0].setor })
             })
         }
@@ -119,16 +119,34 @@ function buscarMedidas() {
     })
 
     setTimeout(() => {
+        ocupacaoSetores.forEach((ocupacao, index) => {
+            let p40 = (capacidadeMaxima[index].capacidade * 40) / 100
+            let p25 = (capacidadeMaxima[index].capacidade * 25) / 100
+            let p75 = (capacidadeMaxima[index].capacidade * 75) / 100
+            let p60 = (capacidadeMaxima[index].capacidade * 60) / 100
+
+            if (ocupacao >= p40 && ocupacao <= p60) {
+                coresOcupacao[index] = '#188c20'
+            } else if (ocupacao < p25 || ocupacao > p75) {
+                coresOcupacao[index] = '#d91e1e'
+            } else {
+                coresOcupacao[index] = '#f27405'
+            }
+
+        })
+    }, 500);
+
+    setTimeout(() => {
         loadCharts()
     }, 1000);
 }
 
 let graficoOcupacaoGeral, graficoVagaspSetor, graficoOcupacaoSetor
 
-function loadSetorEspecifico(){
-    if(!primeiroChartEspec){
+function loadSetorEspecifico() {
+    if (!primeiroChartEspec) {
         attSetorEspec()
-    }else{
+    } else {
         graficoOcupacaoSetor = new Chart(chartOcupacaoSetor, {
             type: 'bar',
             data: {
@@ -166,21 +184,6 @@ function loadSetorEspecifico(){
 }
 
 function loadCharts() {
-    let p40 = (capacidadeMaxima.capacidade * 40) / 100
-    let p25 = (capacidadeMaxima.capacidade * 25) / 100
-    let p75 = (capacidadeMaxima.capacidade * 75) / 100
-    let p60 = (capacidadeMaxima.capacidade * 60) / 100
-
-    ocupacaoSetores.forEach((ocupacao, index) => {
-        if (ocupacao > p40 && ocupacao <= p60) {
-            coresOcupacao[index] = '#188c20'
-        } else if (ocupacao <= p75 || ocupacao >= p25) {
-            coresOcupacao[index] = '#f27405'
-        } else {
-            coresOcupacao[index] = '#d91e1e'
-        }
-    })
-
     if (!primeiroPlot) {
         attGraficos()
     } else {
@@ -281,7 +284,7 @@ function attGraficos() {
 
 }
 
-function attSetorEspec(){
+function attSetorEspec() {
     dataOcupacaoSetor = graficoOcupacaoSetor.data.datasets[0].data
     labelsOcupacaoSetor = graficoOcupacaoSetor.data.labels
 

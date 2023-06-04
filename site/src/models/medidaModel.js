@@ -58,7 +58,7 @@ function buscarMedidasPorSetor(idMercado) {
                 join Setor st on s.fkSetor = st.idSetor
                     where m.valor = '1'
                         and m.dtValor = (select max(dtValor) from Metrica)
-                        and st.fkMercado = ${idMercado}
+                        and st.fkMercado = 1
                             group by st.nome, DATE_FORMAT(m.dtValor, '%H:%i')
                                 order by dtUltimaOcupacao desc
                                     limit 4;

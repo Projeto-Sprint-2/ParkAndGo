@@ -129,19 +129,11 @@ values
 	(2),
 	(3),
 	(4);
-    
 
-insert into
-	Metrica
-values
-	(null, '1', 'bloqueio', now(), 1),
-	(null, '1', 'bloqueio', now(), 2),
-	(null, '1', 'bloqueio', now(), 3),
-	(null, '1', 'bloqueio', now(), 4);
+
 
 insert into
 	tipoUsuario
 values
 	(null, 'Administrador'),
-    (null, 'Analista');
-    
+	(null, 'Analista');
