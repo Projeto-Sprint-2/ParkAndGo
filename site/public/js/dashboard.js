@@ -128,6 +128,7 @@ function buscarMedidas() {
             if (ocupacao >= p40 && ocupacao <= p60) {
                 coresOcupacao[index] = '#188c20'
             } else if (ocupacao < p25 || ocupacao > p75) {
+                
                 coresOcupacao[index] = '#d91e1e'
             } else {
                 coresOcupacao[index] = '#f27405'
