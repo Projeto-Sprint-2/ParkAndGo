@@ -260,6 +260,18 @@ div#sidebar {
     color: #171717;
 }
 
+.sidebar-item.sair {
+    transition: background-color 0.2s linear;
+    cursor: pointer;
+}
+
+.sidebar-item.sair:hover {
+    background-color: #ef4444;
+    color: #ffffff;
+    transition: background-color 0.2s linear;
+}
+
+
 .container-dialog {
     width: 100vw;
     height: 100vh;
@@ -470,6 +482,7 @@ a.add-user:hover {
     margin: 0 auto;
     margin-top: 100px;
     padding: 1rem;
+    border-radius: 8px;
 }
 
 #form-create-user {

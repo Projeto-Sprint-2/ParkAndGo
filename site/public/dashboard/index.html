@@ -89,8 +89,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="sidebar-item">
-                        <span class="sair">sair</span>
+                    <a href="#" class="sidebar-item sair">
+                        <i class="ri-logout-box-line"></i>
+                        <span>Sair</span>
                     </a>
                 </li>
             </ul>
@@ -125,10 +126,14 @@
                 <div class="chart">
                     <canvas id="chartOcupacaoGeral"></canvas>
                 </div>
-                <div class="chart">
-                    <select id="slSetores">
-                        <option value="" selected disabled hidden>Selecione um setor</option>
-                    </select>
+                <div class="chart col">
+                    <div>
+                        <label for="slSetores">Selecione um setor:</label>
+                        <select id="slSetores">
+                            <option value="all" selected>Todos</option>
+                            <option value="1">A</option>
+                        </select>
+                    </div>
                     <canvas id="chartOcupacaoSetor"></canvas>
                 </div>
             </div>

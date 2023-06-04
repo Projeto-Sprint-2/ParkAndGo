@@ -257,6 +257,11 @@ div#sidebar {
     color: #171717;
 }
 
+.sidebar-item.sair:hover {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
 .charts-container {
     padding: 1rem;
     margin-left: 256px;
@@ -354,4 +359,19 @@ div#sidebar {
 .chart.kpi{
     display: flex;
     flex-direction: column;
+}
+
+.col {
+    flex-direction: column;
+}
+
+.chart.col {
+    gap: 8px;
+}
+
+#slSetores {
+    background-color: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
 }
