@@ -128,7 +128,7 @@ function buscarMedidas() {
             if (ocupacao >= p40 && ocupacao <= p60) {
                 coresOcupacao[index] = '#22c55e'
             } else if (ocupacao < p25 || ocupacao > p75) {
-                coresOcupacao[index] = '#ef4444'
+                coresOcupacao[index] = '#d91e1e'
                 publicarAlerta('O amigo', 'oq acontece', sessionStorage.idUsuario)
                 mostraToast('Deu ruim')
             } else {
