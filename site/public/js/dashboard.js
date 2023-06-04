@@ -130,11 +130,11 @@ function buscarMedidas() {
             } else if (ocupacao < p25 || ocupacao > p75) {
                 coresOcupacao[index] = '#d91e1e'
                 publicarAlerta('O amigo', 'oq acontece', sessionStorage.idUsuario)
-                mostraToast('Deu ruim')
+                mostraToast('Deu ruim', 'danger')
             } else {
                 coresOcupacao[index] = '#fbbf24'
                 publicarAlerta('O amigo', 'oq acontece', sessionStorage.idUsuario)
-                mostraToast('Deu ruim')
+                mostraToast('Deu ruim', 'warning')
             }
         });
     }, 500);
@@ -158,7 +158,7 @@ function publicarAlerta(titulo, descricao, idUsuario) {
     })
 }
 
-function mostraToast(descricao, tipo = 'warning') {
+function mostraToast(descricao, tipo) {
     document.querySelector('div.toast-stack').innerHTML += `
         <div class="toast">
             <div class="${tipo}">
