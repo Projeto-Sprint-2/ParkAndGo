@@ -477,6 +477,23 @@ a.add-user:hover {
     transition: background-color ease-in 0.1s;
 }
 
+td a.add-setor {
+    display: flex;
+    width: 32px;
+    height: 32px;
+    background-color: #5EDC8A;
+    color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color ease-in 0.1s;
+}
+
+a.add-setor:hover {
+    background-color: #85EA9E;
+    transition: background-color ease-in 0.1s;
+}
+
 #modal-create-user {
     max-width: 460px;
     margin: 0 auto;

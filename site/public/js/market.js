@@ -94,7 +94,10 @@ function carregarLista() {
                             <td>${mercado.CEP}</td>
                             <td>${mercado.data}</td>
                             <td>
-                                <a href="#" id="bnt-add-user" onclick="modalCriarUsuario(${mercado.idMercado})" class="add-user" title="Criar usuário para o mercado"><i class="ri-user-add-line"></i></a>
+                                <a href="#" onclick="modalCriarUsuario(${mercado.idMercado})" class="add-user" title="Criar usuário para o mercado"><i class="ri-user-add-line"></i></a>
+                            </td>
+                            <td>
+                                <a href="#" onclick="" class="add-setor" title="Adicionar setor"><i <i class="ri-instance-line"></i>
                             </td>
                             <td>
                                 <a href="#" onclick="deletarMercado(${mercado.idMercado})" class="delete-market" title="Excluir mercado"><i class="ri-delete-bin-fill"></i></a>
