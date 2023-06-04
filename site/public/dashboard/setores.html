@@ -22,38 +22,94 @@
 </head>
 
 <body>
-    <!-- <nav>
-        <ul class="listNav">
-            <li>
-                <i class="ri-pie-chart-2-line"></i>
-                <a href="dashBoard.html">DashBoard</a>
-            </li>
-            <li class="active-page">
-                <i class="ri-line-chart-fill"></i>
-                <a href="setores.html">Setores</a>
-            </li>
-            <li>
-                <i class="ri-settings-4-line"></i>
-                <a href="#">Configurações</a>
-            </li>
-            <li>
-                <i class="ri-contacts-line"></i>
-                <a href="#">Contato</a>
-            </li>
-            <li id="logout-icon">
-                <i class="ri-logout-box-line"></i>
-                <a href="#">Sair</a>
-            </li>
-        </ul>
-        <p id="version">Version 1.0.0</p>
-    </nav> -->
 
+        <nav>
+            <div class="container">
+                <a href="#">
+                    <img src="../assets/images/logo.png" id="logo">
+                </a>
+                <div class="user-area">
+                    <button id="btn-notifications">
+                        <i class="ri-notification-2-fill"></i>
+                        <span>Notificações</span>
+                    </button>
+                    <div class="wrapper-dropdown">
+                        <button id="btn-dropdown-user">
+                            <img class="user-image" src="https://avatars.githubusercontent.com/u/93455951?v=4">
+                        </button>
+                        <div id="dropdown-user">
+                            <div class="dropdown-container">
+                                <p id="user-name">
+                                    Kelvin Santos
+                                </p>
+                                <p id="user-email">
+                                    kelvin.jesus@sptech.school.com
+                                </p>
+                            </div>
+                            <ul class="user-functions">
+                                <li>
+                                    <a href="#" class="menu-item signout">Sair</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    
+            <div class="toast">
+                <div class="warning">
+                    <div class="toast-icon">
+                        <i class="ri-alert-fill"></i>
+                    </div>
+                    <span>Setor A esta muito cheio!</span>
+                    <button class="close">
+                        <i class="ri-close-fill"></i>
+                    </button>
+                </div>
+                <div class="timer">
+    
+                </div>
+            </div>
+    
+        <div id="sidebar">
+            <div class="wrapper-sidebar-items">
+                <ul class="sidebar-list">
+                    <li>
+                        <a href="./index.html" class="sidebar-item">
+                            <i class="ri-pie-chart-fill"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./setores.html" class="sidebar-item active disable">
+                            <span>Setores</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-item">
+                            <span>Alertas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-item">
+                            <span class="sair">sair</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+<div class="titulo">
+        <h3>cadastrar Setor</h3>        
+    </div>
+        <div class="main">
     <div class="field">
+       
         <label for="inome">Nome Setor</label>
         <input type="text" id="nomeSetor" placeholder="3B">
     </div>
     <div class="field">
-        <label for="andar">Andar do setor</label>
+        <label for="andar">Andar do setor</label><br>
         <input type="text" id="andarSetor" placeholder="1">
     </div>
     <div class="field">
@@ -63,6 +119,8 @@
     <div class="wrapper-submit">
         <button onclick="cadastrarSetor()" id='cadastroUsuario' class="submit">Criar</button>
     </div>
+</div>
+
 
 </body>
 

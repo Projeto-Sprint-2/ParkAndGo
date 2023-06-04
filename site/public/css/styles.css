@@ -308,6 +308,20 @@ section#contact-us .container {
     margin: 2rem;
 }
 
+.titulo{
+    display: flex;
+    padding-top: 100px;
+    margin-left: 300px;
+    font-size: 30px;
+}
+
+.main{
+    display: flex;
+    padding-top: 50px;
+    flex-direction: column;
+
+    margin-left: 300px;
+}
 div.field {
     display: flex;
     flex-direction: column;
@@ -354,6 +368,7 @@ button.submit {
     font-weight: 600;
     transition: opacity ease-in 0.100s;
     padding: .75rem 1.5rem;
+   
 }
 
 button.submit:hover {
