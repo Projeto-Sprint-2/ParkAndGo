@@ -15,8 +15,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="../css/dashboard.css">
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/dashboard.js" defer></script>
+    <script src="../js/alerta.js"></script>
 </head>
 
 <body>
@@ -55,7 +54,7 @@
     </nav>
 
     <div class="toast-stack">
-        <!-- <div class="toast">
+        <div class="toast">
             <div class="warning">
                 <div class="toast-icon">
                     <i class="ri-alert-fill"></i>
@@ -66,22 +65,22 @@
                 </button>
             </div>
             <div class="timer">
-    
+
             </div>
-        </div> -->
+        </div>
     </div>
 
     <div id="sidebar">
         <div class="wrapper-sidebar-items">
             <ul class="sidebar-list">
                 <li>
-                    <a href="#" class="sidebar-item active disable">
+                    <a href="./" class="sidebar-item">
                         <i class="ri-pie-chart-fill"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="./alertas.html" class="sidebar-item">
+                    <a href="#" class="sidebar-item active disable">
                         <span>Alertas</span>
                     </a>
                 </li>
@@ -98,44 +97,20 @@
 
     <div class="charts-container">
         <div class="charts-content">
-            <div class="analytics">
-                <div class="idealColor analyticsColor"></div>
-                <span>Ideal (40%-60%)</span>
-
-                <div class="emergencialColor analyticsColor"></div>
-                <span>Emergencial (61%-75% ou 25% a 39%)</span>
-
-                <div class="criticoColor analyticsColor"></div>
-                <span>Crítico (>75% ou <25%)</span>
-            </div>
-            <div class="chart-grid cols-2">
-                <div class="chart kpi">
-                    <span>Setor mais ocupado</span> 
-                    <span id="kpiSetorMaisOcupado"></span>
-                    <span>Horário mais ocupado</span>
-                    <span id="kpiHorarioMaisOcupado"></span>
-                </div>
-
-                <div class="chart">
-                    <span class="ultimaAtt">Ultima atualização: <span id="ultimaAttdata"></span></span>
-                    <canvas id="chartVagaspSetor"></canvas>
-                </div>
-                <div class="chart">
-                    <canvas id="chartOcupacaoGeral"></canvas>
-                </div>
-                <div class="chart col">
-                    <div>
-                        <label for="slSetores">Selecione um setor:</label>
-                        <select id="slSetores">
-                            <option value="all" selected>Todos</option>
-                            <option value="1">A</option>
-                        </select>
-                    </div>
-                    <canvas id="chartOcupacaoSetor"></canvas>
-                </div>
+            <div class="chart-grid cols-1">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Título</td>
+                            <td>Descrição</td>
+                            <td>Data/Hora</td>
+                        </tr>
+                    </thead>
+                    <tbody class="alert-list">
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </body>
-
 </html>

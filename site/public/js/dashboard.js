@@ -126,19 +126,55 @@ function buscarMedidas() {
             let p60 = (capacidadeMaxima[index].capacidade * 60) / 100
 
             if (ocupacao >= p40 && ocupacao <= p60) {
-                coresOcupacao[index] = '#188c20'
+                coresOcupacao[index] = '#22c55e'
             } else if (ocupacao < p25 || ocupacao > p75) {
-                coresOcupacao[index] = '#d91e1e'
+                coresOcupacao[index] = '#ef4444'
+                publicarAlerta('O amigo', 'oq acontece', sessionStorage.idUsuario)
+                mostraToast('Deu ruim')
             } else {
-                coresOcupacao[index] = '#f27405'
+                coresOcupacao[index] = '#fbbf24'
+                publicarAlerta('O amigo', 'oq acontece', sessionStorage.idUsuario)
+                mostraToast('Deu ruim')
             }
-
-        })
+        });
     }, 500);
 
     setTimeout(() => {
         loadCharts()
     }, 1000);
+}
+
+function publicarAlerta(titulo, descricao, idUsuario) {
+    fetch(`/alertas/publicar/${idUsuario}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            tituloServer: titulo,
+            descricaoServer: descricao,
+            idUsuarioServer: idUsuario
+        })
+    })
+}
+
+function mostraToast(descricao, tipo = 'warning') {
+    document.querySelector('div.toast-stack').innerHTML += `
+        <div class="toast">
+            <div class="${tipo}">
+                <div class="toast-icon">
+                    <i class="ri-alert-fill"></i>
+                </div>
+                <span>${descricao}</span>
+                <button class="close">
+                    <i class="ri-close-fill"></i>
+                </button>
+            </div>
+            <div class="timer">
+
+            </div>
+        </div>
+    `;
 }
 
 let graficoOcupacaoGeral, graficoVagaspSetor, graficoOcupacaoSetor

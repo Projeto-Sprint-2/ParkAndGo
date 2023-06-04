@@ -1,5 +1,5 @@
 CREATE DATABASE ParkAndGo;
-
+-- DROP DATABASE ParkAndGo;
 USE ParkAndGo;
 
 CREATE TABLE Endereco (
@@ -67,7 +67,9 @@ CREATE TABLE Usuario (
 
 CREATE TABLE Alerta(
 	idAlerta INT PRIMARY KEY AUTO_INCREMENT,
-	txtAlerta VARCHAR(200),
+	titulo VARCHAR(100),
+	descricao VARCHAR(150),
+	dataOcorrido DATETIME,
 	fkUsuario INT,
 	CONSTRAINT FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario)
 );
