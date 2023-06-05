@@ -7,6 +7,7 @@ var coresOcupacao = []
 var capacidadeMaxima = []
 var setorOcupacao
 var primeiroChartEspec = true
+var numAlertas = 0;
 
 const chartVagaspSetor = document.getElementById('chartVagaspSetor');
 const chartOcupacaoGeral = document.getElementById('chartOcupacaoGeral');
@@ -48,7 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
         dropdownUser.classList.toggle('show');
     });
 
-
+    setInterval(() => {
+        buscarAlertas()
+        numAlertas = 0
+    }, 10000);
 })
 
 function buscarSetorEspecifico(idSetorEspec) {
@@ -129,12 +133,12 @@ function buscarMedidas() {
                 coresOcupacao[index] = '#22c55e'
             } else if (ocupacao < p25 || ocupacao > p75) {
                 coresOcupacao[index] = '#d91e1e'
-                publicarAlerta('O amigo', 'oq acontece', sessionStorage.idUsuario)
-                mostraToast('Deu ruim', 'danger')
+                publicarAlerta('Setor em estado crítico', `Setor ${capacidadeMaxima[index].setor} em estado crítico`)
+                numAlertas++
             } else {
+                publicarAlerta('Setor em estado emergencial', `Setor ${capacidadeMaxima[index].setor} em estado emergencial`)
                 coresOcupacao[index] = '#fbbf24'
-                publicarAlerta('O amigo', 'oq acontece', sessionStorage.idUsuario)
-                mostraToast('Deu ruim', 'warning')
+                numAlertas++
             }
         });
     }, 500);
@@ -144,8 +148,42 @@ function buscarMedidas() {
     }, 1000);
 }
 
-function publicarAlerta(titulo, descricao, idUsuario) {
-    fetch(`/alertas/publicar/${idUsuario}`, {
+
+function buscarAlertas() {
+    fetch(`/alertas/listar/${sessionStorage.fkMercado}/${numAlertas}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(resposta => {
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                json.forEach((retorno, index) => {
+                    document.querySelector('.toast-stack').innerHTML += `
+                    <div class="toast">
+                        <div class="danger">
+                            <div class="toast-icon">
+                                <i class="ri-alert-fill"></i>
+                            </div>
+                            <span>${retorno.descricao}</span>
+                            <button class="close">
+                                <i class="ri-close-fill"></i>
+                            </button>
+                        </div>
+                        <div class="timer">
+                
+                        </div>
+                    </div>
+                    `
+                })
+            })
+
+        }
+    })
+}
+
+function publicarAlerta(titulo, descricao) {
+    fetch(`/alertas/publicar/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -153,28 +191,9 @@ function publicarAlerta(titulo, descricao, idUsuario) {
         body: JSON.stringify({
             tituloServer: titulo,
             descricaoServer: descricao,
-            idUsuarioServer: idUsuario
+            fkMercadoServer: sessionStorage.fkMercado
         })
     })
-}
-
-function mostraToast(descricao, tipo) {
-    document.querySelector('div.toast-stack').innerHTML += `
-        <div class="toast">
-            <div class="${tipo}">
-                <div class="toast-icon">
-                    <i class="ri-alert-fill"></i>
-                </div>
-                <span>${descricao}</span>
-                <button class="close">
-                    <i class="ri-close-fill"></i>
-                </button>
-            </div>
-            <div class="timer">
-
-            </div>
-        </div>
-    `;
 }
 
 let graficoOcupacaoGeral, graficoVagaspSetor, graficoOcupacaoSetor
@@ -223,7 +242,6 @@ function loadCharts() {
     if (!primeiroPlot) {
         attGraficos()
     } else {
-
         graficoVagaspSetor = new Chart(chartVagaspSetor, {
             type: 'bar',
             data: {
@@ -293,7 +311,7 @@ function loadCharts() {
 
     setTimeout(() => {
         buscarMedidas()
-    }, 1000);
+    }, 8000);
 }
 
 let dataVagaspSetor, dataOcupacaoGeral, labelsOcupacaoGeral, dataOcupacaoSetor, labelsOcupacaoSetor, colorVagaspSetor

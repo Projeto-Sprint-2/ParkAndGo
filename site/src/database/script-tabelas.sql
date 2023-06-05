@@ -1,5 +1,4 @@
 CREATE DATABASE ParkAndGo;
--- DROP DATABASE ParkAndGo;
 USE ParkAndGo;
 
 CREATE TABLE Endereco (
@@ -70,8 +69,8 @@ CREATE TABLE Alerta(
 	titulo VARCHAR(100),
 	descricao VARCHAR(150),
 	dataOcorrido DATETIME,
-	fkUsuario INT,
-	CONSTRAINT FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario)
+	fkMercado INT,
+	CONSTRAINT FOREIGN KEY (fkMercado) REFERENCES Mercado(idMercado)
 );
 
 CREATE TABLE Setor(
@@ -107,35 +106,39 @@ CREATE TABLE Metrica(
 	CONSTRAINT metricaSetor FOREIGN KEY (fkSensor) REFERENCES Sensor(idSensor)
 );
 
-insert into
-	Mercado (nome, cnpj, unidade)
-values
-	(
-		'mercado simples',
-		'12345678901234',
-		'rua simples'
-	);
+insert into Endereco values
+	(null, 'Rua Dois', 'Paulista', 'São Paulo', 'São Paulo', '102', '09172-855'),
+	(null, 'Rua Um', 'Paulista', 'São Paulo', 'São Paulo', '23', '03582-815');
 
-insert into
-	Setor (nome, andar, capacidadeMaxima, fkMercado)
-values
-	('A', '1', '50', 1),
-	('B', '1', '70', 1),
-	('C', '1', '80', 1),
-	('D', '1', '110', 1);
+insert into Empresa values
+	(null, '96.118.890/0001-00', 'ParkAndGo', 'ParkAndGo', now(), 100);
 
-insert into
-	Sensor (fkSetor)
-values
-	(1),
-	(2),
-	(3),
-	(4);
-
-
+insert into Responsavel values
+	(null, 'Kauan', 'Oliveira', '240.441.947-05', 'kauan@gmail.com', '11910434006', now(), 50);
 
 insert into
 	tipoUsuario
 values
 	(null, 'Administrador'),
 	(null, 'Analista');
+
+insert into Usuario values
+	(null, 'kauan@gmail.com', '123456', 'Kauan', null, 50, 1);
+
+insert into Mercado values
+	(null, 'Mercado Paulistano', '32.296.969/0001-48', 'Paulista', now(), 50, 101);
+    
+insert into Setor values
+	(null, 'A', 'Terreo', 50, 1),
+	(null, 'B', 'Terreo', 70, 1),
+	(null, 'C', 'Terreo', 80, 1),
+	(null, 'D', 'Terreo', 110, 1);
+    
+insert into Status values
+	(null, 'Ativo');
+    
+insert into Sensor values
+	(null, 'TCRT5000', 1, 1),
+	(null, 'TCRT5000', 2, 1),
+	(null, 'TCRT5000', 3, 1),
+	(null, 'TCRT5000', 4, 1);

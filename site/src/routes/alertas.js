@@ -8,11 +8,11 @@ router.get("/listar", function (req, res) {
     alertaController.listar(req, res);
 });
 
-router.get("/listar/:idUsuario", function (req, res) {
-    alertaController.listarPorUsuario(req, res);
+router.get("/listar/:fkMercado/:maxResultados", function (req, res) {
+    alertaController.listarAlertaMercado(req, res);
 });
 
-router.post("/publicar/:idUsuario", function (req, res) {
+router.post("/publicar/", function (req, res) {
     alertaController.publicar(req, res);
 });
 
