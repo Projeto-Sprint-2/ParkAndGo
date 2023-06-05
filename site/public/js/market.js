@@ -79,14 +79,14 @@ async function cadastrarMercado() {
 }
 
 function cadastrarSetor() {
+    modalSetores.close();
     var nome = nomeSetor.value
     var andar = andarSetor.value
     var capacidade = capacidadeSetor.value
-    var fkMercado = sessionStorage.fkMercado.value
+    var fkMercado = sessionStorage.fkMercado
     
-
     fetch('/setores/cadastrar', {
-        method: 'POST',
+        method: 'POST', 
         headers: {
             "Content-Type": "application/json"
         },
@@ -102,15 +102,13 @@ function cadastrarSetor() {
             resposta.json().then(json => {
                 console.log(json);
             })
-
+           
 
         }
     }).catch((resposta) => {
         console.log(`#ERRO: ${resposta}`);
     })
 }
-
-console.log(fkMercado.value)
 function carregarLista() {
     fetch(`/mercados/listar/${sessionStorage.fkEmpresa}`, {
         method: 'GET',
@@ -190,6 +188,7 @@ function modalCriarUsuario(fkMercado) {
 function modalCriarsetor(fkMercado){
     document.getElementById('modal-create-setores').showModal();
     sigup_fkMercado.value = fkMercado
+    sessionStorage.fkMercado = fkMercado;
 }
 
 function criarUsuario(idMercado) {
